@@ -1,3 +1,6 @@
 [submodule "output"]
 	path = output
 	url = https://github.com/thomasantony/thomasantony.github.io
+[submodule "plugins/pelican-bibtex"]
+	path = plugins/pelican-bibtex
+	url = https://github.com/vene/pelican-bibtex.git

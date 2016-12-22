@@ -24,11 +24,6 @@ AUTHOR_FEED_RSS = None
 
 DISPLAY_PAGES_ON_MENU = False
 DISPLAY_CATEGORIES_ON_MENU = False
-# Blogroll
-# LINKS = (('Pelican', 'http://getpelican.com/'),
-#          ('Python.org', 'http://python.org/'),
-#          ('Jinja2', 'http://jinja.pocoo.org/'),
-#          ('You can modify those links in your config file', '#'),)
 
 # Social widget
 SOCIAL = (('twitter', 'http://www.twitter.com/thomasantony'),
@@ -45,4 +40,11 @@ DEFAULT_PAGINATION = False
 STATIC_PATHS = ['static']
 
 # Uncomment following line if you want document-relative URLs when developing
-#RELATIVE_URLS = True
+RELATIVE_URLS = True
+
+DIRECT_TEMPLATES = ('publications', )
+
+# Plugins
+PLUGIN_PATHS = ['plugins/']
+PLUGINS = ['pelican-bibtex']
+PUBLICATIONS_SRC = 'content/pubs.bib'
