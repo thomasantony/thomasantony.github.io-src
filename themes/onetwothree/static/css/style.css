@@ -131,6 +131,7 @@ aside em {
 p {
 	margin-bottom: 1em;
 	line-height: 1.45;
+	text-align: justify;
 }
 
 ul,ol {
