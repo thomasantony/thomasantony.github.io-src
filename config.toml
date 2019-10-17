@@ -7,9 +7,9 @@ theme = "onetwothree"
 
 [params]
 twitter = "thomasantony"
-navigation = ["about.md"]
+navigation = ["publications.md", "about.md"]
 style = ""
-
+googleAnalytics = "UA-56045487-1"
 
 
 

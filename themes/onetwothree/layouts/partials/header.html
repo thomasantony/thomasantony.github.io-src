@@ -32,6 +32,7 @@
 	<meta name="article:tag" content="{{ range .Params.tags }}{{.}} {{end}}">
 	<link rel="stylesheet" type="text/css" href="/css/style{{ $.Site.Params.style }}.css">
 	<script src="/js/caption.js"></script>
+	{{ template "_internal/google_analytics.html" . }}
 </head>
 <body>
 {{ if $.Site.Params.analytics }}
