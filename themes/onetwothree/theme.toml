@@ -16,6 +16,6 @@ min_version = "0.27.1"
 
 # If porting an existing theme
 [original]
-  name = ""
-  homepage = ""
+  name = "onetwothree"
+  homepage = "https://schollz.github.io/"
   repo = ""

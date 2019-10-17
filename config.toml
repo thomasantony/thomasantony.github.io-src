@@ -1,5 +1,5 @@
 baseurl = "https://www.example.com/"
-title = "Random Thoughts"
+title = "Random Thoughts of an Engineer"
 author = "Thomas Antony"
 canonifyurls = true
 languagecode = "en"
