@@ -4,12 +4,12 @@ author = "Thomas Antony"
 canonifyurls = true
 languagecode = "en"
 theme = "onetwothree"
+googleAnalytics = "UA-56045487-1"
 
 [params]
 twitter = "thomasantony"
 navigation = ["publications.md", "about.md"]
 style = ""
-googleAnalytics = "UA-56045487-1"
 
 
 
