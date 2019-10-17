@@ -95,6 +95,11 @@ header {
 footer {
 	display:block;
 	padding: 0.5rem 0 5.5rem 0;
+	font-size: 0.6rem;
+	text-align:center;
+	margin-bottom: 1rem;
+	margin-left: 7.5em;
+	margin-right: 7.5em;
 }
 
 @media all and (max-width:520px) {
