@@ -13,5 +13,8 @@ The rest of the post assumes that you have already installed Orbiter 2016 in `C:
 
 ## Download Visual Studio
 
+All the sample projects in the Orbiter SDK assumes that some version of Visual Studio is used to compile them. 
+
+
 ## Build a sample project 
 

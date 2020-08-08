@@ -1,7 +1,7 @@
 ---
 title: "Writing A Sudoku Solver using varisat in Rust"
 date: 2020-04-12T17:07:25-05:00
-draft: false
+draft: true
 ---
 
 I have been using Rust professionally for almost six months now and have tried it on and off for more than one year now. In this post, I will be writing a Sudoku solver using the SAT solver, [`varisat`](https://crates.io/crates/varisat). 
