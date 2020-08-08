@@ -23,6 +23,9 @@ pre {
   padding: 1rem;
 }
 
+p {
+  text-align: justify;
+}
 code {
   font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, Courier, monospace;
 }
