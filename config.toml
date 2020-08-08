@@ -37,11 +37,6 @@ math = true
   url = "posts/"
   weight = 2.0
 
-  [[menu.nav]]
-  name = "RSS"
-  url = "index.xml"
-  weight = 5.0
-
 # theme = "KeepIt"
 # 
 # [params]
