@@ -8,13 +8,16 @@ draft: true
 
 ## Download Orbiter 2016
 
-"Tex" has a very good [video](https://www.youtube.com/watch?v=BzcPO8rtLDQ) detailing how to install it along with some essential add-ons. [Orbiter-Forum](https://www.orbiter-forum.com) is also a great resource.
-The rest of the post assumes that you have already installed Orbiter 2016 in `C:\Orbiter`.
+"Tex" has a very good [video](https://www.youtube.com/watch?v=BzcPO8rtLDQ) detailing how to install Orbiter 2016 along with some essential add-ons. [Orbiter-Forum](https://www.orbiter-forum.com) is also a great resource.
+The rest of the post assumes that you have already installed Orbiter 2016 in `C:\Orbiter` .
 
-## Download Visual Studio
+## Download Visual Studio 2019
 
-All the sample projects in the Orbiter SDK assumes that some version of Visual Studio is used to compile them. 
+Microsoft Visual Studio is the compiler that the Orbiter SDK is currently configured for. Download the Visual Studio 2019 web installer from the [Visual Studio Download Center](https://visualstudio.microsoft.com/downloads/). Select the free "Community" edition. Run the installer program. You will eventually see a window with something similar to this:
 
+![Visual Studio Installer](/images/orbiter-sdk-vs-2019/vs-installer-01.png)
+
+Check the option that says "Desktop Development with C++". You may also modify the install location for the compiler. Continue with the installation and wait for it to complete.
 
 ## Build a sample project 
 
