@@ -1,15 +1,95 @@
 baseurl = "https://www.thomasantony.com/"
-title = "Random Thoughts of an Engineer"
+title = "Untitled Coding Blog"
 author = "Thomas Antony"
 canonifyurls = true
 languagecode = "en"
-theme = "onetwothree"
 googleAnalytics = "UA-56045487-1"
 
+theme = "hugo-flex"
 [params]
-twitter = "thomasantony"
-navigation = ["publications.md", "about.md"]
-style = ""
+color = "Tomato" #"CornFlowerBlue"
+width = "42rem"
+footer = "Created with Hugo."
+rss = "To subscribe to this RSS feed, copy its address and paste it into your favorite feed reader."
+summaries = false
+divider = "\\a0"
+schema = false
+opengraph = false
+twittercards = false
+math = true
+
+  [params.utterances]
+  issueterm = "pathname"
+  theme = "github-light"
+
+  [params.netlify]
+  honeypot = false
+  recaptcha = false
+
+[menu]
+  [[menu.nav]]
+  name = "About"
+  url = "about/"
+  weight = 1.0
+
+  [[menu.nav]]
+  name = "Posts"
+  url = "posts/"
+  weight = 2.0
+
+  [[menu.nav]]
+  name = "RSS"
+  url = "index.xml"
+  weight = 5.0
+
+# theme = "KeepIt"
+# 
+# [params]
+# author = "Thomas Antony"
+# subtitle = "A blog"
+# home_mode = "" # post or other
+# 
+# google_verification = ""
+# bing_verification = ""
+# yandex_verification = ""
+# pinterest_verification = ""
+# baidu_verification = ""
+# 
+# avatar = "/images/me/avatar.jpeg"
+# socialShare = true
+# 
+# description = "" # site description
+# keywords = "" # site keywords
+# 
+# license= 'Released under <a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a>'
+# 
+# paginate = 12
+# enableEmoji = true
+# enableRobotsTXT = true
+# 
+# [params.social]
+#     GitHub = "thomasantony"
+#     Linkedin = "thomasantony"
+#     Twitter = "thomasantony"
+# 
+# [params.share]
+# Twitter = true
+# Facebook = true
+# Linkedin = true
+
+ 
+[Permalinks]
+    posts = "/:year/:filename/"
+
+# Menu links
+[[menu.main]]
+    name = "Blog"
+    weight = 1
+    url  = "/posts/"
+[[menu.main]]
+    name = "About"
+    weight = 2
+    url = "/about/"
 
 
 
@@ -40,13 +120,3 @@ style = ""
 #     icon = "fab fa-twitter fa-2x"
 #     weight = 3
 #     url = "https://twitter.com/thomasantony/"
-
-# # Menu links
-# [[menu.main]]
-#     name = "Blog"
-#     weight = 1
-#     url  = "/posts/"
-# [[menu.main]]
-#     name = "About"
-#     weight = 2
-#     url = "/about/"
