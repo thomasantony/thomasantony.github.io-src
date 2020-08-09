@@ -20,7 +20,7 @@ Check the option that says "Desktop Development with C++". You may also modify t
 
 ## Build a sample project 
 
-The Orbiter SDK is installed in **C:\Orbiter\OrbiterSdk**. The SDK includes some sample projects including custom vehicles and Multi-Functional Display (MFDs) addons. Open **OrbiterSdk\CustomMFD\CustomMFD.vcproj** in Visual Studio 2019. You will get a prompt asking you if you want to convert the project to make it compatible.
+The Orbiter SDK is installed in **C:\Orbiter\OrbiterSdk**. The SDK includes some sample projects including custom vehicles and Multi-Functional Displays (MFDs). Open **OrbiterSdk\CustomMFD\CustomMFD.vcproj** in Visual Studio 2019. You will get a prompt asking you if you want to convert the project to make it compatible.
 
 ![Visual Studio Project Conversion](/images/orbiter-sdk-vs-2019/vs-01.png)
 
@@ -43,7 +43,12 @@ Click "OK" to close the property pages window. Right click on "CustomMFD" in Pro
 
 ![Visual Studio Debugging Property Sheet](/images/orbiter-sdk-vs-2019/vs-debugging.png)
 
-At this point, if you hit F7 to build the project, you may get an error saying:
+I got this handy tip from Andrew Stokes' [video](https://www.youtube.com/watch?v=knftMag1qc8). Go to **C++ > Code Generation** in the Property Sheet. Change Runtime Library to "**Multithreaded (/MT)**" for your "Release" configuration and "**Multithreaded Debug (/MTd)**" for your "Debug" configuration. This removes an external dependency on Visual Studio Runtime DLL.
+
+![Visual Studio Runtime Debug Configuration](/images/orbiter-sdk-vs-2019/vs-runtime-debug.png)
+![Visual Studio Runtime Release Configuration](/images/orbiter-sdk-vs-2019/vs-runtime-release.png)
+
+At this point, if you hit Build (F7), you may get an error saying:
 ```
 RC : fatal error RC1110: could not open CustomMFD.rc
 ```
