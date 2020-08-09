@@ -12,7 +12,7 @@ Download and install Orbiter following instructions at [http://orbit.medphys.ucl
 
 ## Download Visual Studio 2019
 
-Download the Visual Studio 2019 web installer from [Visual Studio Download Center](https://visualstudio.microsoft.com/downloads/). Select the free "Community" edition. Download and run the installer program. You will eventually see a window with something similar to this:
+Download the Visual Studio 2019 Community Edition web installer from [Visual Studio Download Center](https://visualstudio.microsoft.com/downloads/). Run the installer and you will eventually see a window with something similar to this:
 
 ![Visual Studio Installer](/images/orbiter-sdk-vs-2019/vs-installer-01.png)
 
