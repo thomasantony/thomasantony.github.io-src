@@ -8,8 +8,7 @@ draft: true
 
 ## Download Orbiter 2016
 
-Download and install Orbiter following instructions at [http://orbit.medphys.ucl.ac.uk/download.html](http://orbit.medphys.ucl.ac.uk/download.html)
-"TexFilms" on Youtube has a very [good video](https://youtube.com/watch?v=BzcPO8rtLDQ) detailing how to install Orbiter 2016 along with some essential add-ons. [Orbiter-Forum](https://www.orbiter-forum.com) is also a great resource. The rest of the post assumes that Orbiter 2016 is installed in **C:\Orbiter**.
+Download and install Orbiter following instructions at [http://orbit.medphys.ucl.ac.uk/download.html](http://orbit.medphys.ucl.ac.uk/download.html). "TexFilms" on Youtube has a very [good video](https://youtube.com/watch?v=BzcPO8rtLDQ) detailing how to install Orbiter 2016 along with some essential add-ons. [Orbiter-Forum](https://www.orbiter-forum.com) is also a great resource. The rest of the post assumes that Orbiter 2016 is installed in **C:\Orbiter**.
 
 ## Download Visual Studio 2019
 
