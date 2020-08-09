@@ -54,10 +54,8 @@ I got this handy tip from Andrew Stokes' [video](https://www.youtube.com/watch?v
 ![Visual Studio Runtime Debug Configuration](/images/orbiter-sdk-vs-2019/vs-runtime-debug.png)
 ![Visual Studio Runtime Release Configuration](/images/orbiter-sdk-vs-2019/vs-runtime-release.png)
 
-
-
 At this point, if you hit Build (F7), you may get an error saying:
-```[lineno=false]
+```
 RC : fatal error RC1110: could not open CustomMFD.rc
 ```
 
