@@ -6,6 +6,7 @@ languagecode = "en"
 googleAnalytics = "UA-56045487-1"
 defaultContentLanguage = "en"
 
+
 theme = "KeepIt"
 
 [params]
