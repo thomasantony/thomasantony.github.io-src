@@ -4,7 +4,7 @@ install:
   - sudo dpkg -i hugo_0.74.3_Linux-64bit.deb
   - rm -rf public/
 script:
-  - HUGO_ENV=production hugo --gc --minify
+  - HUGO_ENV=production hugo --gc --minify -v
   - cp CNAME public/
 deploy:
   provider: pages
