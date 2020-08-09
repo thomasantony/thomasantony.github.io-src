@@ -45,7 +45,7 @@ Close the property window. Right click on "CustomMFD" in Property Manager and se
 ![Visual Studio Debugging Property Sheet](/images/orbiter-sdk-vs-2019/vs-debugging.png)
 
 At this point, if you hit Build (F7), you may get an error saying:
-```
+```[lineno=false]
 RC : fatal error RC1110: could not open CustomMFD.rc
 ```
 

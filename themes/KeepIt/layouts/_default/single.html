@@ -50,7 +50,7 @@
     </div>
 
     <div class="post-copyright">
-            {{ with .Site.Params.author }} 
+            <!-- {{ with .Site.Params.author }} 
             <p class="copyright-item">
                 <span>{{ i18n "Author" }}:</span>
                 <span>{{ . }} </span>
@@ -60,7 +60,7 @@
             <p class="copyright-item">
                     <span>{{ i18n "Words" }}:</span>
                    <span>{{ .WordCount }}</span>
-            </p>
+            </p> -->
             
             <p class="copyright-item">
                 {{ if and ( $.Param "socialShare" ) (gt (len ($.Param "share")) 0) }}
@@ -68,12 +68,12 @@
                 <span>{{ partial "share-links.html" . }}</span>
                 {{ end }}
             </p>
-
+<!-- 
             {{ with .Site.Params.license }} 
             <p class="copyright-item">
                 {{ . | safeHTML}}
             </p>
-            {{ end }}
+            {{ end }} -->
     </div>
 
   
