@@ -47,7 +47,7 @@ Click "OK" to close the property pages window. Right click on "CustomMFD" in Pro
 
 ![Visual Studio Debugging Property Sheet](/images/orbiter-sdk-vs-2019/vs-debugging.png)
 
-### Remove dependency on MSVCRT.dll
+### Remove dependency on Visual Studio Runtime
 
 I got this handy tip from Andrew Stokes' [video](https://www.youtube.com/watch?v=knftMag1qc8). Go into **C++ > Code Generation** in the Property Sheet. Change Runtime Library to "**Multithreaded (/MT)**" for your "Release" configuration and "**Multithreaded Debug (/MTd)**" for your "Debug" configuration. This removes an external dependency on Visual Studio Runtime DLL that is unnecessary.
 
