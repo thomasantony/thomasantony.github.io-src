@@ -10,7 +10,9 @@
 {{ if .IsPage }}
 
     {{ if $postHasImages }}
-    <link crossorigin="anonymous" integrity="sha384-yziQACfvCVwLqVFLqkWBYRO3XeA4EqzfXKGwaWnenYn5XzqfJFlFdKEmvutIQdKb" href="https://lib.baomitu.com/lightgallery/1.6.12/css/lightgallery.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/1.7.2/css/lightgallery.min.css"
+        integrity="sha512-qPE3vKZNMU6bIOsds+KXztmNoUjlgPN+bvYKXNNg0TFac+Q81tUP/bM5e6qBqj0nXa6Tz6Vigxqzapd5d+xvOg=="
+        crossorigin="anonymous" />
      {{ $vendorscript := slice $jquery $lazysizes $prettify $dynamic $main $lihtGallery $lihtGallery_init | resources.Concat "/js/vendor_gallery.js" | resources.Minify }} 
      <script src="{{ printf "%s%s" $cdn_url $vendorscript.RelPermalink }}" async="" ></script>
     {{ else }}
