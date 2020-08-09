@@ -5,6 +5,9 @@ install:
   - rm -rf public/
   - hugo env
 script:
+  - ls themes/KeepIt/assets/css/_common/_core
+  - cat themes/KeepIt/assets/css/_common/_core/normalize.scss
+  - cat themes/KeepIt/assets/css/main.scss
   - HUGO_ENV=production hugo --gc --minify -v
   - cp CNAME public/
 deploy:
