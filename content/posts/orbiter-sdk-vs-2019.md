@@ -21,6 +21,8 @@ Check the option that says "Desktop Development with C++". You may also modify t
 
 ## Build a sample project 
 
+### Convert sample project to VS2019 format
+
 The Orbiter SDK is installed in **C:\Orbiter\OrbiterSdk**. The SDK includes some sample projects including custom vehicles and Multi-Functional Displays (MFDs). Open **OrbiterSdk\CustomMFD\CustomMFD.vcproj** in Visual Studio 2019. You will get a prompt asking you if you want to convert the project to make it compatible.
 
 ![Visual Studio Project Upgrade](/images/orbiter-sdk-vs-2019/vs-01.png)
@@ -28,6 +30,8 @@ The Orbiter SDK is installed in **C:\Orbiter\OrbiterSdk**. The SDK includes some
 Click "OK" to continue. Switch to the "Property Manager" tab at the bottom of "Solution Explorer".
 
 ![Visual Studio Property Manager Tab](/images/orbiter-sdk-vs-2019/vs-property-manager.png)
+
+### Set path for Orbiter 2016 SDK
 
 Within Property Manager, expand "CustomMFD" to show two options "Debug | WIn32" and "Release | Win32". Expand both of these until you get an opton called "Orbiterroot". Right click this and select Properties. 
 
@@ -43,6 +47,15 @@ Select "VC++ Directories". Change the "Include Directories" and "Library Directo
 Close the property window. Right click on "CustomMFD" in Property Manager and select "Properties". This should give you a window with an additional setting called "Debugging". Change the settings as shown in the screenshot below. Please note that I use **C:\Orbiter\Orbiter_ng.exe** as the "Command" option because I have the [Orbiter D3D9Client](http://users.kymp.net/~p501474a/D3D9Client/) installed. If you are running a vanilla Orbiter installation, set this to **C:\Orbiter\Orbiter.exe** instead.
 
 ![Visual Studio Debugging Property Sheet](/images/orbiter-sdk-vs-2019/vs-debugging.png)
+
+### Remove dependency on MSVCRT.dll
+
+I got this handy tip from Andrew Stokes' [video](https://www.youtube.com/watch?v=knftMag1qc8). Go into **C++ > Code Generation** in the Property Sheet. Change Runtime Library to "**Multithreaded (/MT)**" for your "Release" configuration and "**Multithreaded Debug (/MTd)**" for your "Debug" configuration. This removes an external dependency on Visual Studio Runtime DLL that is unnecessary.
+
+![Visual Studio Runtime Debug Configuration](/images/orbiter-sdk-vs-2019/vs-runtime-debug.png)
+![Visual Studio Runtime Release Configuration](/images/orbiter-sdk-vs-2019/vs-runtime-release.png)
+
+
 
 At this point, if you hit Build (F7), you may get an error saying:
 ```[lineno=false]
