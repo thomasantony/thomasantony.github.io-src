@@ -16,12 +16,7 @@ Python is amazing. I love the flexibility, the clean and readable syntax and its
 
 There are libraries like _PyQT_ and _Kivy_ to create GUIs for your Python application. However, each of them come with their [own problems](https://medium.com/@tryexceptpass/a-python-ate-my-gui-971f2326ce59#.lpb3pnf2d). Many modern UI solutions like Electron and React-Native looks to the web to avoid the problems of dealing with multiple platforms. After all, the web is one platform that DOES have it’s share of great (and at times awful) UIs.
 
-_flybywire_ is my ongoing experiment to develop a declarative UI library, based off some great work by [Cristian Medina](https://medium.com/u/138c0eb26be5).
-
-[**thomasantony/flybywire**  
-_flybywire - A declarative library for building user interfaces in pure Python._github.com](https://github.com/thomasantony/flybywire "https://github.com/thomasantony/flybywire")[](https://github.com/thomasantony/flybywire)
-
-So, what is _flybywire_ all about? Well, you need a bit of background before I can go into that.
+[_flybywire_](https://github.com/thomasantony/flybywire) is my ongoing experiment to develop a declarative UI library, based off some great work by [Cristian Medina](https://medium.com/u/138c0eb26be5). So, what is _flybywire_ all about? Well, you need a bit of background before I can go into that.
 
 #### React, ES6 and the Endless Abyss
 
@@ -40,14 +35,9 @@ There has to be a way to do all this in Python!
 
 #### The Magic of Websockets
 
-Last week, I came across this [article](https://medium.com/@tryexceptpass/a-python-ate-my-gui-971f2326ce59#.lpb3pnf2d) which seemed to reflect many of the problems that I had faced when it came to Python GUIs. The article is part of a 3-part (so far) series that ends with the creation of [Sofi](http://github.com/tryexceptpass/sofi) (Cheers [Cristian](https://medium.com/u/138c0eb26be5)!).
+Last week, I came across this [article](https://medium.com/@tryexceptpass/a-python-ate-my-gui-971f2326ce59#.lpb3pnf2d) which seemed to reflect many of the problems that I had faced when it came to Python GUIs. The article is part of a 3-part (so far) series that ends with the creation of [Sofi](http://github.com/tryexceptpass/sofi) (Cheers [Cristian](https://medium.com/u/138c0eb26be5)!). As described in the article, Sofi is:
 
-[**A Python ate my GUI — Part 3: Implementation**  
-_Time to Bootstrap your D3, pick up that Python and hop on the Autobahn_medium.com](https://medium.com/@tryexceptpass/a-python-ate-my-gui-part-3-implementation-39fc105b6d81 "https://medium.com/@tryexceptpass/a-python-ate-my-gui-part-3-implementation-39fc105b6d81")[](https://medium.com/@tryexceptpass/a-python-ate-my-gui-part-3-implementation-39fc105b6d81)
-
-As described in [Part 3](https://medium.com/@tryexceptpass/a-python-ate-my-gui-part-3-implementation-39fc105b6d81#.lsuhoosyv) of the series, Sofi is:
-
-“… a system that will generate the necessary HTML and JavaScript code typically needed to produce a single-page application and serve it up through WebSockets”
+> a system that will generate the necessary HTML and JavaScript code typically needed to produce a single-page application and serve it up through WebSockets
 
 Though it is at a very early stage in its design, Sofi seems to do what it is supposed to. It allows you to design UIs in Python while leveraging web technologies like Bootstrap to render them. One thing I did not like about Sofi was the imperative nature of the UI design which reminded me of jQuery (and maybe a bit of Java AWT). After my experience with React, I wanted something declarative and functional.
 

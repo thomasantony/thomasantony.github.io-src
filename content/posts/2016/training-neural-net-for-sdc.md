@@ -73,10 +73,7 @@ My initial model had some trouble navigating a couple of turns on track#1 in the
 
 Track 2 was a little more difficult, with more sharp gradients and curves. However, I found that decreasing the speed down to 20 mph helped it navigate that track as well!
 
-The live trainer code is on Github at:
-
-[**thomasantony/sdc-live-trainer**  
-_sdc-live-trainer - Live training program for Udacity's SDC Simulator_github.com](https://github.com/thomasantony/sdc-live-trainer "https://github.com/thomasantony/sdc-live-trainer")[](https://github.com/thomasantony/sdc-live-trainer)
+The live trainer code is on Github at: [**thomasantony/sdc-live-trainer**](https://github.com/thomasantony/sdc-live-trainer)
 
 ### Possibilities
 
