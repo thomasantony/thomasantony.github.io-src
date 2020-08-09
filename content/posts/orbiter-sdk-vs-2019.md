@@ -8,11 +8,8 @@ draft: true
 
 ## Download Orbiter 2016
 
-"Tex" has a very good video detailing how to install Orbiter 2016 along with some essential add-ons.
-{{< youtube BzcPO8rtLDQ >}}
-
-[Orbiter-Forum](https://www.orbiter-forum.com) is also a great resource.
-The rest of the post assumes that you have already installed Orbiter 2016 in **C:\Orbiter**.
+Download and install Orbiter following instructions at [http://orbit.medphys.ucl.ac.uk/download.html](http://orbit.medphys.ucl.ac.uk/download.html)
+"TexFilms" on Youtube has a very [good video](https://youtube.com/watch?v=BzcPO8rtLDQ) detailing how to install Orbiter 2016 along with some essential add-ons. [Orbiter-Forum](https://www.orbiter-forum.com) is also a great resource. The rest of the post assumes that Orbiter 2016 is installed in **C:\Orbiter**.
 
 ## Download Visual Studio 2019
 
@@ -34,10 +31,10 @@ Click "OK" to continue. Switch to the "Property Manager" tab at the bottom of "S
 
 Within Property Manager, expand "CustomMFD" to show two options "Debug | WIn32" and "Release | Win32". Expand both of these until you get an opton called "Orbiterroot". Right click this and select Properties. 
 
-![Visual Studio Orbiter Root Property](/images/orbiter-sdk-vs-2019/vs-orbiterroot.png)
+![Visual Studio Orbiter Root Property Sheet](/images/orbiter-sdk-vs-2019/vs-orbiterroot.png)
 
 Select "User Macros". Ensure that the "OrbiterDir" variable is set to the correct Orbiter installation path.
-![Visual Studio Orbiter Root OrbiterDir](/images/orbiter-sdk-vs-2019/vs-orbiterroot-window.png)
+![Visual Studio OrbiterDir](/images/orbiter-sdk-vs-2019/vs-orbiterroot-window.png)
 
 Select "VC++ Directories". Change the "Include Directories" and "Library Directories" settings as shown in the screenshow below. This will ensure that the compiler can find the Orbiter SDK include files and libraries.
 
@@ -45,13 +42,15 @@ Select "VC++ Directories". Change the "Include Directories" and "Library Directo
 
 Close the property window. Right click on "CustomMFD" in Property Manager and select "Properties". This should give you a window with an additional setting called "Debugging". Change the settings as shown in the screenshot below. Please note that I use **C:\Orbiter\Orbiter_ng.exe** as the "Command" option because I have the [Orbiter D3D9Client](http://users.kymp.net/~p501474a/D3D9Client/) installed. If you are running a vanilla Orbiter installation, set this to **C:\Orbiter\Orbiter.exe** instead.
 
-![Visual Studio Debugging](/images/orbiter-sdk-vs-2019/vs-debugging.png)
+![Visual Studio Debugging Property Sheet](/images/orbiter-sdk-vs-2019/vs-debugging.png)
 
 At this point, if you hit Build (F7), you may get an error saying:
 ```
 RC : fatal error RC1110: could not open CustomMFD.rc
 ```
 
-If this happens, switch back to "Solution Explorer" and delete the `CustomMFD.rc` file. Now if you hit build again, it should complete succesfully. It should be noted that the compiler places the output in the **C:\Orbiter\Modules\Plugin** directory by default. This can be verified by deleting **C:\Orbiter\Modules\Plugin\CustomMFD.dll** and rebuilding the project. You can now run orbiter as usual or have Visual Studio start it for you by hitting "Debug" and activate the Module.
+If this happens, switch back to "Solution Explorer" and delete the **CustomMFD.rc** file. Now if you hit build again, it should complete succesfully. It should be noted that the compiler places the output in the **C:\Orbiter\Modules\Plugin** directory by default. This can be verified by deleting **C:\Orbiter\Modules\Plugin\CustomMFD.dll** and rebuilding the project. You can now run orbiter as usual or have Visual Studio start it for you by hitting "Debug" and activate the Module in the Launcher as shown below.
+
+![Enable CustomMFD in Orbiter Launcher's Modules page](/images/orbiter-sdk-vs-2019/orbiter-modules.png)
 
 Your development environment is now ready.
