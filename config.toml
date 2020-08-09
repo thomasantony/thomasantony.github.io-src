@@ -37,6 +37,7 @@ googleAnalytics = "UA-56045487-1"
 #   url = "posts/"
 #   weight = 2.0
 
+
 theme = "KeepIt"
 
 [params]
