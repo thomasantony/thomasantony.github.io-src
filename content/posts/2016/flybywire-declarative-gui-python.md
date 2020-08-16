@@ -4,7 +4,8 @@ description: >-
   Python is amazing. I love the flexibility, the clean and readable syntax and
   its huge ecosystem of libraries. However, when it comes to…
 date: '2016-09-04T05:26:46.557Z'
-categories: []
+categories: [Coding]
+tags: [python, gui, react]
 keywords: []
 slug: /@tantony/flybywire-declarative-guis-for-python-inspired-by-react-ad2131d4cbc1
 ---

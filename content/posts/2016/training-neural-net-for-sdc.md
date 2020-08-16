@@ -4,7 +4,8 @@ description: >-
   I was lucky enough to be accepted into the first cohort of Udacity’s Self
   Driving Car NanoDegree program back in October. Though I have…
 date: '2016-12-11T05:02:01.849Z'
-categories: []
+categories: [Coding]
+tags: [neural-network, nn, cnn, convolutional neural net, self-driving car, sdc, udacity]
 keywords: []
 slug: >-
   /@tantony/training-a-neural-network-in-real-time-to-control-a-self-driving-car-9ee5654978b7

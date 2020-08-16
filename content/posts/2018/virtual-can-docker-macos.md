@@ -4,7 +4,8 @@ description: >-
   At SmartAg, we use Docker to manage the development and runtime environments
   for our embedded software. For performing full-system…
 date: '2018-02-09T03:42:31.359Z'
-categories: []
+categories: [Docker]
+tags: [docker, socketcan, CANbus, virtual-can]
 keywords: [docker, socketcan, CANbus]
 slug: /@tantony/using-virtualcan-inside-docker-on-macos-cfa10f7e75d6
 draft: false

@@ -1,6 +1,8 @@
 ---
 title: "Writing A Sudoku Solver using varisat in Rust"
 date: 2020-04-12T17:07:25-05:00
+categories: [Rust]
+tags: [sudoku, rust, varisat, SAT]
 draft: true
 ---
 
