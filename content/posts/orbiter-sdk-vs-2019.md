@@ -1,8 +1,8 @@
 ---
 title: "Setting up the Orbiter 2016 SDK in Visual Studio 2019"
 date: 2020-08-08T12:39:52-05:00
-tags: orbiter, visual studio, orbitersdk, c++, coding
-categories: Orbiter
+tags: [orbiter, visual studio, orbitersdk, c++, coding]
+categories: [Orbiter]
 draft: false
 ---
 
