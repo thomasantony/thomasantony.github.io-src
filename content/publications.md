@@ -10,7 +10,7 @@ Antony, T., and Grant, M. J.
 *Journal of Spacecraft and Rockets*, Vol. 54, No. 5 (2017), pp. 1081-1091, {{< doi "10.2514/1.A33755" >}}
 
 * [Quasilinear Chebyshev-Picard Iteration Method for Indirect Trajectory Optimization](/pdf/tantony_qcpi_2019.pdf)  
-Antony, T. and Grant, M. J.
+Antony, T. and Grant, M. J.  
 *2018 AIAA Atmospheric Flight Mechanics Conference*, {{< doi "10.2514/6.2019-0260" >}}
 
 * [Path Constraint Regularization in Optimal Control Problems using Saturation Functions](/pdf/tantony_satfcn_2018.pdf)  
@@ -22,7 +22,8 @@ Grant M. J. and Antony, T.
 *2016 AIAA Atmospheric Flight Mechanics Conference*, {{< doi "10.2514/6.2019-0260" >}}
 
 * [Enabling Mars Exploration Using inflatable Purdue Aerodynamic Decelerator with Deployable EntrySystems ("iPADDLES") Technology](/pdf/ipaddles_2016.pdf)  
-Sparapany, M., Antony, T., Saranathan, H., Klug, L., Libben,B., Shibata, E., Williams, J., Grant, M. J. and Saikia, S. J., *2016 Big Idea Challenge*, NASA Langley Research Center
+Sparapany, M., Antony, T., Saranathan, H., Klug, L., Libben,B., Shibata, E., Williams, J., Grant, M. J. and Saikia, S. J.  
+*2016 Big Idea Challenge*, NASA Langley Research Center
 
 * [Optimization of Interior Point Cost Functionals Using Indirect Methods](/pdf/tantony_ipcost_2015.pdf)  
 Antony, T., Grant, M. J. and Bolender, M. A.  
