@@ -44,4 +44,9 @@ Saikia, S., Das, A., Laipert, F., Dapkus, C., Kendall, J., Bowling, T., Stecklof
 * [Rapid Indirect Trajectory Optimization on Highly Parallel Computing Architectures](/pdf/tantony_msthesis.pdf)  
 *Master of Science in Aeronautics and Astronautics*, Purdue University, December 2014
 
+### Patents
+
+* [U.S. Patent 10788835B2](https://patents.google.com/patent/US10788835B2/en): *Safety system for autonomous operation of off-road and agricultural vehicles using machine learning for detection and identification of obstacles*, September 29, 2020
+
+
 Also on [Google Scholar](https://scholar.google.com/citations?hl=en&user=UxT0v5MAAAAJ).
