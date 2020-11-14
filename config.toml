@@ -11,7 +11,7 @@ theme = "KeepIt"
 
 [params]
 author = "Thomas Antony"
-subtitle = "A blog"
+subtitle = "My website"
 home_mode = "other" # post or other
 
 google_verification = ""
