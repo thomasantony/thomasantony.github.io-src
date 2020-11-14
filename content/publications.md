@@ -11,7 +11,7 @@ Antony, T., and Grant, M. J.
 
 * [Quasilinear Chebyshev-Picard Iteration Method for Indirect Trajectory Optimization](/pdf/tantony_qcpi_2019.pdf)  
 Antony, T. and Grant, M. J.  
-*2018 AIAA Atmospheric Flight Mechanics Conference*, {{< doi "10.2514/6.2019-0260" >}}
+*2019 AIAA Atmospheric Flight Mechanics Conference*, {{< doi "10.2514/6.2019-0260" >}}
 
 * [Path Constraint Regularization in Optimal Control Problems using Saturation Functions](/pdf/tantony_satfcn_2018.pdf)  
 Antony, T. and Grant, M. J.  
