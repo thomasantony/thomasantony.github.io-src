@@ -19,7 +19,7 @@ Antony, T. and Grant, M. J.
 
 * [Rapid Indirect Trajectory Optimization of a Hypothetical Long Range Weapon System](/pdf/grant_longrange_2016.pdf)  
 Grant M. J. and Antony, T.  
-*2016 AIAA Atmospheric Flight Mechanics Conference*, {{< doi "10.2514/6.2019-0260" >}}
+*2016 AIAA Atmospheric Flight Mechanics Conference*, {{< doi "10.2514/6.2016-0276" >}}
 
 * [Enabling Mars Exploration Using inflatable Purdue Aerodynamic Decelerator with Deployable Entry Systems ("iPADDLES") Technology](/pdf/ipaddles_2016.pdf)  
 Sparapany, M., Antony, T., Saranathan, H., Klug, L., Libben,B., Shibata, E., Williams, J., Grant, M. J. and Saikia, S. J.  
