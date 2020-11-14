@@ -21,7 +21,7 @@ Antony, T. and Grant, M. J.
 Grant M. J. and Antony, T.  
 *2016 AIAA Atmospheric Flight Mechanics Conference*, {{< doi "10.2514/6.2019-0260" >}}
 
-* [Enabling Mars Exploration Using inflatable Purdue Aerodynamic Decelerator with Deployable EntrySystems ("iPADDLES") Technology](/pdf/ipaddles_2016.pdf)  
+* [Enabling Mars Exploration Using inflatable Purdue Aerodynamic Decelerator with Deployable Entry Systems ("iPADDLES") Technology](/pdf/ipaddles_2016.pdf)  
 Sparapany, M., Antony, T., Saranathan, H., Klug, L., Libben,B., Shibata, E., Williams, J., Grant, M. J. and Saikia, S. J.  
 *2016 Big Idea Challenge*, NASA Langley Research Center
 
