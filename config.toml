@@ -58,6 +58,11 @@ Linkedin = true
     url  = "/posts/"
 
 [[menu.main]]
-    name = "About"
+    name = "Publications"
     weight = 3
+    url  = "/publications/"
+
+[[menu.main]]
+    name = "About"
+    weight = 4
     url = "/about/"
