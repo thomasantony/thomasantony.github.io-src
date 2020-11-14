@@ -4,6 +4,7 @@ install:
   - sudo dpkg -i hugo_extended_0.74.3_Linux-64bit.deb
   - rm -rf public/
   - hugo env
+before_script: git lfs pull
 script:
   - HUGO_ENV=production hugo --gc --minify -v
   - cp CNAME public/
