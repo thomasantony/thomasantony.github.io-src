@@ -28,10 +28,9 @@ Sparapany, M., Antony, T., Saranathan, H., Klug, L., Libben,B., Shibata, E., Wil
 Antony, T., Grant, M. J. and Bolender, M. A.  
 *2015 AIAA Atmospheric Flight Mechanics Conference*, {{< doi "10.2514/6.2015-2399" >}}
 
-* [Voyage to Troy: A mission concept for the exploration of the Trojan asteroids](http://ui.adsabs.harvard.edu/abs/2014acm..conf..461S/abstract)
-Saikia, S., Das, A., Laipert, F., Dapkus, C., Kendall, J., Bowling, T., Steckloff, J., Holbert, S., Graves, K., Antony, T., Bobick, R., Huang, Y., Stuart, J., Longuski, J., Minton, D.
-
-* Asteroids, Comets, Meteors (ACM) 2014*, Helsinki, FI
+* [Voyage to Troy: A Mission Concept For The Exploration Of The Trojan Asteroids](http://ui.adsabs.harvard.edu/abs/2014acm..conf..461S/abstract)  
+Saikia, S., Das, A., Laipert, F., Dapkus, C., Kendall, J., Bowling, T., Steckloff, J., Holbert, S., Graves, K., Antony, T., Bobick, R., Huang, Y., Stuart, J., Longuski, J., Minton, D.  
+*Asteroids, Comets, Meteors (ACM) 2014*, Helsinki, FI
 
 <!-- * "A Generalized Adaptive Chebyshev-Picard Iteration Method for Solution to Two-Point Boundary Value Problems", Antony, T. and Grant, M.J., *3rd Annual Meeting of the AFRL Mathematical Modeling and Optimization Institute*, Shalimar FL, 27-31 Jul. 2015 -->
 
