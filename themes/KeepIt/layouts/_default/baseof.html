@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="{{ .Site.LanguageCode }}">
   {{ partial "head.html" . }}
+  {{ if or (.Params.math) (.Site.Params.math) }}
+  {{- partial "mathjax.html" . -}}
+  {{ end }}
   <body class="">
     <div class="wrapper">
         {{ partial "header.html" . }}
