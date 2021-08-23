@@ -291,12 +291,19 @@ $$
 
 # Apollo Guidance Bank Angle Policy
 
-When we actually implement this guidance algorithm, $t_0$ and $\mathbf{\mathbf{x}_0}$ corresponds to the "current" time and state of the spacecraft. All the $\delta{\mathbf{x}}$ values are therefore computed by comparing the current trajectory to the reference trajectory. For example, $\delta h(v_0) = h^(v_0) - h^*(v_0)$ where $h(v_0)$ is the current altitude and $h^*(v_0)$ is the altitude on the reference trajectory corresponding to the current speed. 
+When we actually implement this guidance algorithm, $t_0$ and $\mathbf{\mathbf{x}_0}$ corresponds to the "current" time and state of the spacecraft. All the $\delta{\mathbf{x}}$ values are therefore computed by comparing the current trajectory to the reference trajectory. For example, 
+
+$\delta h(v_0) = h(v_0) - h^{*}(v_0)$ 
+
+where $h(v_0)$ is the current altitude and $h^*(v_0)$ is the altitude on the reference trajectory corresponding to the current speed. 
 
 Putting it all together, $\eqref{eqn:delu_1}$ becomes
+
+{{< mathjax >}}
 $$
 \delta u =  -\frac{\frac{-H\lambda_h^*(v_0)}{(D/m)^*(v_0)}\delta((D/m) (v_0)) + \lambda_s^*(v_0) \delta s(v_0) +  \frac{\lambda_\gamma^*(v_0)}{v_0^* \cos{(\gamma(v_0)))}}\delta\dot{h}(v_0)}{\lambda_u^*(v_0)}
 $$
+{{< /mathjax >}}
 
 The terms containing $*$ can be pre-computed on the ground along with teh reference trajectory. These terms can therefore be substituted by:
 
