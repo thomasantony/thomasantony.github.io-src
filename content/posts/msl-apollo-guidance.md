@@ -128,11 +128,13 @@ $$
 
 Applying the chain rule to the variation operator
 
+{{< mathjax >}}
 $$
 \begin{align}
 \delta J' &= \frac{\partial \Phi}{\partial \mathbf{x}}\delta \mathbf{x}\bigg|_{t=t_f}  + \int_{t_0}^{t_f} \mathbf{\lambda}^\intercal \delta \mathbf{f} + \delta\mathbf{\lambda}^\intercal \mathbf{f} - \delta\mathbf{\lambda}^\intercal(t)\dot{\mathbf{x}} - \mathbf{\lambda}^\intercal\delta\dot{\mathbf{x}} \enspace\enspace dt  \label{eqn:Jprime_1}
 \end{align}
 $$
+{{< /mathjax >}}
 
 Applying [Leibniz Rule](https://en.wikipedia.org/wiki/Leibniz_integral_rule) to the first term of the integral in ${\eqref{eqn:Jprime_1}}$,
 
