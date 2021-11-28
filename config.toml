@@ -64,6 +64,11 @@ Linkedin = true
     url  = "/publications/"
 
 [[menu.main]]
+    name = "Resume"
+    weight = 4
+    url = "/pdf/tantony-resume.pdf"
+
+[[menu.main]]
     name = "About"
     weight = 4
     url = "/about/"
