@@ -40,33 +40,21 @@ orbiter_rs = { version = "0.1", path = "/path/to/orbiter-rs" }
 The crate should then have a `lib.rs` containing a struct that implements the `OrbiterVessel` trait. It should then use the `init_vessel` macro as shown below. This macro generates a stub that is links the Rust code to the OrbiterSDK. For example, in `lib.rs`:
 
 ```rust
-use crate::{
-    ODebug, OrbiterVessel, VesselContext, _V, init_vessel, OBJHANDLE
+use orbiter_rs::{
+    ODebug, OrbiterVessel, VesselContext, _V, init_vessel, FileHandle
 };
 
 #[derive(Default, Debug)]
 pub struct ShuttlePB {
-    some_param: i32
+    _some_param: i32
 }
 
 impl OrbiterVessel for ShuttlePB {
-    fn set_class_caps(&mut self, context: &VesselContext) {
+    fn set_class_caps(&mut self, context: &VesselContext, _cfg: FileHandle) {
         context.SetSize(1.0);
         context.SetPMI(_V!(0.50, 0.50, 0.50));
-        context.AddMesh("ShuttlePB");
+        context.AddMesh("ShuttlePB".to_string());
     }
-    fn pre_step(&mut self, context: &VesselContext, _sim_t: f64, _sim_dt: f64, _mjd: f64) {
-    }
-    fn consume_buffered_key(
-        &mut self,
-        context: &VesselContext,
-        key: crate::ffi::DWORD,
-        down: bool,
-        kstate: [u8; crate::consts::LKEY_COUNT],
-    ) -> i32 {
-        0
-    }
-
 }
 
 init_vessel!(
