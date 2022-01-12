@@ -12,17 +12,36 @@ Rust is a relatively new high level systems programming language with a focus on
 
 ## Design
 
-The repository in its current form produces a DLL file as its build artifact that can be loaded into Orbiter as an addon module. Anyone wanting to create a Rust addon will clone/fork the repository and build it along with the the Rust code for their addon. There are a limited number of Orbiter SDK functions currently available as Rust bindings in this prototype. This will expand in the future to hopefully encompass the majority of the API. The repository includes a demo addon that models NASA's [Surveyor](https://en.wikipedia.org/wiki/Surveyor_program) probe. This follows from the C++ tutorial at [OrbiterWiki](https://www.orbiterwiki.org/wiki/Vessel_Tutorial_1) and implements retro-thruster staging and differential thrust attitude control.
+The repository in its current form produces a DLL file as its build artifact that can be loaded into Orbiter as an addon module. ~~Anyone wanting to create a Rust addon will clone/fork the repository and build it along with the the Rust code for their addon.~~(See update below). 
 
-Eventually, I hope to change this so that this repository is a crate that can be imported by an addon module. This will possibly require creation of procedural macros for automatic code generation.
+There are a limited number of Orbiter SDK functions currently available as Rust bindings in this prototype.
+This will expand in the future to hopefully encompass the majority of the API. The repository includes a demo addon that models NASA's [Surveyor](https://en.wikipedia.org/wiki/Surveyor_program) probe. This follows from the C++ tutorial at [OrbiterWiki](https://www.orbiterwiki.org/wiki/Vessel_Tutorial_1) and implements retro-thruster staging and differential thrust attitude control.
 
 ## Developing custom spacecraft addons
 
-All the spacecraft-specific code in the repository lives in its own file (`src/shuttle_pb.rs` for example). The file should include a struct that implements the `OrbiterVessel` trait and calls the `make_orbiter_vessel` macro with an instance of the struct. This macro generates the `create_rust_spacecraft` function that is used to link the code to the OrbiterSDK. For example:
+***Update 01/11/2022: This section has been changed to reflect changes to the crate***
+~~All the spacecraft-specific code in the repository lives in its own file (`src/shuttle_pb.rs` for example).~~
+An addon crate implementing a spacecraft should import the `orbiter_rs` crate. It should then set its crate-type to `cdylib`. 
+
+```toml
+[package]
+name = "shuttlepb"
+version = "0.1.0"
+authors = ["Thomas Antony"]
+edition = "2018"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+orbiter_rs = { version = "0.1", path = "/path/to/orbiter-rs" }
+```
+
+The crate should then have a `lib.rs` containing a struct that implements the `OrbiterVessel` trait. It should then use the `init_vessel` macro as shown below. This macro generates a stub that is links the Rust code to the OrbiterSDK. For example, in `lib.rs`:
 
 ```rust
 use crate::{
-    ODebug, make_orbiter_vessel, OrbiterVessel, VesselContext, _V,
+    ODebug, OrbiterVessel, VesselContext, _V, init_vessel, OBJHANDLE
 };
 
 #[derive(Default, Debug)]
@@ -50,22 +69,20 @@ impl OrbiterVessel for ShuttlePB {
 
 }
 
-make_orbiter_vessel!(ShuttlePB::default());
+init_vessel!(
+    fn init(_h_vessel: OBJHANDLE, _flight_model: i32) -> ShuttlePB
+    {
+        ShuttlePB::default()
+    }
+    fn exit() {}
+);
 ```
-
-This file is then included in `lib.rs` as follows:
-
-
-```rust
-mod shuttlepb;
-pub use shuttlepb::create_rust_spacecraft;
-````
 
 The addon may use any of the wrapped functions currently available. Any other Orbiter SDK functions will require wrappers to be generated for them. An automated tool like [autocxx](https://github.com/google/autocxx) may be worth investigating for this purpose.
 
 ## Building and Installing
 
-The addon can be built using `cargo build` assuming that Visual Studio 2019 is available. Other C++ compilers may or may not work. Deploying the addon also requires a config file and any meshes and other dependencies. An example can be seen in `Config/Surveyor.cfg`. Once you build the addon, the DLL will be available in the `target/i686-pc-windows-msvc/Debug` folder. This will need to be renamed to match whatever module name you haev in the configuration file.
+The addon can be built using `cargo build` assuming that Visual Studio 2019 is available. Other C++ compilers may or may not work. Deploying the addon also requires a config file and any meshes and other dependencies. An example can be seen in `Config/Surveyor.cfg`. Once you build the addon, the DLL will be available in the `target/i686-pc-windows-msvc/debug` folder. This will need to be renamed to match whatever module name you haev in the configuration file.
 
 ## Summary
 
