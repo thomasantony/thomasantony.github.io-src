@@ -27,7 +27,7 @@ jobs:
         uses: shalzz/zola-deploy-action@v0.14.1
         env:
           # Target branch and repo
-          REPOSITORY: https://thomasantony/thomasantony.github.io
+          REPOSITORY: thomasantony/thomasantony.github.io
           PAGES_BRANCH: master
           # Provide personal access token
           GITHUB_TOKEN: ${{ secrets.ACTIONS_DEPLOY_KEY }}
