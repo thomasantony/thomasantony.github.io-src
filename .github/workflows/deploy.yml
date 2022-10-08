@@ -1,0 +1,73 @@
+# On every push this script is executed
+on: push
+name: Build and deploy GH Pages
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    if: github.ref != 'refs/heads/master'
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3.0.0
+      - name: Build only 
+        uses: shalzz/zola-deploy-action@v0.16.1
+        env:
+          BUILD_ONLY: true
+          BUILD_FLAGS: --drafts
+          BUILD_THEMES: false
+  build_and_deploy:
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/master'
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
+    
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+      - name: build_and_deploy
+        uses: shalzz/zola-deploy-action@v0.14.1
+        env:
+          # Target branch and repo
+          REPOSITORY: thomasantony/thomasantony.github.io
+          PAGES_BRANCH: master
+          # Provide personal access token
+          GITHUB_TOKEN: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+          OUT_DIR: public
+          BUILD_THEMES: false
+          
+
+
+# on:
+#   push:
+#     branches:
+#       - master
+#   pull_request:
+
+# jobs:
+#   deploy:
+#     runs-on: ubuntu-20.04
+#     concurrency:
+#       group: ${{ github.workflow }}-${{ github.ref }}
+#     steps:
+#       - uses: actions/checkout@v2
+#         with:
+#           lfs: true
+#           submodules: true  # Fetch Hugo themes
+#           fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
+
+#       - name: Setup Hugo
+#         uses: peaceiris/actions-hugo@v2
+#         with:
+#           hugo-version: '0.85.0'
+#           extended: true
+
+#       - name: Build
+#         run: hugo --minify
+
+#       - name: Deploy
+#         uses: peaceiris/actions-gh-pages@v3
+#         with:
+#           deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+#           external_repository: thomasantony/thomasantony.github.io
+#           publish_branch: master
+#           publish_dir: ./public
+#           cname: www.thomasantony.com
