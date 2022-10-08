@@ -1,5 +1,7 @@
 +++
-template = "section.html"
+template = "blog.html"
+page_template = "post.html"
 sort_by = "date"
-title = "articles"
+title = "Posts"
+transparent = true
 +++
