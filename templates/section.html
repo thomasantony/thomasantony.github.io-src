@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+        <h1>{{ section.title }}</h1>
+        <ul>
+        {% for page in section.pages %}
+        <li style="width:100%; justify-content: space-between; display: flex">
+          <a href="{{ page.permalink | safe }}">{{ page.title }}</a> <time datetime="{{ page.date }}" class="sans">{{ page.date | date(format="%d %B, %Y") }}</time>
+          <!-- <time datetime="{{ page.date }}">{{ page.date | date(format="%Y-%m-%d") }}</time> — <a href="{{ page.permalink | safe }}">{{ page.title }}</a> -->
+        </li>
+        {% endfor %}
+        </ul>
+{% endblock content %}

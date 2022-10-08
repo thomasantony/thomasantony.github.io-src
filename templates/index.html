@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="about-me">
+  <figure class="avatar">
+    <img alt="Thomas Antony - Photo" src="/images/me/me-removebg.png"/>
+  </figure>
+  <figure class="about-me-details">
+    <b>Hi, I am Thomas.</b>
+    <p>
+      <br/>
+      This is my personal website. A place for me to write about things that capture my interest - anything from <a href="https://tgvaughan.github.io/sicm/">classical mechanics</a> to <a href="https://www.braveclojure.com/introduction/">functional programming</a>, and more.
+    </p>
+  </figure>
+  <section class="about-me-contact">
+    {% if config.extra.contact %}
+    My online presence: <br/>
+      [
+        {% for item in config.extra.contact %}
+        <a class="sakura-fade" href="{{item.href}}" target="_blank"><b>{{ item.name }}</b></a>{% if loop.last == false %} | {% endif %}
+        {% endfor %}
+      ]
+    {% endif %}
+  </section>
+</section>
+
+{% endblock content %}
