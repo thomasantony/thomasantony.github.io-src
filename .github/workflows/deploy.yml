@@ -30,7 +30,7 @@ jobs:
           REPOSITORY: thomasantony/thomasantony.github.io
           PAGES_BRANCH: master
           # Provide personal access token
-          GITHUB_TOKEN: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
           OUT_DIR: public
           BUILD_THEMES: false
           
