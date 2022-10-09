@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1>Notes</h1>
+    <ul>
+    {% for topic in terms %}
+        <li><a href="{{topic.permalink}}">{{topic.name}} ({{topic.pages | length}})</a></li>
+    {% endfor %}
+    </ul>
+</ul>
+{% endblock content %}
