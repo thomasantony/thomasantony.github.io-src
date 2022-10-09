@@ -7,9 +7,18 @@
 </p>
 <p>
   <h2>Backlinks</h2>
-  <code>
-  {{ page.backlinks | json_encode(pretty=true) | safe  }}
-  </code>
+  {% if page.backlinks %}
+  <ul>
+  {% for bl in page.backlinks %}
+  <li><a href="{{bl.permalink}}">{{ bl.title }}</a></li>
+  {% endfor %}
+  {% endif %}
+  {% if page.taxonomies.notes %}
+  {% for topic in page.taxonomies.notes %}
+  {% set topic_url = get_taxonomy_url(kind="notes", name=topic) %}
+  <li><a href="{{ topic_url }}">{{topic}}</a></li>
+  {% endfor %}
+  {% endif %}
 </p>
 </section>
 
