@@ -1,5 +1,4 @@
 +++
-template = "section.html"
 transparent = true
-url = "2016"
+render = false
 +++
