@@ -10,26 +10,29 @@ compile_sass = true
 # Whether to build a search index to be used later on by a JavaScript library
 build_search_index = true
 
+ignored_content = ["*/README.md"]
+
 [markdown]
 # Whether to do syntax highlighting
 # Theme can be customised by setting the `highlight_theme` variable to a theme supported by Zola
 highlight_code = true
 render_emoji = true
-
+external_links_target_blank = true
+smart_punctuation = true
 
 [extra]
 # Put all your custom variables here
 
 navlinks = [
-    {name = "about", href="/about"},
-    {name = "posts", href="/posts"},
-    {name = "publications", href="/publications"},
+    { name = "about", href = "/about" },
+    { name = "posts", href = "/posts" },
+    { name = "publications", href = "/publications" },
 ]
 
 contact = [
-    {name = "github", href="https://github.com/thomasantony"},
-    {name = "gitlab", href="https://gitlab.com/thomasantony"},
-    {name = "twitter", href="https://twitter.com/thomasantony"},
-    {name = "youtube", href="https://www.youtube.com/channel/UCFM4WG1EeEA7nwkx7G-TroQ"},
-    {name = "linkedin", href="https://linkedin.com/in/thomasantony"},
+    { name = "github", href = "https://github.com/thomasantony" },
+    { name = "gitlab", href = "https://gitlab.com/thomasantony" },
+    { name = "twitter", href = "https://twitter.com/thomasantony" },
+    { name = "youtube", href = "https://www.youtube.com/channel/UCFM4WG1EeEA7nwkx7G-TroQ" },
+    { name = "linkedin", href = "https://linkedin.com/in/thomasantony" },
 ]
