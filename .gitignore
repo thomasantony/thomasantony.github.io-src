@@ -1,6 +1,7 @@
 # Zola default output directory
 /public
 resources/
+static/processed_images
 
 ## OS Files
 # Windows

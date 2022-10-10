@@ -3,7 +3,8 @@
 
 <section class="about-me">
   <figure class="avatar">
-    <img alt="Thomas Antony - Photo" src="/images/me/me-removebg.png"/>
+    {% set image = resize_image(path="/images/me/me-removebg.png", width=200, op='fit_width', format='webp') %}
+    <img alt="Thomas Antony - Photo" src="{{image.url}}"/>
   </figure>
   <figure class="about-me-details">
     <b>Hi, I am Thomas.</b>
