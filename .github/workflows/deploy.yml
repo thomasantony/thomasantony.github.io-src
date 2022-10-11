@@ -8,6 +8,13 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v3.0.0
+      - name: Check out the private notes repo
+        uses: actions/checkout@v2
+        with:
+          repository: ${{ secrets.NOTES_REPO }}
+          ref: master
+          token: ${{ secrets.PRIVATE_TOKEN }}
+          path: content/notes
       - name: Build site using Zola
         uses: thomasantony/zola-build-action@v1.0.4
       - name: Deploy to GitHub Pages
@@ -29,6 +36,13 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v2
+      - name: Check out the private notes repo
+        uses: actions/checkout@v2
+        with:
+          repository: ${{ secrets.NOTES_REPO }}
+          ref: master
+          token: ${{ secrets.PRIVATE_TOKEN }}
+          path: content/notes
       - name: Build site using Zola
         uses: thomasantony/zola-build-action@v1.0.4
       - name: Deploy to GitHub Pages
