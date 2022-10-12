@@ -16,7 +16,7 @@ jobs:
           token: ${{ secrets.PRIVATE_TOKEN }}
           path: content/notes
       - name: Build site using Zola
-        uses: thomasantony/zola-build-action@v1.0.4
+        uses: thomasantony/zola-build-action@v1.0.5
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4.4.0
         with:
@@ -44,7 +44,7 @@ jobs:
           token: ${{ secrets.PRIVATE_TOKEN }}
           path: content/notes
       - name: Build site using Zola
-        uses: thomasantony/zola-build-action@v1.0.4
+        uses: thomasantony/zola-build-action@v1.0.5
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4.4.0
         with:
