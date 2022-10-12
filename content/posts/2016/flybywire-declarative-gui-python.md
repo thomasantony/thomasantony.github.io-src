@@ -8,6 +8,7 @@ categories: [Coding]
 tags: [python, gui, react]
 keywords: []
 slug: /@tantony/flybywire-declarative-guis-for-python-inspired-by-react-ad2131d4cbc1
+aliases: ["/2016/flybywire-declarative-gui-python"]
 ---
 
 ![Source: [xkcd#970](http://xkcd.com/970/) by Randall Monroe](/images/medium/1__Ql7p4__Wua5eSiZB41oAAlg.png)

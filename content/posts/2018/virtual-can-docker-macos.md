@@ -9,6 +9,7 @@ tags: [docker, socketcan, CANbus, virtual-can]
 keywords: [docker, socketcan, CANbus]
 slug: /@tantony/using-virtualcan-inside-docker-on-macos-cfa10f7e75d6
 draft: false
+aliases: ["/2018/virtual-can-docker-macos"]
 ---
 
 At [SmartAg](http://www.smart-ag.com/), we use Docker to manage the development and runtime environments for our embedded software. For performing full-system integrated tests, we have built comprehensive simulators that mimic the behavior of the hardware that we automate. Since most of the hardware communication happens over CAN, VirtualCAN is a great way of faking the hardware signals.

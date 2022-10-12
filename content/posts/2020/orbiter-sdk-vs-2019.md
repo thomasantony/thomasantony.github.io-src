@@ -4,6 +4,7 @@ date: 2020-08-08T12:39:52-05:00
 tags: [orbiter, visual studio, orbitersdk, c++, coding]
 categories: [Orbiter]
 draft: false
+aliases: ["/2020/orbiter-sdk-vs-2019"]
 ---
 
 [Orbiter](http://orbit.medphys.ucl.ac.uk/) is to space flight, what X-Plane is to aviation. Orbiter has been around since the early 2000s and it seems like some of the [documentation](https://www.orbiterwiki.org/wiki/Category:OrbiterSDK) for add-on development is a bit out-dated. This post documents how to get an Orbiter 2016 addon development environment set-up on Windows 10, using tools available today (in 2020).

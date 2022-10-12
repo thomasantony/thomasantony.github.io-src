@@ -9,6 +9,7 @@ tags: [neural-network, nn, cnn, convolutional neural net, self-driving car, sdc,
 keywords: []
 slug: >-
   /@tantony/training-a-neural-network-in-real-time-to-control-a-self-driving-car-9ee5654978b7
+aliases: ["/2016/training-neural-net-for-sdc"]
 ---
 
 I was lucky enough to be accepted into the first cohort of Udacity’s [Self Driving Car NanoDegree](http://www.udacity.com/drive) program back in October. Though I have been thinking of blogging about my experience since the start, it didn’t really happen till now. I am currently wrapping up Project #3 — “Behavioral Cloning”. This one was considerably tougher than the first two. However, it has been very fulfilling to finally complete it and here I will describe the approach I used for training a neural network to drive a car (in a simulator).

@@ -3,6 +3,7 @@ title: "Hello World!"
 date: 2019-10-16T20:47:55-05:00
 draft: false
 categories: [Misc]
+aliases: ["/2019/2019-10-16-hello-world"]
 ---
 
 **8/8/2020 update**: I have imported some of my older articles from Medium to this blog to consolidate everything in one spot. So this particular "hello world" appearing in the middle of other posts may look a bit weird.
