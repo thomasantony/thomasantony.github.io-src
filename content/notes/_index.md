@@ -1,8 +1,3 @@
 +++
-title = "Notes"
-template = "section.html"
+page_template = "note.html"
 +++
-
-- Aerospace Engineering
-- Computer Science
-- Foo bar
