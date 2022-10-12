@@ -1,5 +1,7 @@
 # On every push this script is executed
-on: push
+on:
+  push:
+  workflow_dispatch:
 name: Build and deploy GH Pages
 jobs:
   build_and_dryrun:
