@@ -28,6 +28,7 @@ smart_punctuation = true
 navlinks = [
     { name = "about", href = "/about" },
     { name = "posts", href = "/posts" },
+    { name = "projects", href = "/projects" },
     { name = "notes", href = "/notes" },
     { name = "publications", href = "/publications" },
 ]
