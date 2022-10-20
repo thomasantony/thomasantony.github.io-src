@@ -29,11 +29,16 @@ latex = true
 
 In this exercise we will recapitulate the derivation of the Lagrangian for constrained systems for a particular simple system.
 
-Consider two massive particles in the plane constrained by a massless rigid rod to remain a distance l apart, as in figure 1.5. There are apparently four degrees of freedom for two massive particles in the plane, but the rigid rod reduces this number to three.
+Consider two massive particles in the plane constrained by a massless rigid rod to remain a distance l apart, as in Figure 1.5. There are apparently four degrees of freedom for two massive particles in the plane, but the rigid rod reduces this number to three.
 
 We can uniquely specify the configuration with the redundant coordinates of the particles, say $x_0(t)$, $y_0(t)$ and $x_1(t)$, $y_1(t)$. The constraint $(x_1(t) − x_0(t))^2 + (y_1(t) − y_0(t))^2 = l^2$ eliminates one degree of freedom.
 
-![Figure 1.5](https://tgvaughan.github.io/sicm/images/Art_P166.jpg)
+**Figure 1.5:**
+
+![Figure 1.5](/images/projects/sicm-workbook/figure-1.5.jpg)
+
+
+
 
 **a. Write Newton's equations for the balance of forces for the four rectangular coordinates of the two particles, given that the scalar tension in the rod is $F$.**
 
