@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>{{ section.title }}</h1>
+    {% if section.description %}
+    <p>
+        {{ section.description | markdown | safe}}
+    </p>
+    {% endif %}
+    <ul>
+    {% for page in section.pages %}
+    <li>
+        <h3 id="{{page.slug | safe}}"><span>{{ page.title | markdown(inline=true) | safe }}</h3>
+        <div>{{page.content | markdown | safe}}</div>
+    </li>
+    {% endfor %}
+    </ul>
+{% endblock content %}
