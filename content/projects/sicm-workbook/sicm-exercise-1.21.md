@@ -1,6 +1,6 @@
 +++
 title = "Exercise 1.21: A dumbbell"
-date = 2022-02-02
+date = "2022-10-20T03:14:33Z"
 draft = false
 
 [extra]
@@ -17,31 +17,10 @@ Consider two massive particles in the plane constrained by a massless rigid rod 
 
 We can uniquely specify the configuration with the redundant coordinates of the particles, say $x_0(t)$, $y_0(t)$ and $x_1(t)$, $y_1(t)$. The constraint $(x_1(t) − x_0(t))^2 + (y_1(t) − y_0(t))^2 = l^2$ eliminates one degree of freedom.
 
-![Figure 1.5](https://tgvaughan.github.io/sicm/images/Art_P166.jpg)
+![Figure 1.5](/images/projects/sicm-workbook/figure-1.5.jpg)
 
 **Figure 1.5**
 
-
-```clojure
-(require '[clojupyter.misc.helper :as helper])
-(helper/add-dependencies '[sicmutils "0.22.0"])
-(require '[sicmutils.env :as env])
-(env/bootstrap-repl!)
-;; Helper functions for rendering equations
-(defn markdownify [texstr]
-    (str "$$\n" (clojure.string/join "" texstr) "\n$$")
-)
-(def render (comp clojupyter.display/latex ->infix simplify))
-(def rendermd (comp clojupyter.display/markdown markdownify ->TeX simplify))
-(def rendertex (comp clojupyter.display/latex ->TeX simplify))
-(def rendertexvec (comp clojupyter.display/latex ->TeX simplify structure->vector))
-:ok
-```
-
-
-
-
-    :ok
 
 
 
@@ -87,7 +66,6 @@ $$
 
 
 
-
 ```clojure
 (defn L-dumbbell [m0 m1 l]
     (fn [[_, [x0, y0, x1, y1, F], [vx0, vy0, vx1, vy1, dF]]]
@@ -111,16 +89,10 @@ $$
 ```
 
 
-
-
-
-
-{% mathjax() %}
-$$
+{% mathjax() %}$$
 \frac{\frac{1}{2}\,l\,m_0\,{\left(Dx_0\left(t\right)\right)}^{2} + \frac{1}{2}\,l\,m_0\,{\left(Dy_0\left(t\right)\right)}^{2} + \frac{1}{2}\,l\,m_1\,{\left(Dx_1\left(t\right)\right)}^{2} + \frac{1}{2}\,l\,m_1\,{\left(Dy_1\left(t\right)\right)}^{2} + \frac{-1}{2}\,{l}^{2}\,F\left(t\right) + \frac{1}{2}\,F\left(t\right)\,{\left(x_1\left(t\right)\right)}^{2} - F\left(t\right)\,x_1\left(t\right)\,x_0\left(t\right) + \frac{1}{2}\,F\left(t\right)\,{\left(x_0\left(t\right)\right)}^{2} + \frac{1}{2}\,F\left(t\right)\,{\left(y_1\left(t\right)\right)}^{2} - F\left(t\right)\,y_1\left(t\right)\,y_0\left(t\right) + \frac{1}{2}\,F\left(t\right)\,{\left(y_0\left(t\right)\right)}^{2}}{l}
 $$
 {% end %} 
-
 
 
 
@@ -134,8 +106,6 @@ $$
                               (literal-function 'F))]
             ((eom-dumbbell state) 't)))
 ```
-
-
 
 
 {% mathjax() %}
@@ -170,7 +140,6 @@ $$
 
 
 We can use the `F->C` coordinate change function to derive the new Lagrangian.
-
 
 ```clojure
 ;; Coordinate transform from CM-coordinates to rectangular
@@ -209,16 +178,10 @@ We can use the `F->C` coordinate change function to derive the new Lagrangian.
 ```
 
 
-
-
-
-
-{% mathjax() %}
-$$
+{% mathjax() %}$$
 \frac{l\,m_0\,m_1\,{\left(c\left(t\right)\right)}^{2}\,{\left(D\theta\left(t\right)\right)}^{2} + l\,{m_0}^{2}\,{\left(Dx_{CM}\left(t\right)\right)}^{2} + l\,{m_0}^{2}\,{\left(Dy_{CM}\left(t\right)\right)}^{2} + l\,m_0\,m_1\,{\left(Dc\left(t\right)\right)}^{2} + 2\,l\,m_0\,m_1\,{\left(Dx_{CM}\left(t\right)\right)}^{2} + 2\,l\,m_0\,m_1\,{\left(Dy_{CM}\left(t\right)\right)}^{2} + l\,{m_1}^{2}\,{\left(Dx_{CM}\left(t\right)\right)}^{2} + l\,{m_1}^{2}\,{\left(Dy_{CM}\left(t\right)\right)}^{2} - {l}^{2}\,m_0\,F\left(t\right) - {l}^{2}\,m_1\,F\left(t\right) + m_0\,F\left(t\right)\,{\left(c\left(t\right)\right)}^{2} + m_1\,F\left(t\right)\,{\left(c\left(t\right)\right)}^{2}}{2\,l\,m_0 + 2\,l\,m_1}
 $$
 {% end %} 
-
 
 
 
@@ -231,8 +194,6 @@ $$
                               (literal-function 'F))]
             ((eom-dumbbell-cm state) 't)))
 ```
-
-
 
 
 {% mathjax() %}
@@ -251,7 +212,6 @@ From the first two equations, the acceleration of the center of mass is zero. Fr
 
 **1.21d. You may deduce from one of these equations that $c(t) = l$. From this fact we get that $D c = 0$ and $D^2 c = 0$. Substitute these into the Lagrange equations you just computed to get the equation of motion for $x_{CM}$, $y_{CM}$, $\theta$.**
 
-
 ```clojure
 ;; Substituting $c(t) = l$ in the EOMs, we get:
 (rendertexvec (let [state (up (literal-function 'x_CM) (literal-function 'y_CM) 
@@ -260,8 +220,6 @@ From the first two equations, the acceleration of the center of mass is zero. Fr
                               (literal-function 'F))]
             ((eom-dumbbell-cm state) 't)))
 ```
-
-
 
 
 {% mathjax() %}
@@ -295,7 +253,6 @@ This expression is very similar to the expression for centrifugal force.
 
 
 We define a Lagrangian for two free particles with masses $m_0$ and $m_1$ and then apply a coordinate transformation to the irredundant coordinates using `F->C`.
-
 
 ```clojure
 ;; Lagrangian with just the end particles
@@ -339,16 +296,10 @@ We define a Lagrangian for two free particles with masses $m_0$ and $m_1$ and th
 ```
 
 
-
-
-
-
-{% mathjax() %}
-$$
+{% mathjax() %}$$
 \frac{{l}^{2}\,m_0\,m_1\,{\left(D\theta\left(t\right)\right)}^{2} + {m_0}^{2}\,{\left(Dx_{CM}\left(t\right)\right)}^{2} + {m_0}^{2}\,{\left(Dy_{CM}\left(t\right)\right)}^{2} + 2\,m_0\,m_1\,{\left(Dx_{CM}\left(t\right)\right)}^{2} + 2\,m_0\,m_1\,{\left(Dy_{CM}\left(t\right)\right)}^{2} + {m_1}^{2}\,{\left(Dx_{CM}\left(t\right)\right)}^{2} + {m_1}^{2}\,{\left(Dy_{CM}\left(t\right)\right)}^{2}}{2\,m_0 + 2\,m_1}
 $$
 {% end %} 
-
 
 
 
@@ -359,8 +310,6 @@ $$
                               (literal-function 'theta))]
             ((eom-dumbbell-part-e state) 't)))
 ```
-
-
 
 
 {% mathjax() %}
