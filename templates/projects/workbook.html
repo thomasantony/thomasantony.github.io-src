@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+        <h1>{{ section.title }}</h1>
+        {%- if section.description -%}
+        <p>
+          {{ section.description | markdown | safe}}
+        </p>
+        {%- endif %}
+        <h2>Notes</h2>
+        <ul>
+        {%- for page in section.pages %}
+        {%- set page_title_lower = page.title | lower %}
+        {%- if page_title_lower is not starting_with("exercise") %}
+        <li style="width:100%; justify-content: space-between; display: flex">
+          <a href="{{ page.permalink | safe }}">{{ page.title }}</a>
+        </li>
+        {%- endif %}
+        {% endfor %}
+        </ul>
+        <h2>Exercises</h2>
+        <ul>
+        {%- for page in section.pages %}
+        {%- set page_title_lower = page.title | lower %}
+        {%- if page_title_lower is starting_with("exercise") %}
+        <li style="width:100%; justify-content: space-between; display: flex">
+          <a href="{{ page.permalink | safe }}">{{ page.title }}</a>
+        </li>
+        {%- endif %}
+        {% endfor %}
+        </ul>
+{% endblock content %}
