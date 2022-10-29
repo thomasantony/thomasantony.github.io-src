@@ -11,9 +11,11 @@ jobs:
       - name: checkout
         uses: actions/checkout@v3
         with:
-          lfs: true
+          lfs: 'true'
+      - name: Checkout LFS
+        run: git lfs pull
       - name: Check out the private notes repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           repository: ${{ secrets.NOTES_REPO }}
           ref: master
@@ -41,9 +43,11 @@ jobs:
       - name: checkout
         uses: actions/checkout@v3
         with:
-          lfs: true
+          lfs: 'true'
+      - name: Checkout LFS
+        run: git lfs pull
       - name: Check out the private notes repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           repository: ${{ secrets.NOTES_REPO }}
           ref: master
