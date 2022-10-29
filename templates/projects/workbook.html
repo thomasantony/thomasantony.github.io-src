@@ -1,56 +1,25 @@
 {% extends "base.html" %}
-{% block content %}
-        <h1>{{ section.title }}</h1>
-        {%- if section.description -%}
-        <p>
-          {{ section.description | markdown | safe}}
-        </p>
-        {%- endif %}
-        <h2>Notes</h2>
-        <ul>
-        {%- set section_number = 0 -%}
-        {%- set open_sub_list  = false -%}
-        {%- for page in section.pages %}
-        {%- set page_title_lower = page.title | trim | lower %}
-        {%- if page_title_lower is not starting_with("exercise") %}
-          {%- if page_title_lower is starting_with("section " ~ section_number) %}
-           {%- if open_sub_list == false -%}
-              {%- set_global open_sub_list = true -%}
-              <!-- opening sub list -->
-              <ul>
-            {%- endif %}
-          {%- else %}
-            {%- if open_sub_list -%}
-              {%- set_global open_sub_list = false -%}
-              <!-- "{{page_title_lower}}" did not start with "{{ "section " ~ section_number }}"-->
-              <!-- closing sub list -->
-             </ul>
-            {%- endif %}
-          {%- endif %}
-          <li style="width:100%; justify-content: space-between; display: flex">
-            <a href="{{ page.permalink | safe }}">{{ page.title }}</a>
-          </li>
-          {%- if page_title_lower is containing(" :") -%}
-          {%- set_global section_number = page_title_lower | split(pat=" :") | nth(n=0) | split(pat=" ") | nth(n=1) -%}
-          <!-- section number is no {{section_number}}-->
-          {%- endif %}
-        {%- endif %}
-        {% endfor %}
-        {%- if open_sub_list -%}
-        <!-- closing at end-->
-        </ul>
-        {%- endif %}
+{% import "macros/workbook_macros.html" as workbook_macros %}
 
-        </ul>
-        <h2>Exercises</h2>
-        <ul>
-        {%- for page in section.pages %}
-        {%- set page_title_lower = page.title | lower %}
-        {%- if page_title_lower is starting_with("exercise") %}
-        <li style="width:100%; justify-content: space-between; display: flex">
-          <a href="{{ page.permalink | safe }}">{{ page.title }}</a>
-        </li>
-        {%- endif %}
-        {% endfor %}
-        </ul>
+{% block content %}
+    <h1>{{ section.title }}</h1>
+    {%- if section.description -%}
+    <p>
+      {{ section.description | markdown | safe}}
+    </p>
+    {%- endif %}
+    {%- for chapter in section.extra.chapters -%}
+    {{ workbook_macros::chapter(title=chapter.title, prefix=chapter.prefix~".") }}
+    {%- endfor %}
+    <h3>Exercises</h3>
+    <ul>
+    {%- for page in section.pages %}
+    {%- set page_title_lower = page.title | lower %}
+    {%- if page_title_lower is starting_with("exercise") %}
+    <li style="width:100%; justify-content: space-between; display: flex">
+      <a href="{{ page.permalink | safe }}">{{ page.title }}</a>
+    </li>
+    {%- endif %}
+    {% endfor %}
+    </ul>
 {% endblock content %}

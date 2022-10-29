@@ -9,4 +9,8 @@ description = """
 # Generate by running
 # jupyter nbconvert --to markdown --template zola <blah.ipynb>
 # Add mathjax() tags as necessary
+
+[[extra.chapters]]
+prefix = "1"
+title = "Chapter 1 - Lagrangian Mechanics"
 +++
