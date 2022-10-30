@@ -1,18 +1,33 @@
-MathJax = {
-  includeHtmlTags: {         //  HTML tags that can appear within math
-    br: '\n', wbr: '', '#comment': '', em: '', span: ''
+window.MathJax = {
+  AuthorInit: function () {
+      MathJax.Hub.Register.StartupHook("TeX Jax Ready",function () {
+        MathJax.Hub.Insert(MathJax.InputJax.TeX.Definitions.macros,{
+        cancel: ["Extension","cancel"],
+        bcancel: ["Extension","cancel"],
+        xcancel: ["Extension","cancel"],
+        cancelto: ["Extension","cancel"]
+      });
+    });
+    MathJax.Hub.Register.StartupHook("Begin",function () {
+      MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+    });
   },
-
-  tex: {
-    inlineMath: [['$', '$'], ['\\(', '\\)']],
-    tags: 'ams',
-    processRefs: true,
-    maxBuffer: 5000 * 1024,
-    
-    formatError: (jax, err) => console.log(err),
-    packages: {'[-]': ['noerrors']}
+  TeX: {
+    equationNumbers: {
+      autoNumber: "AMS",
+      useLabelIds: true
+    }
   },
-  svg: {
-    fontCache: 'global'
+  tex2jax: {
+    inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+    displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    processEscapes: true,
+    processEnvironments: true
+  },
+  displayAlign: 'center',
+  CommonHTML: {
+    linebreaks: { 
+      automatic: true 
+    }
   }
-};
+}
