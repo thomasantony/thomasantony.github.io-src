@@ -9,8 +9,10 @@
     <ul>
     {% for page in section.pages %}
     <li>
-        <h3 id="{{page.slug | safe}}"><span>{{ page.title | markdown(inline=true) | safe }}</h3>
+        <h2 id="{{page.slug | safe}}"><span>{{ page.title | markdown(inline=true) | safe }}</h2>
         <div>{{page.content | markdown | safe}}</div>
+        <br/>
+        <hr/>
     </li>
     {% endfor %}
     </ul>

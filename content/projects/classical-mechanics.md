@@ -1,5 +1,6 @@
 +++
 title = "Self Study -- Classical Mechanics"
+weight = 0
 +++
 
 Go to [**Workbook**](/projects/sicm-workbook)
