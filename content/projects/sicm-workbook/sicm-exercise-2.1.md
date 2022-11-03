@@ -5,6 +5,8 @@ draft = false
 
 [extra]
 latex = true
+chapter = "2"
+page_type = "exercise"
 +++
 
 

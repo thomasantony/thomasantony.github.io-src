@@ -5,6 +5,8 @@ draft = false
 
 [extra]
 latex = true
+chapter = "1"
+page_type = "note"
 +++
 
 
@@ -111,7 +113,7 @@ $$
 
 
 
-The Lagrange equation associated with tthe constraint is the constraint equation: $\psi\circ\Gamma[q] = 0$. The equations here involve both $\lambda$ and $D\lambda$. The usual state variables, $q$ and $Dq$ and the constraint are not enough to completely specify the initial conditions for the dynamic system. We need to specify an initial value for $\lambda$ as well (and possible integrate it?). This reminds me of the Euler-Lagrange equations as applied to optimal control problems were we have a "costate" $\lambda$ that is integrated along with the states. 
+The Lagrange equation associated with tthe constraint is the constraint equation: $\psi\circ\Gamma[q] = 0$. The equations here involve both $\lambda$ and $D\lambda$. The usual state variables, $q$ and $Dq$ and the constraint are not enough to completely specify the initial conditions for the dynamic system. We need to specify an initial value for $\lambda$ as well (and possibly integrate it along with the states?). This reminds me of the Euler-Lagrange equations as applied to optimal control problems were we have a "costate" $\lambda$ that is integrated along with the states. 
 
 > In general, for any particular physical system, equations (1.231) and (1.240) are not the same, and in fact they have different solutions. It is not apparent that either set of equations accurately models the physical system.  The first approach to nonholonomic systems is not justified by extension of the arguments for the holonomic case and the other is not fully determined. Perhaps this indicates that the models are inadequate, that more details of how the constraints are maintained need to be specified.
 

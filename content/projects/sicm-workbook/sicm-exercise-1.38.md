@@ -5,6 +5,8 @@ draft = false
 
 [extra]
 latex = true
+chapter = "1"
+page_type = "exercise"
 +++
 
 
@@ -90,3 +92,5 @@ $$
 \end{align*}
 $$
 {% end %}
+
+

@@ -5,6 +5,8 @@ draft = false
 
 [extra]
 latex = true
+chapter = "1"
+page_type = "exercise"
 +++
 
 
@@ -71,7 +73,7 @@ $$
 {% mathjax() %}$$
 \frac{1}{2}\,{a}^{2}\,m\,{\cos}^{2}\left(\phi\left(t\right)\right)\,{\cos}^{2}\left(\theta\left(t\right)\right)\,{\left(D\theta\left(t\right)\right)}^{2} - {a}^{2}\,m\,\cos\left(\phi\left(t\right)\right)\,\cos\left(\theta\left(t\right)\right)\,D\theta\left(t\right)\,\sin\left(\theta\left(t\right)\right)\,\sin\left(\phi\left(t\right)\right)\,D\phi\left(t\right) + \frac{1}{2}\,{a}^{2}\,m\,{\sin}^{2}\left(\theta\left(t\right)\right)\,{\sin}^{2}\left(\phi\left(t\right)\right)\,{\left(D\phi\left(t\right)\right)}^{2} + \frac{1}{2}\,{b}^{2}\,m\,{\cos}^{2}\left(\phi\left(t\right)\right)\,{\sin}^{2}\left(\theta\left(t\right)\right)\,{\left(D\phi\left(t\right)\right)}^{2} + {b}^{2}\,m\,\cos\left(\phi\left(t\right)\right)\,\cos\left(\theta\left(t\right)\right)\,D\theta\left(t\right)\,\sin\left(\theta\left(t\right)\right)\,\sin\left(\phi\left(t\right)\right)\,D\phi\left(t\right) + \frac{1}{2}\,{b}^{2}\,m\,{\cos}^{2}\left(\theta\left(t\right)\right)\,{\left(D\theta\left(t\right)\right)}^{2}\,{\sin}^{2}\left(\phi\left(t\right)\right) + \frac{1}{2}\,{c}^{2}\,m\,{\left(D\theta\left(t\right)\right)}^{2}\,{\sin}^{2}\left(\theta\left(t\right)\right)
 $$
-{% end %} 
+{% end %}
 
 
 
@@ -104,7 +106,7 @@ $$
 {% mathjax() %}$$
 \frac{1}{2}\,{a}^{2}\,m\,{\cos}^{2}\left(\theta\left(t\right)\right)\,{\left(D\theta\left(t\right)\right)}^{2} + \frac{1}{2}\,{a}^{2}\,m\,{\sin}^{2}\left(\theta\left(t\right)\right)\,{\left(D\phi\left(t\right)\right)}^{2} + \frac{1}{2}\,{c}^{2}\,m\,{\left(D\theta\left(t\right)\right)}^{2}\,{\sin}^{2}\left(\theta\left(t\right)\right)
 $$
-{% end %} 
+{% end %}
 
 
 
@@ -139,7 +141,7 @@ $$
 {% mathjax() %}$$
 \frac{1}{2}\,{a}^{2}\,m\,{\cos}^{2}\left(\theta\left(t\right)\right)\,{\left(D\theta\left(t\right)\right)}^{2} + \frac{1}{2}\,{a}^{2}\,m\,{\sin}^{2}\left(\theta\left(t\right)\right)\,{\left(D\phi\left(t\right)\right)}^{2} + \frac{1}{2}\,{c}^{2}\,m\,{\left(D\theta\left(t\right)\right)}^{2}\,{\sin}^{2}\left(\theta\left(t\right)\right)
 $$
-{% end %} 
+{% end %}
 
 
 
@@ -163,7 +165,7 @@ The symmetry about $z$ axis is verified as the Lagrangian is unchanged post-rota
 {% mathjax() %}$$
 {a}^{2}\,m\,\dot {\phi}\,{\sin}^{2}\left(\theta\right)
 $$
-{% end %} 
+{% end %}
 
 
 

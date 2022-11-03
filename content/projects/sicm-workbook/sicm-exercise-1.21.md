@@ -5,6 +5,8 @@ draft = false
 
 [extra]
 latex = true
+chapter = "1"
+page_type = "exercise"
 +++
 
 
@@ -92,7 +94,7 @@ $$
 {% mathjax() %}$$
 \frac{\frac{1}{2}\,l\,m_0\,{\left(Dx_0\left(t\right)\right)}^{2} + \frac{1}{2}\,l\,m_0\,{\left(Dy_0\left(t\right)\right)}^{2} + \frac{1}{2}\,l\,m_1\,{\left(Dx_1\left(t\right)\right)}^{2} + \frac{1}{2}\,l\,m_1\,{\left(Dy_1\left(t\right)\right)}^{2} + \frac{-1}{2}\,{l}^{2}\,F\left(t\right) + \frac{1}{2}\,F\left(t\right)\,{\left(x_1\left(t\right)\right)}^{2} - F\left(t\right)\,x_1\left(t\right)\,x_0\left(t\right) + \frac{1}{2}\,F\left(t\right)\,{\left(x_0\left(t\right)\right)}^{2} + \frac{1}{2}\,F\left(t\right)\,{\left(y_1\left(t\right)\right)}^{2} - F\left(t\right)\,y_1\left(t\right)\,y_0\left(t\right) + \frac{1}{2}\,F\left(t\right)\,{\left(y_0\left(t\right)\right)}^{2}}{l}
 $$
-{% end %} 
+{% end %}
 
 
 
@@ -181,7 +183,7 @@ We can use the `F->C` coordinate change function to derive the new Lagrangian.
 {% mathjax() %}$$
 \frac{l\,m_0\,m_1\,{\left(c\left(t\right)\right)}^{2}\,{\left(D\theta\left(t\right)\right)}^{2} + l\,{m_0}^{2}\,{\left(Dx_{CM}\left(t\right)\right)}^{2} + l\,{m_0}^{2}\,{\left(Dy_{CM}\left(t\right)\right)}^{2} + l\,m_0\,m_1\,{\left(Dc\left(t\right)\right)}^{2} + 2\,l\,m_0\,m_1\,{\left(Dx_{CM}\left(t\right)\right)}^{2} + 2\,l\,m_0\,m_1\,{\left(Dy_{CM}\left(t\right)\right)}^{2} + l\,{m_1}^{2}\,{\left(Dx_{CM}\left(t\right)\right)}^{2} + l\,{m_1}^{2}\,{\left(Dy_{CM}\left(t\right)\right)}^{2} - {l}^{2}\,m_0\,F\left(t\right) - {l}^{2}\,m_1\,F\left(t\right) + m_0\,F\left(t\right)\,{\left(c\left(t\right)\right)}^{2} + m_1\,F\left(t\right)\,{\left(c\left(t\right)\right)}^{2}}{2\,l\,m_0 + 2\,l\,m_1}
 $$
-{% end %} 
+{% end %}
 
 
 
@@ -299,7 +301,7 @@ We define a Lagrangian for two free particles with masses $m_0$ and $m_1$ and th
 {% mathjax() %}$$
 \frac{{l}^{2}\,m_0\,m_1\,{\left(D\theta\left(t\right)\right)}^{2} + {m_0}^{2}\,{\left(Dx_{CM}\left(t\right)\right)}^{2} + {m_0}^{2}\,{\left(Dy_{CM}\left(t\right)\right)}^{2} + 2\,m_0\,m_1\,{\left(Dx_{CM}\left(t\right)\right)}^{2} + 2\,m_0\,m_1\,{\left(Dy_{CM}\left(t\right)\right)}^{2} + {m_1}^{2}\,{\left(Dx_{CM}\left(t\right)\right)}^{2} + {m_1}^{2}\,{\left(Dy_{CM}\left(t\right)\right)}^{2}}{2\,m_0 + 2\,m_1}
 $$
-{% end %} 
+{% end %}
 
 
 
