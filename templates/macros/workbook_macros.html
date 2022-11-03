@@ -1,40 +1,20 @@
-{% macro chapter(title, prefix) %}
-
-<h3>{{title}}</h3>
-<ul>
-    {%- set section_number = 0 -%}
-    {%- set open_sub_list  = false -%}
-    {%- for page in section.pages %}
-    {%- set page_title_lower = page.title | trim | lower %}
-    {%- set is_in_chapter = page_title_lower is starting_with("section " ~ prefix) %}
-    {%- if is_in_chapter %}
-        {%- if page_title_lower is starting_with("section " ~ section_number) %}
-        {%- if open_sub_list == false -%}
-            {%- set_global open_sub_list = true -%}
-            <!-- opening sub list -->
-            <ul>
-        {%- endif %}
-        {%- else %}
-        {%- if open_sub_list -%}
-            {%- set_global open_sub_list = false -%}
-            <!-- "{{page_title_lower}}" did not start with "{{ "section " ~ section_number }}"-->
-            <!-- closing sub list -->
-            </ul>
-        {%- endif %}
-        {%- endif %}
+{% macro list_chapter_pages(pages) %}
+    <ul>
+    {%- for page in pages %}
         <li style="width:100%; justify-content: space-between; display: flex">
         <a href="{{ page.permalink | safe }}">{{ page.title }}</a>
         </li>
-        {%- if page_title_lower is containing(" :") -%}
-        {%- set_global section_number = page_title_lower | split(pat=" :") | nth(n=0) | split(pat=" ") | nth(n=1) -%}
-        <!-- section number is no {{section_number}}-->
-        {%- endif %}
-    {%- endif %}
-    {% endfor %}
-    {%- if open_sub_list -%}
-    <!-- closing at end-->
+    {%- endfor %}
     </ul>
-    {%- endif %}
-</ul>
+{% endmacro list_chapter_pages %}
 
-{% endmacro input %}
+{% macro chapter(title, number, pages_by_chapter) %}
+{%- set chapter_data = pages_by_chapter[number] | group_by(attribute='extra.page_type') -%}
+<h3>{{title}}</h3>
+<h4>Notes</h4>
+{%- set notes = chapter_data["note"] -%}
+{{ self::list_chapter_pages(pages=notes) }}
+<h4>Exercises</h4>
+{%- set exercises = chapter_data["exercise"] -%}
+{{ self::list_chapter_pages(pages=exercises) }}
+{% endmacro chapter %}

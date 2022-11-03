@@ -11,10 +11,10 @@ description = """
 # Add mathjax() tags as necessary
 
 [[extra.chapters]]
-prefix = "1"
+number = "1"
 title = "Chapter 1 - Lagrangian Mechanics"
 
 [[extra.chapters]]
-prefix = "2"
+number = "2"
 title = "Chapter 2 - Rigid Bodies"
 +++

@@ -4,22 +4,14 @@
 {% block content %}
     <h1>{{ section.title }}</h1>
     {%- if section.description -%}
+    {%- set pages_by_chapter = section.pages | group_by(attribute="extra.chapter") -%}
+    
     <p>
       {{ section.description | markdown | safe}}
     </p>
     {%- endif %}
     {%- for chapter in section.extra.chapters -%}
-    {{ workbook_macros::chapter(title=chapter.title, prefix=chapter.prefix~".") }}
+    {{ workbook_macros::chapter(title=chapter.title, number=chapter.number, pages_by_chapter=pages_by_chapter) }}
     {%- endfor %}
-    <h3>Exercises</h3>
-    <ul>
-    {%- for page in section.pages %}
-    {%- set page_title_lower = page.title | lower %}
-    {%- if page_title_lower is starting_with("exercise") %}
-    <li style="width:100%; justify-content: space-between; display: flex">
-      <a href="{{ page.permalink | safe }}">{{ page.title }}</a>
-    </li>
-    {%- endif %}
-    {% endfor %}
     </ul>
 {% endblock content %}
