@@ -43,13 +43,13 @@ $$
 
 
 
-Here, we introduce and arbitrary inertial coordiante frame its the origin at the center of rotation and basis vectors $\hat{e}_0$, $\hat{e}_1$ and $\hat{e}_2$, such that $\hat{e}_0 \times \hat{e}_1 = \hat{e}_2$. If the components of $\vec{\omega}$ in this frame are $\omega^0$, $\omega^1$ and $\omega^2$,
+Here, we introduce an arbitrary inertial coordinate frame its the origin at the center of rotation and basis vectors $\hat{e}_0$, $\hat{e}_1$ and $\hat{e}_2$, such that $\hat{e}_0 \times \hat{e}_1 = \hat{e}_2$. If the components of $\vec{\omega}$ in this frame are $\omega^0$, $\omega^1$ and $\omega^2$,
 
 
 {% mathjax() %}
 $$
 \begin{align*}
-\frac{1}{2} & \sum_\alpha m_\alpha \left( \left(\sum_i \hat{e}_i \omega^j \right) \times \vec{\xi}_\alpha \right) \cdot \left(  \left(\sum_j \hat{e}_j \omega^j \right) \times \vec{\xi}_\alpha \right)\\
+\frac{1}{2} & \sum_\alpha m_\alpha \left( \left(\sum_i \hat{e}_i \omega^i \right) \times \vec{\xi}_\alpha \right) \cdot \left(  \left(\sum_j \hat{e}_j \omega^j \right) \times \vec{\xi}_\alpha \right)\\
  &= \frac{1}{2} \sum_{ij} \omega^i\omega^j\sum_\alpha m_\alpha ( \hat{e}_i \times \vec{\xi}_\alpha) \cdot (\hat{e}_j \times \vec{\xi}_\alpha) \\
  &= \frac{1}{2} \sum_{ij} \omega^i\omega^j I_{ij}
 \end{align*}
@@ -107,5 +107,14 @@ $$
 
 The components of the inertia tensor are real and symmetric, i.e., $I_{jk} = I_{kj}$. In general, the *moment of inertia* about a line can be defined as $\sum_\alpha m_\alpha (\xi_\alpha^\perp)^2$ where $\xi_\alpha^\perp$ is the distance from the line to the particle with index $\alpha$. The diagonal components of the inertia tensor are the moments of inertia about the lines coinciding with the basis vectors. The off-diagonal components are called the *products of inertia*.
 
-
 Since the inertia tensor involves only the second order moments of mass, the motion of a free rigid body does not depend on the detailed shape of the body. If two bodies have the same inertia tensor, they have the same kinetic energy regardless of what they look like. The potential energy might have effects based on the shape of the body but for the kinetic energy, the inertia tensor is all that matters.
+
+For solid objects, the summation has to be converted to an integral. The general expression for moment of inertia is:
+
+
+{% mathjax() %}
+$$
+I_{P}=\iiint _{Q}\rho (x,y,z)\left\|\mathbf {r} \right\|^{2}dV
+$$
+
+where $\rho (x,y,z)$ is the density of the material, $\mathbf {r}$  is a vector perpendicular to the axis of rotation and extending from a point on the rotation axis to a point  $(x,y,z)$ in the solid, and the integration is evaluated over the volume $V$ of the body $Q$.
