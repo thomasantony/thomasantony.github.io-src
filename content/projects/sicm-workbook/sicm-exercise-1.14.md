@@ -48,13 +48,9 @@ page_type = "exercise"
 (rendertex eom-central-r2p)
 ```
 
-
 {% mathjax() %}
-$$
 \begin{pmatrix}\displaystyle{- m\,\cos\left(\varphi\left(t\right)\right)\,{\left(D\varphi\left(t\right)\right)}^{2}\,r\left(t\right) -2\,m\,D\varphi\left(t\right)\,\sin\left(\varphi\left(t\right)\right)\,Dr\left(t\right) - m\,r\left(t\right)\,\sin\left(\varphi\left(t\right)\right)\,{D}^{2}\varphi\left(t\right) + m\,\cos\left(\varphi\left(t\right)\right)\,{D}^{2}r\left(t\right) + \cos\left(\varphi\left(t\right)\right)\,DU\left(r\left(t\right)\right)} \cr \cr \displaystyle{- m\,{\left(D\varphi\left(t\right)\right)}^{2}\,r\left(t\right)\,\sin\left(\varphi\left(t\right)\right) + 2\,m\,\cos\left(\varphi\left(t\right)\right)\,D\varphi\left(t\right)\,Dr\left(t\right) + m\,\cos\left(\varphi\left(t\right)\right)\,r\left(t\right)\,{D}^{2}\varphi\left(t\right) + m\,\sin\left(\varphi\left(t\right)\right)\,{D}^{2}r\left(t\right) + \sin\left(\varphi\left(t\right)\right)\,DU\left(r\left(t\right)\right)}\end{pmatrix}
-$$
 {% end %}
-
 
 
 ```clojure
@@ -64,13 +60,9 @@ $$
     (rendertexvec (up (simplify (+ eom1 eom2)))))
 ```
 
-
 {% mathjax() %}
-$$
 \begin{pmatrix}\displaystyle{- m\,\cos\left(\varphi\left(t\right)\right)\,{\left(D\varphi\left(t\right)\right)}^{2}\,r\left(t\right) - m\,{\left(D\varphi\left(t\right)\right)}^{2}\,r\left(t\right)\,\sin\left(\varphi\left(t\right)\right) + 2\,m\,\cos\left(\varphi\left(t\right)\right)\,D\varphi\left(t\right)\,Dr\left(t\right) + m\,\cos\left(\varphi\left(t\right)\right)\,r\left(t\right)\,{D}^{2}\varphi\left(t\right) -2\,m\,D\varphi\left(t\right)\,\sin\left(\varphi\left(t\right)\right)\,Dr\left(t\right) - m\,r\left(t\right)\,\sin\left(\varphi\left(t\right)\right)\,{D}^{2}\varphi\left(t\right) + m\,\cos\left(\varphi\left(t\right)\right)\,{D}^{2}r\left(t\right) + m\,\sin\left(\varphi\left(t\right)\right)\,{D}^{2}r\left(t\right) + \cos\left(\varphi\left(t\right)\right)\,DU\left(r\left(t\right)\right) + \sin\left(\varphi\left(t\right)\right)\,DU\left(r\left(t\right)\right)}\end{pmatrix}
-$$
 {% end %}
-
 
 
 

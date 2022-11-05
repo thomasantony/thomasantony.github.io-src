@@ -53,11 +53,7 @@ page_type = "exercise"
    (rendertex (((Lagrange-equations L) state) 't)))
 ```
 
-
 {% mathjax() %}
-$$
 \begin{bmatrix}\displaystyle{- m\,r\left(t\right)\,{\left(D\varphi\left(t\right)\right)}^{2} + m\,{D}^{2}r\left(t\right) + DU\left(r\left(t\right)\right)}&\displaystyle{m\,{\left(r\left(t\right)\right)}^{2}\,{D}^{2}\varphi\left(t\right) + 2\,m\,r\left(t\right)\,D\varphi\left(t\right)\,Dr\left(t\right)}\end{bmatrix}
-$$
 {% end %}
-
 

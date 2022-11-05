@@ -77,11 +77,7 @@ Use coordinate transform along with a constant-acceleration lagrangian for two p
      ((eom-sliding-pend state) 't)))
 ```
 
-
 {% mathjax() %}
-$$
 \begin{pmatrix}\displaystyle{- l\,m_2\,\cos\left(\theta\left(t\right)\right)\,{\left(D\theta\left(t\right)\right)}^{2} - l\,m_2\,\sin\left(\theta\left(t\right)\right)\,{D}^{2}\theta\left(t\right) + m_1\,{D}^{2}x\left(t\right) + m_2\,{D}^{2}x\left(t\right)} \cr \cr \displaystyle{- l\,m_2\,{\left(D\theta\left(t\right)\right)}^{2}\,\sin\left(\theta\left(t\right)\right) + l\,m_2\,\cos\left(\theta\left(t\right)\right)\,{D}^{2}\theta\left(t\right) + g\,m_1 + g\,m_2 + m_1\,{D}^{2}y\left(t\right) + m_2\,{D}^{2}y\left(t\right)} \cr \cr \displaystyle{g\,l\,m_2\,\cos\left(\theta\left(t\right)\right) + {l}^{2}\,m_2\,{D}^{2}\theta\left(t\right) + l\,m_2\,\cos\left(\theta\left(t\right)\right)\,{D}^{2}y\left(t\right) - l\,m_2\,\sin\left(\theta\left(t\right)\right)\,{D}^{2}x\left(t\right)}\end{pmatrix}
-$$
 {% end %}
-
 

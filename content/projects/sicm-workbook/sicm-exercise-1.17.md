@@ -126,13 +126,9 @@ $$
    (rendertex (((Lagrange-equations L) state) 't)))
 ```
 
-
 {% mathjax() %}
-$$
 \begin{bmatrix}\displaystyle{- d\,g\,h\,m\,\pi\,\sin\left(2\,h\,\pi\,s\left(t\right)\right) + {d}^{2}\,m\,{D}^{2}s\left(t\right) + {h}^{2}\,m\,{D}^{2}s\left(t\right) + m\,{\pi}^{2}\,{D}^{2}s\left(t\right) + m\,{D}^{2}s\left(t\right)}\end{bmatrix}
-$$
 {% end %}
-
 
 
 

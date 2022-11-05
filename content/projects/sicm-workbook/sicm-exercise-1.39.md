@@ -82,11 +82,7 @@ $$
             ((eom-system state) 't)))
 ```
 
-
 {% mathjax() %}
-$$
 \begin{pmatrix}\displaystyle{k_1\,x_1\left(t\right) + m_1\,{D}^{2}x_1\left(t\right) + {\lambda}_1\left(t\right) + {\lambda}_2\left(t\right)} \cr \cr \displaystyle{k_2\,x_2\left(t\right) + m_2\,{D}^{2}x_2\left(t\right) + m_2\,{D}^{2}\xi\left(t\right) + {\lambda}_2\left(t\right)} \cr \cr \displaystyle{2\,m_3\,{D}^{2}x_3\left(t\right) - {\lambda}_2\left(t\right)} \cr \cr \displaystyle{m_2\,{D}^{2}x_2\left(t\right) + m_2\,{D}^{2}\xi\left(t\right) - {\lambda}_1\left(t\right)} \cr \cr \displaystyle{g\,l\,m_3\,\sin\left(\theta\left(t\right)\right) + 2\,{l}^{2}\,m_3\,{D}^{2}\theta\left(t\right)} \cr \cr \displaystyle{X_1 + x_1\left(t\right) - \xi\left(t\right)} \cr \cr \displaystyle{X_1 + X_2 + x_2\left(t\right) + x_1\left(t\right) - x_3\left(t\right)}\end{pmatrix}
-$$
 {% end %}
-
 

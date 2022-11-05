@@ -35,13 +35,9 @@ page_type = "exercise"
             ((eom-pendulum state) 't)))
 ```
 
-
 {% mathjax() %}
-$$
 \begin{bmatrix}\displaystyle{g\,l\,m\,\sin\left(\theta\left(t\right)\right) + {l}^{2}\,m\,{D}^{2}\theta\left(t\right)}\end{bmatrix}
-$$
 {% end %}
-
 
 
 
@@ -67,13 +63,9 @@ $$
             ((eom-particle-potential-field state) 't)))
 ```
 
-
 {% mathjax() %}
-$$
 \begin{pmatrix}\displaystyle{m\,{D}^{2}x\left(t\right) + 2\,x\left(t\right)\,y\left(t\right) + x\left(t\right)} \cr \cr \displaystyle{m\,{D}^{2}y\left(t\right) + {\left(x\left(t\right)\right)}^{2} - {\left(y\left(t\right)\right)}^{2} + y\left(t\right)}\end{pmatrix}
-$$
 {% end %}
-
 
 
 
@@ -98,11 +90,7 @@ $$
             ((eom-particle-on-sphere state) 't)))
 ```
 
-
 {% mathjax() %}
-$$
 \begin{pmatrix}\displaystyle{- {R}^{2}\,m\,\sin\left(\theta\left(t\right)\right)\,{\left(D\phi\left(t\right)\right)}^{2}\,\cos\left(\theta\left(t\right)\right) + {R}^{2}\,m\,{D}^{2}\theta\left(t\right)} \cr \cr \displaystyle{2\,{R}^{2}\,m\,\sin\left(\theta\left(t\right)\right)\,D\phi\left(t\right)\,\cos\left(\theta\left(t\right)\right)\,D\theta\left(t\right) + {R}^{2}\,m\,{\sin}^{2}\left(\theta\left(t\right)\right)\,{D}^{2}\phi\left(t\right)}\end{pmatrix}
-$$
 {% end %}
-
 

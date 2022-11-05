@@ -81,11 +81,7 @@ $$
      ((eom-twobar-linkage state) 't)))
 ```
 
-
 {% mathjax() %}
-$$
 \begin{pmatrix}\displaystyle{- l_1\,m_1\,\cos\left({\theta}_1\left(t\right)\right)\,{\left(D{\theta}_1\left(t\right)\right)}^{2} - l_2\,m_3\,\cos\left({\theta}_3\left(t\right)\right)\,{\left(D{\theta}_3\left(t\right)\right)}^{2} - l_1\,m_1\,\sin\left({\theta}_1\left(t\right)\right)\,{D}^{2}{\theta}_1\left(t\right) - l_2\,m_3\,\sin\left({\theta}_3\left(t\right)\right)\,{D}^{2}{\theta}_3\left(t\right) + m_1\,{D}^{2}x\left(t\right) + m_2\,{D}^{2}x\left(t\right) + m_3\,{D}^{2}x\left(t\right)} \cr \cr \displaystyle{- l_1\,m_1\,{\left(D{\theta}_1\left(t\right)\right)}^{2}\,\sin\left({\theta}_1\left(t\right)\right) - l_2\,m_3\,{\left(D{\theta}_3\left(t\right)\right)}^{2}\,\sin\left({\theta}_3\left(t\right)\right) + l_1\,m_1\,\cos\left({\theta}_1\left(t\right)\right)\,{D}^{2}{\theta}_1\left(t\right) + l_2\,m_3\,\cos\left({\theta}_3\left(t\right)\right)\,{D}^{2}{\theta}_3\left(t\right) + g\,m_1 + g\,m_2 + g\,m_3 + m_1\,{D}^{2}y\left(t\right) + m_2\,{D}^{2}y\left(t\right) + m_3\,{D}^{2}y\left(t\right)} \cr \cr \displaystyle{g\,l_1\,m_1\,\cos\left({\theta}_1\left(t\right)\right) + {l_1}^{2}\,m_1\,{D}^{2}{\theta}_1\left(t\right) + l_1\,m_1\,\cos\left({\theta}_1\left(t\right)\right)\,{D}^{2}y\left(t\right) - l_1\,m_1\,\sin\left({\theta}_1\left(t\right)\right)\,{D}^{2}x\left(t\right)} \cr \cr \displaystyle{g\,l_2\,m_3\,\cos\left({\theta}_3\left(t\right)\right) + {l_2}^{2}\,m_3\,{D}^{2}{\theta}_3\left(t\right) + l_2\,m_3\,\cos\left({\theta}_3\left(t\right)\right)\,{D}^{2}y\left(t\right) - l_2\,m_3\,\sin\left({\theta}_3\left(t\right)\right)\,{D}^{2}x\left(t\right)}\end{pmatrix}
-$$
 {% end %}
-
 

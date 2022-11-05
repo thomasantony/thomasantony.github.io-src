@@ -74,13 +74,9 @@ $$
             ((eom-L-accel state) 't)))
 ```
 
-
 {% mathjax() %}
-$$
 \begin{pmatrix}\displaystyle{- k\,x\left(t\right) - m\,{D}^{2}x\left(t\right)}\end{pmatrix}
-$$
 {% end %}
-
 
 
 

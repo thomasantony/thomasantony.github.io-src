@@ -292,13 +292,9 @@ This is the $z$ component of the angular momentum vector, $\vec{x} \times m\vec{
       (up 'v_x 'v_y 'v_z))))
 ```
 
-
 {% mathjax() %}
-$$
 \begin{bmatrix}\displaystyle{- m\,v_y\,z + m\,v_z\,y}&\displaystyle{m\,v_x\,z - m\,v_z\,x}&\displaystyle{- m\,v_x\,y + m\,v_y\,x}\end{bmatrix}
-$$
 {% end %}
-
 
 
 

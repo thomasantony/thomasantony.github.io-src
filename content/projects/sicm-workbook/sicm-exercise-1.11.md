@@ -97,13 +97,9 @@ $$
 (rendertexvec ((eom-kepler circ-solution) 't))
 ```
 
-
 {% mathjax() %}
-$$
 \begin{pmatrix}\displaystyle{\frac{- {a}^{3}\,m_1\,m_2\,{n}^{2} + G\,{m_1}^{2}\,m_2 + G\,m_1\,{m_2}^{2}}{{a}^{2}\,m_1 + {a}^{2}\,m_2}} \cr \cr \displaystyle{0}\end{pmatrix}
-$$
 {% end %}
-
 
 
 

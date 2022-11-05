@@ -109,13 +109,9 @@ $$
             ((eom-dumbbell state) 't)))
 ```
 
-
 {% mathjax() %}
-$$
 \begin{pmatrix}\displaystyle{\frac{l\,m_0\,{D}^{2}x_0\left(t\right) + F\left(t\right)\,x_1\left(t\right) - F\left(t\right)\,x_0\left(t\right)}{l}} \cr \cr \displaystyle{\frac{l\,m_0\,{D}^{2}y_0\left(t\right) + F\left(t\right)\,y_1\left(t\right) - F\left(t\right)\,y_0\left(t\right)}{l}} \cr \cr \displaystyle{\frac{l\,m_1\,{D}^{2}x_1\left(t\right) - F\left(t\right)\,x_1\left(t\right) + F\left(t\right)\,x_0\left(t\right)}{l}} \cr \cr \displaystyle{\frac{l\,m_1\,{D}^{2}y_1\left(t\right) - F\left(t\right)\,y_1\left(t\right) + F\left(t\right)\,y_0\left(t\right)}{l}} \cr \cr \displaystyle{\frac{\frac{1}{2}\,{l}^{2} + \frac{-1}{2}\,{\left(x_1\left(t\right)\right)}^{2} + x_1\left(t\right)\,x_0\left(t\right) + \frac{-1}{2}\,{\left(x_0\left(t\right)\right)}^{2} + \frac{-1}{2}\,{\left(y_1\left(t\right)\right)}^{2} + y_1\left(t\right)\,y_0\left(t\right) + \frac{-1}{2}\,{\left(y_0\left(t\right)\right)}^{2}}{l}}\end{pmatrix}
-$$
 {% end %}
-
 
 
 
@@ -197,13 +193,9 @@ $$
             ((eom-dumbbell-cm state) 't)))
 ```
 
-
 {% mathjax() %}
-$$
 \begin{pmatrix}\displaystyle{m_0\,{D}^{2}x_{CM}\left(t\right) + m_1\,{D}^{2}x_{CM}\left(t\right)} \cr \cr \displaystyle{m_0\,{D}^{2}y_{CM}\left(t\right) + m_1\,{D}^{2}y_{CM}\left(t\right)} \cr \cr \displaystyle{\frac{m_0\,m_1\,{\left(c\left(t\right)\right)}^{2}\,{D}^{2}\theta\left(t\right) + 2\,m_0\,m_1\,c\left(t\right)\,D\theta\left(t\right)\,Dc\left(t\right)}{m_0 + m_1}} \cr \cr \displaystyle{\frac{- l\,m_0\,m_1\,c\left(t\right)\,{\left(D\theta\left(t\right)\right)}^{2} + l\,m_0\,m_1\,{D}^{2}c\left(t\right) - m_0\,F\left(t\right)\,c\left(t\right) - m_1\,F\left(t\right)\,c\left(t\right)}{l\,m_0 + l\,m_1}} \cr \cr \displaystyle{\frac{\frac{1}{2}\,{l}^{2} + \frac{-1}{2}\,{\left(c\left(t\right)\right)}^{2}}{l}}\end{pmatrix}
-$$
 {% end %}
-
 
 
 
@@ -223,13 +215,9 @@ From the first two equations, the acceleration of the center of mass is zero. Fr
             ((eom-dumbbell-cm state) 't)))
 ```
 
-
 {% mathjax() %}
-$$
 \begin{pmatrix}\displaystyle{m_0\,{D}^{2}x_{CM}\left(t\right) + m_1\,{D}^{2}x_{CM}\left(t\right)} \cr \cr \displaystyle{m_0\,{D}^{2}y_{CM}\left(t\right) + m_1\,{D}^{2}y_{CM}\left(t\right)} \cr \cr \displaystyle{\frac{{l}^{2}\,m_0\,m_1\,{D}^{2}\theta\left(t\right)}{m_0 + m_1}} \cr \cr \displaystyle{\frac{- l\,m_0\,m_1\,{\left(D\theta\left(t\right)\right)}^{2} - m_0\,F\left(t\right) - m_1\,F\left(t\right)}{m_0 + m_1}} \cr \cr \displaystyle{0}\end{pmatrix}
-$$
 {% end %}
-
 
 
 
@@ -313,13 +301,9 @@ $$
             ((eom-dumbbell-part-e state) 't)))
 ```
 
-
 {% mathjax() %}
-$$
 \begin{pmatrix}\displaystyle{m_0\,{D}^{2}x_{CM}\left(t\right) + m_1\,{D}^{2}x_{CM}\left(t\right)} \cr \cr \displaystyle{m_0\,{D}^{2}y_{CM}\left(t\right) + m_1\,{D}^{2}y_{CM}\left(t\right)} \cr \cr \displaystyle{\frac{{l}^{2}\,m_0\,m_1\,{D}^{2}\theta\left(t\right)}{m_0 + m_1}}\end{pmatrix}
-$$
 {% end %}
-
 
 
 

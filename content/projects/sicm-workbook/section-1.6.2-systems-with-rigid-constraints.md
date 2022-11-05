@@ -175,11 +175,7 @@ $$
    (rendertex (((Lagrange-equations L) state) 't)))
 ```
 
-
 {% mathjax() %}
-$$
 \begin{bmatrix}\displaystyle{g\,l\,m\,\sin\left(\theta\left(t\right)\right) + {l}^{2}\,m\,{D}^{2}\theta\left(t\right) + l\,m\,\sin\left(\theta\left(t\right)\right)\,{D}^{2}y_s\left(t\right)}\end{bmatrix}
-$$
 {% end %}
-
 

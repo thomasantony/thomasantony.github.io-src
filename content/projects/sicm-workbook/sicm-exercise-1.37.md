@@ -76,13 +76,9 @@ $$
            )
 ```
 
-
 {% mathjax() %}
-$$
 \begin{pmatrix}\displaystyle{- r\,\dot {\varphi}\,\sin\left(\varphi\right) + \dot r\,\cos\left(\varphi\right)} \cr \cr \displaystyle{r\,\dot {\varphi}\,\cos\left(\varphi\right) + \dot r\,\sin\left(\varphi\right)}\end{pmatrix}
-$$
 {% end %}
-
 
 
 

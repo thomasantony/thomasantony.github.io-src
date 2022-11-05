@@ -78,13 +78,9 @@ $$
 (rendertexvec eqs-system)
 ```
 
-
 {% mathjax() %}
-$$
 \begin{pmatrix}\displaystyle{\frac{{a}^{2}\,m\,{D}^{2}x\left(t\right) -2\,x\left(t\right)\,\lambda\left(t\right)}{{a}^{2}}} \cr \cr \displaystyle{\frac{{b}^{2}\,m\,{D}^{2}y\left(t\right) -2\,y\left(t\right)\,\lambda\left(t\right)}{{b}^{2}}} \cr \cr \displaystyle{\frac{{c}^{2}\,m\,{D}^{2}z\left(t\right) -2\,z\left(t\right)\,\lambda\left(t\right)}{{c}^{2}}} \cr \cr \displaystyle{\frac{{a}^{2}\,{b}^{2}\,{c}^{2} - {a}^{2}\,{b}^{2}\,{\left(z\left(t\right)\right)}^{2} - {a}^{2}\,{c}^{2}\,{\left(y\left(t\right)\right)}^{2} - {b}^{2}\,{c}^{2}\,{\left(x\left(t\right)\right)}^{2}}{{a}^{2}\,{b}^{2}\,{c}^{2}}}\end{pmatrix}
-$$
 {% end %}
-
 
 
 

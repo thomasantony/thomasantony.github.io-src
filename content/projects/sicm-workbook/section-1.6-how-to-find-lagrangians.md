@@ -28,8 +28,11 @@ Consider a particle of mass $m$ in a gravitational field with acceleration, $g$.
 
 {% mathjax() %}
 $$
-L(t; x,y; v_x, v_y) = \frac{1}{2} m (v_x^2 + v_y^2) - mgy
+L(t; x,y; v_x, v_y) = \frac{1}{2} m (v_x^2 + v_y^2) - mgy\\
 $$
+{% end %}
+
+
 
 
 The EOMs for this system can be obtained by applying the EL equations as follows:
@@ -44,13 +47,9 @@ The EOMs for this system can be obtained by applying the EL equations as follows
    (rendertex (((Lagrange-equations L) state) 't)))
 ```
 
-
 {% mathjax() %}
-$$
 \begin{bmatrix}\displaystyle{m\,{D}^{2}x\left(t\right)} \cr \cr \displaystyle{g\,m + m\,{D}^{2}y\left(t\right)}\end{bmatrix}
-$$
 {% end %}
-
 
 
 
@@ -88,13 +87,9 @@ Applying EL equations, the equations of motion can be derived as:
    (rendertex ((eom-central-rectangular state) 't)))
 ```
 
-
 {% mathjax() %}
-$$
 \begin{bmatrix}\displaystyle{\frac{m\,{D}^{2}x\left(t\right)\,\sqrt {{\left(x\left(t\right)\right)}^{2} + {\left(y\left(t\right)\right)}^{2}} + x\left(t\right)\,DU\left(\sqrt {{\left(x\left(t\right)\right)}^{2} + {\left(y\left(t\right)\right)}^{2}}\right)}{\sqrt {{\left(x\left(t\right)\right)}^{2} + {\left(y\left(t\right)\right)}^{2}}}} \cr \cr \displaystyle{\frac{m\,{D}^{2}y\left(t\right)\,\sqrt {{\left(x\left(t\right)\right)}^{2} + {\left(y\left(t\right)\right)}^{2}} + y\left(t\right)\,DU\left(\sqrt {{\left(x\left(t\right)\right)}^{2} + {\left(y\left(t\right)\right)}^{2}}\right)}{\sqrt {{\left(x\left(t\right)\right)}^{2} + {\left(y\left(t\right)\right)}^{2}}}}\end{bmatrix}
-$$
 {% end %}
-
 
 
 
@@ -174,13 +169,9 @@ Applying Lagrange's Equations, we get:
    (rendertex ((eom-central-polar state) 't)))
 ```
 
-
 {% mathjax() %}
-$$
 \begin{bmatrix}\displaystyle{- m\,{\left(D\varphi\left(t\right)\right)}^{2}\,r\left(t\right) + m\,{D}^{2}r\left(t\right) + DU\left(r\left(t\right)\right)} \cr \cr \displaystyle{2\,m\,D\varphi\left(t\right)\,r\left(t\right)\,Dr\left(t\right) + m\,{\left(r\left(t\right)\right)}^{2}\,{D}^{2}\varphi\left(t\right)}\end{bmatrix}
-$$
 {% end %}
-
 
 
 ```clojure
@@ -203,13 +194,9 @@ $$
             ))
 ```
 
-
 {% mathjax() %}
-$$
 \begin{pmatrix}\displaystyle{t} \cr \cr \displaystyle{\begin{pmatrix}\displaystyle{r\left(t\right)\,\cos\left(\phi\left(t\right)\right)} \cr \cr \displaystyle{r\left(t\right)\,\sin\left(\phi\left(t\right)\right)}\end{pmatrix}} \cr \cr \displaystyle{\begin{pmatrix}\displaystyle{- r\left(t\right)\,\sin\left(\phi\left(t\right)\right)\,D\phi\left(t\right) + Dr\left(t\right)\,\cos\left(\phi\left(t\right)\right)} \cr \cr \displaystyle{r\left(t\right)\,\cos\left(\phi\left(t\right)\right)\,D\phi\left(t\right) + Dr\left(t\right)\,\sin\left(\phi\left(t\right)\right)}\end{pmatrix}}\end{pmatrix}
-$$
 {% end %}
-
 
 
 
