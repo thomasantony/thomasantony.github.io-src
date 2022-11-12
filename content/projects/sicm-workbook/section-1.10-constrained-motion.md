@@ -21,14 +21,20 @@ When using the Lagrangian method, we may choose the coordinate system that is th
 
 Consider a dynamic system with $n$ degrees of freedom, specified by $n+1$ coordinates, along with a path constraint of the form:
 
+
 {% mathjax() %}
 $$
-\varphi(t, q(t), Dq(t)) = 0
+\varphi(t, q(t), Dq(t)) = 0\\
 $$
+{% end %}
+
+
+
 
 In order to formulate the equations of motion, one approach would be to use the constraint equation to eliminate one of the coordinates, and then use the resulting irredundant coordinates to develop Lagrange's Equations. Any equations developed using redundant coordinates with constraints should be equivalent.
 
 In order to do this, consider the method used originally for deriving Lagrange's equations. Realizable paths were those that had a stationary "action" compared to nearby paths. "Stationary" here means that the action does not change for small changes in the path. We considering constrained motion, these varied paths must also satisfy the constraints. This has some effects on the derivation of Lagrange's equations. Regardless of the method used, the condition for stationary action condenses to the following form (Eq. [1.17](https://tgvaughan.github.io/sicm/chapter001.html#disp_1.17) or Eq. [1.34](https://tgvaughan.github.io/sicm/chapter001.html#disp_1.34)):
+
 
 {% mathjax() %}
 $$
@@ -38,9 +44,11 @@ $$
 
 
 
+
 where $\eta$ is the variation in the path. In the unconstrained case, we may have arbitrary variations and so the only way for Eq.1.182 to be satisfied was for the integrand to be zero. Furthermore, since $\eta$ can be arbitrarily chosen, the term multiplying with $\eta$ must be zero for the action to be stationary, thereby getting to Lagrange's equations. 
 
 Once we add in constraints, $\eta$ can no longer be arbitrarily chosen. While the intgrand must still be zero for Eq. 1.182 to be satisfied, we can no loner conclude that the factor multiplying $\eta$ must be zero. Therefore,
+
 
 {% mathjax() %}
 $$
@@ -49,9 +57,12 @@ $$
 {% end %}
 
 
+
+
 with $\eta$ subject to the constraints of the dynamic system.
 
 A path $q$ satisfies the constraint if $\bar{\varphi}[q] = \varphi \circ \Gamma[q] = 0$. Since we only allow varied paths that satisfy the constraint, the variation of the constraint must be zero:
+
 
 {% mathjax() %}
 $$
@@ -61,9 +72,11 @@ $$
 
 
 
+
 > The variation must be "tangent" to the constraint surface
 
 Expanding Eq. 1.184 with the chain rule (Eq. [1.26](https://tgvaughan.github.io/sicm/chapter001.html#disp_1.26)) and the definition $\delta_\eta \Gamma[q](t) = (0,\eta(t),D\eta(t))$ ([Eq. 1.31](https://tgvaughan.github.io/sicm/chapter001.html#disp_1.31)), the variation is tangent to the constraint surface if:
+
 
 {% mathjax() %}
 $$
@@ -75,6 +88,7 @@ $$
 \end{align*}
 $$
 {% end %}
+
 
 
 

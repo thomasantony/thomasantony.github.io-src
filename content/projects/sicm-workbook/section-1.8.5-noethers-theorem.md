@@ -29,6 +29,7 @@ Consider a parametric coordinate transformation, $\widetilde{F}$ with parameter 
 
 An example would be a function that takes an angle, $s$, as the input and spits out a coordinate transformation that rotates the primed coordinate frame, $x'$ about some axis by that angle.
 
+
 {% mathjax() %}
 $$
 x = \widetilde{F}(s) (t, x')
@@ -37,7 +38,9 @@ $$
 
 
 
+
 There is a corresponding parametreic state transformation $\widetilde{C}$ associated with $\widetilde{F}$ that transforms the velocity $v'$ as well the time (i.e. the local tuple that forms the input to the Lagrangian).
+
 
 {% mathjax() %}
 $$
@@ -50,13 +53,21 @@ $$
 
 
 
+
 We require that $\widetilde{F}(0)$ represent the identity transformation $x' = \widetilde{F}(0)(t, x')$, with $\widetilde{C}$ as the corresponding identity state transformation. If the Lagrangian $L$ has a continous symmetry corresponding to $\widetilde{F}$, then the Lagrangian should be unchanged when the coordinates are transformed using $\widetilde{F}$. Therefore:
+
 
 {% mathjax() %}
 $$
-\widetilde{L}(s) = L\cdot \widetilde{C}(s) = L
+\widetilde{L}(s) = L\cdot \widetilde{C}(s) = L\\
 $$
+{% end %}
+
+
+
+
 for any $s$. Expanding $\widetilde{C}$ in the above expression, we get:
+
 
 {% mathjax() %}
 $$
@@ -68,6 +79,7 @@ $$
 
 
 Undoing the "chainrule" in the second term and writing it in terms of the total time derivative,
+
 
 {% mathjax() %}
 $$
@@ -99,6 +111,7 @@ $$
 
 According to Lagrange equations, the first term of Eq. 1.157 is: $(\partial_1 L \circ \Gamma[q]) \left( (D\widetilde{F})(s) \circ \Gamma[q']\right) = (D_t\partial_2 L \circ \Gamma[q]) \left((D\widetilde{F})(s) \circ \Gamma[q']\right)$. Substituting this in Eq. 1.157,
 
+
 {% mathjax() %}
 $$
 0 = (D_t \partial_2 L \circ \Gamma[q])\left( (D\widetilde{F}(s)) \circ \Gamma[q']\right) +  (\partial_2 L \circ \Gamma[q])\left( D_t(D\widetilde{F}(s)) \circ \Gamma[q']\right) \tag{1.159}
@@ -109,6 +122,7 @@ $$
 
 
 When $s = 0$, since $\widetilde{F}(0)$ is the identity transformation, the paths $q$ and $q'$ are the same. Therefore, $\Gamma[q] = \Gamma[q']$ and Eq. 1.158 becomes
+
 
 {% mathjax() %}
 $$
@@ -124,11 +138,13 @@ $$
 
 Therefore the state function $\mathscr{I}$:
 
+
 {% mathjax() %}
 $$
 \mathscr{I} = (\partial_2 L) (D\widetilde{F}(0))
 $$
 {% end %}
+
 
 
 
@@ -138,6 +154,7 @@ is conserved along all solution trajectories. This quantity is called the ***Noe
 
 Consider the motion of a particle in a central potential. The Lagrangian in rectangular coordinates is:
 
+
 {% mathjax() %}
 $$
 L(t; x,y,z; v_x, v_y, v_z) = \frac{1}{2} m \left( v_x^2 + v_y^2 + v_z^2\right) - U(\sqrt{x^2 + y^2 + z^2})
@@ -146,7 +163,9 @@ $$
 
 
 
+
 Consider a parameteric rotation about the $z$-axis:
+
 
 {% mathjax() %}
 $$
@@ -158,14 +177,21 @@ $$
 
 
 
+
 Since a rotation is an orthogonal transformation, it does not change the magnitude of the vector,
+
 
 {% mathjax() %}
 $$
-x^2 + y^2 + z^2 = (x')^2 + (y')^2 + (z')^2
+x^2 + y^2 + z^2 = (x')^2 + (y')^2 + (z')^2\\
 $$
+{% end %}
+
+
+
 
 Similarly, differentiating Eq.1.163 along a path, we get:
+
 
 {% mathjax() %}
 $$
@@ -176,7 +202,9 @@ $$
 
 
 
+
 Therefore, $v_x^2 + v_y^2 + v_z^2 = v_x'^2 + v_y'^2 + v_z'^2$. Combining these, we can see that the post-transformation Lagrangian $L'$ is:
+
 
 {% mathjax() %}
 $$
@@ -187,7 +215,9 @@ $$
 
 
 
+
 Therefore $L'$ is the exact same function as $L$ and hence there is a conserved value corresponding to the rotational symmetry about the z-axis. The momenta are defined as:
+
 
 {% mathjax() %}
 $$
@@ -197,7 +227,9 @@ $$
 
 
 
+
 and 
+
 
 {% mathjax() %}
 $$
@@ -213,11 +245,13 @@ $$
 
 The $D$ operator has the highest precedence, and therefore:
 
+
 {% mathjax() %}
 $$
 D\widetilde{F}(0)(t; x,y,z) = D\widetilde{F}(s)(x, y, z)|_{s=0} = \left.\begin{bmatrix} -x \sin{s} - y\cos{s}\\x \cos{s} - y\sin{s}\\0\end{bmatrix}\right|_{s=0}
 $$
 {% end %}
+
 
 
 
@@ -228,6 +262,7 @@ Here we are taking the derivative w.r.t $s$ and consider $x$, $y$ and $z$ to be 
 
 Therefore, the Noether integral is:
 
+
 {% mathjax() %}
 $$
 \begin{align*}
@@ -237,6 +272,7 @@ $$
 \end{align*}
 $$
 {% end %}
+
 
 
 

@@ -65,8 +65,11 @@ $O$ is defined to take a finite number of local tuple components, $n$. $O$ can b
 
 {% mathjax() %}
 $$
-O(t, q, v, ...)(t') = q + v(t' - t) + \frac{1}{2} a (t' - t)^2 + ...
+O(t, q, v, ...)(t') = q + v(t' - t) + \frac{1}{2} a (t' - t)^2 + ...\\
 $$
+{% end %}
+
+
 
 
 So, given a path function $\bar{f}$, we can reconstitute the $f$ function as:
