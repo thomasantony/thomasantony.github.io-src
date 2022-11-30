@@ -14,7 +14,9 @@
 <h4>Notes</h4>
 {%- set notes = chapter_data["note"] -%}
 {{ self::list_chapter_pages(pages=notes) }}
+{%- if chapter_data is containing("exercise") -%}
 <h4>Exercises</h4>
 {%- set exercises = chapter_data["exercise"] -%}
 {{ self::list_chapter_pages(pages=exercises) }}
+{%- endif -%}
 {% endmacro chapter %}

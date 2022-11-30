@@ -17,4 +17,8 @@ title = "Chapter 1 - Lagrangian Mechanics"
 [[extra.chapters]]
 number = "2"
 title = "Chapter 2 - Rigid Bodies"
+
+[[extra.chapters]]
+number = "3"
+title = "Chapter 3 - Hamiltonian Mechanics"
 +++
