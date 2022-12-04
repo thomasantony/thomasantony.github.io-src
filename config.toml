@@ -30,6 +30,7 @@ navlinks = [
     { name = "posts", href = "/posts" },
     { name = "projects", href = "/projects" },
     { name = "notes", href = "/notes" },
+    { name = "chatgpt", href = "/chatgpt" },
     { name = "publications", href = "/publications" },
 ]
 

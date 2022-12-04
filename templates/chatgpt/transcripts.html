@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>{{ section.title }}</h1>
+    {%- if section.description -%}
+    <p>
+      {{ section.description | markdown | safe}}
+    </p>
+    {%- endif -%}
+    <ul>
+    {%- for page in section.assets | sort -%}
+    <li><a href="{{ get_url(path=page) }}">{{ page | split(pat="/") | last | safe }}</a></li>
+    {%- endfor -%}
+    </ul>
+{% endblock content %}
