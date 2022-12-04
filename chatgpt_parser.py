@@ -38,7 +38,7 @@ html_template = """
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Modified HTML Document</title>
+    <title>ChatGPT Transcript</title>
 </head>
 <body>
     <a href="/chatgpt">&lt; Back</a>
