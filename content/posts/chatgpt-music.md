@@ -178,3 +178,89 @@ This is quite strange. I am not entirely sure what it is doing here. It almost l
 My prior prompts about MusicXML may also have pointed it to go down that path instead of generating MIDI directly. These are interesting results regardless! 
 
 I didn't try GPT3 when it first came out and I didn't really get the hype. But now, ... now I see it. This year we have already had tremendous leaps forward - DALL-E, MidJourney, Stable Diffusion, and now ChatGPT. It seems like we have hit the vertical part of the exponential curve.
+
+===
+
+On further probing, it came up with a script where the musical notes were directly stored in a list in Python. This led me to asking it to use that to store music as CSV files. The conversation in question can be found [here](/chatgpt/ChatGPT_Music_CSV.html). Interestingly, when I asked it to generate a CSV file containing the first few bars of "Ode to Joy", I got something that sounded like "Twinkle Twinkle Little Star". Try out the following code and input file:
+
+
+```python
+import csv
+import sys
+from midiutil.MidiFile import MIDIFile
+from pygame import mixer
+
+# Parse command line argument
+try:
+    csv_filename = sys.argv[1]
+except IndexError:
+    print("Please provide the CSV file as a command line argument.")
+    sys.exit(1)
+
+# Parse CSV file
+pitches = []
+durations = []
+times = []
+with open(csv_filename) as csvfile:
+    reader = csv.reader(csvfile)
+    for row in reader:
+        pitches.append(int(row[0]))
+        durations.append(int(row[1]))
+        times.append(float(row[2]))
+
+# Create MIDI file
+midi_file = MIDIFile(1) # One track
+track = 0
+time = 0
+midi_file.addTrackName(track, time, "Temporary MIDI Track")
+midi_file.addTempo(track, time, 120)
+
+# Add notes to the MIDI file
+for pitch, duration, time_offset in zip(pitches, durations, times):
+    midi_file.addNote(track, 0, pitch, time + time_offset, duration, 100)
+
+# Write the MIDI file to disk
+with open("temp.mid", "wb") as output_file:
+    midi_file.writeFile(output_file)
+
+# Play back the MIDI file using pygame.mixer
+mixer.init()
+mixer.music.load("temp.mid")
+mixer.music.play()
+
+# Wait until MIDI file is done playing before exiting
+while mixer.music.get_busy():
+    continue
+```
+
+And here is the "music":
+
+
+```csv
+60,2,0
+60,2,0.5
+67,2,1
+67,2,1.5
+69,2,2
+69,2,2.5
+67,4,3
+65,2,4
+65,2,4.5
+64,2,5
+64,2,5.5
+62,2,6
+62,2,6.5
+60,2,7
+60,2,7.5
+67,2,8
+67,2,8.5
+69,2,9
+69,2,9.5
+67,4,10
+65,2,11
+65,2,11.5
+64,2,12
+64,2,12.5
+62,2,13
+62,2,13.5
+```
