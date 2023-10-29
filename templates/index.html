@@ -1,28 +1,76 @@
 {% extends "base.html" %}
 {% block content %}
+<section id="homepage">
+<ul>
+    <li>recent posts</li>
 
-<section class="about-me">
-  <figure class="avatar">
-    {% set image = resize_image(path="/images/me/me-removebg.png", width=200, op='fit_width', format='webp') %}
-    <img alt="Thomas Antony - Photo" src="{{image.url}}"/>
-  </figure>
-  <figure class="about-me-details">
-    <b>Hi, I am Thomas.</b>
-    <p>
-      <br/>
-      This is my personal website. A place for me to write about things that capture my interest - anything from <a href="/projects#classical-mechanics">classical mechanics</a> to <a href="https://www.braveclojure.com/introduction/">functional programming</a>, and more.
-    </p>
-  </figure>
-  <section class="about-me-contact">
-    {% if config.extra.contact %}
-    My online presence: <br/>
-      [
-        {% for item in config.extra.contact %}
-        <a class="sakura-fade" href="{{item.href}}" target="_blank"><b>{{ item.name }}</b></a>{% if loop.last == false %} | {% endif %}
-        {% endfor %}
-      ]
+    {% set posts = get_section(path="posts/_index.md") %}
+    {% if posts.pages|length > 0 %}
+    <!-- Show the most recent 5 posts -->
+    <ul>
+    {% for post in posts.pages|sort(attribute="date")|reverse|slice(end=5) %}
+        <li>
+          <!-- <div class="flex-list-item"> -->
+            <time datetime="{{ post.date }}" class="sans">{{ post.date | date(format="%Y-%m-%d") }}</time>
+            <a href="{{ post.permalink | safe }}">{{ post.title }}</a>
+          <!-- </div> -->
+        </li>
+    {% endfor %}
+    <!-- If there are more than five posts, link to /posts -->
+    {% if posts.pages|length > 5 %}
+        <li class="remove-list-style">
+          <a href="/posts">see archives ...</a>
+        </li>
     {% endif %}
-  </section>
-</section>
+    </ul>
+    {% endif %}
 
+    <!-- Add section with most recent five notes, sorted by date -->
+    {% set notes = get_section(path="notes/_index.md") %}
+    {% if notes.pages|length > 0 %}
+    <li>recent notes</li>
+    <ul>
+    {% for note in notes.pages|sort(attribute="slug")|reverse|slice(end=5) %}
+        <li>
+          <!-- <div class="flex-list-item"> -->
+            <a href="{{ note.permalink | safe }}">{{ note.title }}</a>
+          <!-- </div> -->
+        </li>
+    {% endfor %}
+    <!-- If there are more than five notes, link to /notes -->
+    {% if notes.pages|length > 5 %}
+        <li class="remove-list-style">
+            <a href="/notes">more notes ...</a>
+        </li>
+    {% endif %}
+    </ul>
+    {% endif %}
+
+    <!-- Add section with projects -->
+    {% set projects = get_section(path="projects/_index.md") %}
+    {% if projects.subsections|length > 0 %}
+    <li>projects</li>
+    <ul>
+    {% for project_path in projects.subsections %}
+        {% set project = get_section(path=project_path) %}
+        <li>
+          <!-- <div class="flex-list-item"> -->
+            <a href="{{ project.permalink | safe }}">{{ project.title }}</a>
+          <!-- </div> -->
+        </li>
+    {% endfor %}
+    </ul>
+    {% endif %}
+
+
+    {% if config.extra.contact %}
+    <li>contact</li>
+    <ul>
+      {% for item in config.extra.contact %}
+      <li><a href="{{item.href}}" target="_blank">{{ item.name }}</a><br/></li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+</ul>
+</section>
 {% endblock content %}
