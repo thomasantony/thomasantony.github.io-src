@@ -2,10 +2,10 @@
 {% import "macros/workbook_macros.html" as workbook_macros %}
 
 {% block content %}
-    <h1>{{ section.title }}</h1>
+    <h2>{{ section.title }}</h2>
     {%- if section.description -%}
     {%- set pages_by_chapter = section.pages | group_by(attribute="extra.chapter") -%}
-    
+
     <p>
       {{ section.description | markdown | safe}}
     </p>
