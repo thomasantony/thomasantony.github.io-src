@@ -1,74 +1,132 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:site" content="@thomasantony" />
-    <meta name="twitter:creator" content="@thomasantony" />
-    
-    {%- if section.permalink%}
-    <meta name="og:url" content="{{ section.permalink | safe }}" />
-    {%- endif%}
-    {%- if page.permalink%}
-    <meta name="og:url" content="{{ page.permalink | safe }}" />
-    {%- endif%}
-    <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="{{ config.title }}" />
-    {%- if section.title%}
-    <title>{{ section.title }}</title>
-    <meta name="og:title" content="{{ section.title }}" />
-    {%- endif%}
-    {%- if page.title%}
-    <title>{{ page.title }}</title>
-    <meta name="og:title" content="{{ page.title }}" />
-    {%- endif%}
-    {%- if section.description%}
-    <meta name="description" content="{{ section.description }}" />
-    <meta name="og:description" content="{{ section.description }}" />
-    {%- endif%}
-    {%- if page.description%}
-    <meta name="description" content="{{ page.description }}" />
-    <meta name="og:description" content="{{ page.description }}" />
-    {%- else%}
-    <meta name="description" content="{{ config.description }}">
-    <meta name="og:description" content="{{ config.description }}" />
-    {%- endif%}
-    <link rel="stylesheet" href="/normalize.css" />
-    <link rel="stylesheet" href="/style.css" media="screen" />
-    <link rel="stylesheet" href="/style-dark.css" media="screen and (prefers-color-scheme: dark)" />
-    <title>{% if page.title -%}
-      {{ page.title ~ " - "| title -}}
-      {% elif taxonomy.name -%}
-      {{ taxonomy.name ~ " - "| title -}}
-      {% elif section.title -%}
-      {{ section.title ~ " - " -}}
-      {% endif %}Thomas Antony</title>
-{% if page.extra.latex %}
-    <!-- MathJax configuration -->
-    <script src="{{ get_url(path='/js/math.js') }}" type="text/javascript"></script>
-    <script async defer src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS_CHTML,Safe"> </script>
-{% endif %}
-</head>
-<body>
-  <header>
-    <div id="nav-brand-wrapper">
-      <a class="sakura-blossom sans" href="/">{{ config.title }}</a>
-    </div>
-    <nav>
-      {% if config.extra.navlinks %}
-      [
-        {% for menuitem in config.extra.navlinks %}
-        <a class="sakura-fade" href="{{ get_url(path=menuitem.href) }}">{{ menuitem.name }}</a>{% if loop.last == false %},{% endif %}{% endfor %}
-      ]
-      {% endif %}
-    </nav>
-  </header>
-  <section class="main">
-  {% block content %} {% endblock %}
-  </section>
-  <footer class="sans">
-    <a href="https://github.com/thomasantony/thomasantony.github.io-src" target="_blank"> Source code</a>. Built using <a href="https://getzola.org" target="_blank">Zola</a> and <a href="https://github.com/oxalorg/sakura" target="_blank">Sakura</a>.
-  </footer>
-</body>
+<!doctype html>
+<html lang="{{ lang }}">
+    <head>
+        <meta charset="UTF-8">
+        <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+        <meta content="text/html; charset=UTF-8" http-equiv="content-type"/>
+        <meta content="width=device-width, initial-scale=1" name="viewport"/>
+
+        {% if page.title %}
+        {% set title = page.title %}
+        {% elif section.title %}
+        {% set title = section.title %}
+        {% elif config.title %}
+        {% set title = config.title %}
+        {% endif %}
+
+        {% if page.extra.author %}
+        {% set author = page.extra.author %}
+        {% elif section.extra.author %}
+        {% set author = section.extra.author %}
+        {% elif config.extra.author %}
+        {% set author = config.extra.author %}
+        {% endif %}
+
+        {% if page.description %}
+        {% set description = page.description | truncate(length=150) %}
+        {% elif section.description %}
+        {% set description = section.description | truncate(length=150) %}
+        {% elif config.description %}
+        {% set description = config.description | truncate(length=150) %}
+        {% endif %}
+
+        {% if page.extra.image %}
+        {% set image = get_url(path=page.extra.image, trailing_slash=false) %}
+        {% elif section.extra.image %}
+        {% set image = get_url(path=section.extra.image, trailing_slash=false) %}
+        {% elif config.extra.logo %}
+        {% set image = get_url(path=config.extra.logo, trailing_slash=false) %}
+        {% endif %}
+
+        {% if page.permalink %}
+        {% set url = page.permalink %}
+        {% elif section.permalink %}
+        {% set url = section.permalink %}
+        {% elif config.base_url %}
+        {% set url = config.base_url %}
+        {% endif %}
+
+        {% if title %}<title>{{ title }}</title>{% endif %}
+        {% block metatags %}
+        {% if title %}<meta name="title" content="{{ title }}">{% endif %}
+        {% if author %}<meta name="author" content="{{ author }}">{% endif %}
+        {% if description %}<meta name="description" content="{{ description }}">{% endif %}
+        <meta name="generator" content="Zola v0.16.1">
+
+        <meta property="og:type" content="website">
+        <meta property="og:url" content="{{ url | safe }}">
+        {% if title %}<meta property="og:site_name" content="{{ config.title }}">{% endif %}
+        {% if title %}<meta property="og:title" content="{{ title }}">{% endif %}
+        {% if description %}<meta property="og:description" content="{{ description }}">{% endif %}
+        {% if image %}<meta property="og:image" content="{{ image }}">{% endif %}
+
+        {% set twitter_card = config.extra.twitter_card | default(value=true) %}
+        {% if twitter_card != false %}
+        <meta property="twitter:card" content="summary_large_image">
+        <meta property="twitter:url" content="{{ url | safe }}">
+        {% if title %}<meta property="twitter:title" content="{{ title }}">{% endif %}
+        {% if description %}<meta property="twitter:description" content="{{ description }}">{% endif %}
+        {% if image %}<meta property="twitter:image" content="{{ image }}">{% endif %}
+        {% endif %}
+
+        <link rel="canonical" href="{{ url | safe }}">
+        {% if image %}<link rel="shortcut icon" type="image/x-icon" href="{{ get_url(path=config.extra.logo, trailing_slash=false) }}">{% endif %}
+        <script type="application/ld+json">
+            {
+                {% if description %}"description":"{{ description | safe }}",{% endif %}
+                "url":"{{ url | safe }}",
+                "@type":"WebSite",
+                {% if title %}"headline":"{{ title | safe }}",{% endif %}
+                {% if title %}"name":"{{ title | safe }}",{% endif %}
+                {% if author %}"author":{
+                    "@type":"Person",
+                    "name":"{{ author | safe }}"
+                },{% endif %}
+                "@context":"https://schema.org"
+            }
+        </script>
+        {% endblock metatags %}
+        {% if config.generate_feed %}
+        {% block feed %}
+        <link rel="alternate" type="application/atom+xml" title="RSS" href="{{ get_url(path="atom.xml", trailing_slash=false) }}">
+        {% endblock feed %}
+        {% endif %}
+        {% block css %}
+        <link rel="stylesheet" href="{{ get_url(path='style.css', trailing_slash=false) | safe }}"/>
+        {% endblock css %}
+
+        {% if page.extra.latex %}
+            <!-- MathJax configuration -->
+            <script src="{{ get_url(path='/js/math.js') }}" type="text/javascript"></script>
+            <script async defer src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS_CHTML,Safe"> </script>
+        {% endif %}
+    </head>
+    <body theme="auto">
+        <div class="w">
+            <header>
+                <nav>
+                    {% if config.extra.navlinks %}
+                    [
+                      {% for menuitem in config.extra.navlinks %}
+                      <a href="{{ get_url(path=menuitem.href) }}">{{ menuitem.name }}</a>{% if loop.last == false %},{% endif %}{% endfor %}
+                    ]
+                    {% endif %}
+                </nav>
+
+            </header>
+            <main class="page-content" aria-label="Content">
+                {% block content %}{% endblock content %}
+            </main>
+            <footer>
+                {% block footer %}{% endblock footer %}
+                {% if config.extra.footer_nav %}
+                <nav>
+                    {% for nav_item in config.extra.footer_nav %}
+                    <a href="{{ nav_item.url | safe }}">{{ nav_item.name }}</a>
+                    {% endfor %}
+                </nav>
+                {% endif %}
+            </footer>
+        </div>
+    </body>
 </html>
