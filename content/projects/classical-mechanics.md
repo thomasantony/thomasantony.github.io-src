@@ -1,5 +1,5 @@
 +++
-title = "Self Study -- Classical Mechanics"
+title = "Classical Mechanics"
 weight = 0
 +++
 

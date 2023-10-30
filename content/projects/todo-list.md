@@ -1,5 +1,5 @@
 +++
-title = "Reading/Study To-Do List"
+title = "Reading List/To-Do List"
 weight = 1
 +++
 
