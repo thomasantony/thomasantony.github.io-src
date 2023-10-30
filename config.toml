@@ -1,7 +1,7 @@
 # The URL the site will be built for
 base_url = "https://www.thomasantony.com"
 
-title = "Thomas Antony"
+title = "thomasantony.com"
 description = "My personal website and notes"
 
 # Whether to automatically compile all Sass files in the sass directory
@@ -13,6 +13,7 @@ build_search_index = true
 ignored_content = ["*/README.md"]
 
 taxonomies = [{ name = "notes", feed = true }, { name = "tags", feed = true }]
+generate_feed = true
 
 [markdown]
 # Whether to do syntax highlighting
@@ -26,18 +27,14 @@ smart_punctuation = true
 # Put all your custom variables here
 
 navlinks = [
-    { name = "about", href = "/about" },
+    { name = "home", href = "/" },
     { name = "posts", href = "/posts" },
     { name = "projects", href = "/projects" },
     { name = "notes", href = "/notes" },
-    { name = "chatgpt", href = "/chatgpt" },
-    { name = "publications", href = "/publications" },
 ]
 
 contact = [
     { name = "github", href = "https://github.com/thomasantony" },
     { name = "gitlab", href = "https://gitlab.com/thomasantony" },
-    { name = "twitter", href = "https://twitter.com/thomasantony" },
     { name = "youtube", href = "https://www.youtube.com/channel/UCFM4WG1EeEA7nwkx7G-TroQ" },
-    { name = "linkedin", href = "https://linkedin.com/in/thomasantony" },
 ]
