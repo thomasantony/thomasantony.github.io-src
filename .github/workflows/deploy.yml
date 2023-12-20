@@ -23,10 +23,11 @@ jobs:
         run: sudo chown -R $(whoami) .
       - name: Download and extract surveyor-sim WASM blob from GitHub
         run: |
-          ls -al public
           mkdir -p public/surveyor
           wget https://github.com/thomasantony/surveyor-sim/releases/download/v0.1.0/surveyor-sim-wasm-0.1.0.tar.gz
           tar xvf ./surveyor-sim-wasm-0.1.0.tar.gz -C public/surveyor
+          sed -i 's|"/|"surveyor/|g' public/surveyor/index.html
+          sed -i 's|'"'"'/|'"'"'/surveyor/|g' public/surveyor/index.html
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4.4.0
         with:
@@ -59,10 +60,11 @@ jobs:
         run: sudo chown -R $(whoami) .
       - name: Download and extract surveyor-sim WASM blob from GitHub
         run: |
-          ls -al public
           mkdir -p public/surveyor
           wget https://github.com/thomasantony/surveyor-sim/releases/download/v0.1.0/surveyor-sim-wasm-0.1.0.tar.gz
           tar xvf ./surveyor-sim-wasm-0.1.0.tar.gz -C public/surveyor
+          sed -i 's|"/|"surveyor/|g' public/surveyor/index.html
+          sed -i 's|'"'"'/|'"'"'/surveyor/|g' public/surveyor/index.html
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4.4.0
         with:
