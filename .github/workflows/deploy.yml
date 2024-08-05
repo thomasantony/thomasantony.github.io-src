@@ -66,7 +66,7 @@ jobs:
           sed -i 's|"/|"surveyor/|g' public/surveyor/index.html
           sed -i 's|'"'"'/|'"'"'/surveyor/|g' public/surveyor/index.html
       - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@v4.4.0
+        uses: JamesIves/github-pages-deploy-action@v4.6.3
         with:
           branch: master
           folder: ./public
