@@ -28,6 +28,10 @@ jobs:
           tar xvf ./surveyor-sim-wasm-0.1.0.tar.gz -C public/surveyor
           sed -i 's|"/|"surveyor/|g' public/surveyor/index.html
           sed -i 's|'"'"'/|'"'"'/surveyor/|g' public/surveyor/index.html
+      - name: Prepare for deployment
+        run: |
+          rm -rf public/.git || true
+
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4.4.0
         with:
@@ -65,6 +69,10 @@ jobs:
           tar xvf ./surveyor-sim-wasm-0.1.0.tar.gz -C public/surveyor
           sed -i 's|"/|"surveyor/|g' public/surveyor/index.html
           sed -i 's|'"'"'/|'"'"'/surveyor/|g' public/surveyor/index.html
+      - name: Prepare for deployment
+        run: |
+          rm -rf public/.git || true
+
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4.6.3
         with:
