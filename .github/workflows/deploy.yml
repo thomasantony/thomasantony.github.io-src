@@ -17,10 +17,31 @@ jobs:
           ref: master
           token: ${{ secrets.PRIVATE_TOKEN }}
           path: content/notes
+
       - name: Build site using Zola
         uses: thomasantony/zola-build-action@v1.0.5
       - name: Set owner of working dir recursively
         run: sudo chown -R $(whoami) .
+      
+      - name: Download and extract game release from game repo
+        env:
+          GH_TOKEN: ${{ secrets.PRIVATE_TOKEN }}
+          GAME_REPO: ${{ secrets.GAME_REPO }}
+          RELEASE_TAG: ${{ vars.GNC_TRAINER_VERSION }}
+        run: |
+          ARTIFACT_NAME="gnc-trainer-$RELEASE_TAG.tar.gz"
+          ASSET_ID=$(gh api \
+            /repos/$GAME_REPO/releases/tags/$RELEASE_TAG \
+            --jq '.assets[] | select(.name == "'$ARTIFACT_NAME'").id')
+          gh api \
+            /repos/$GAME_REPO/releases/assets/$ASSET_ID \
+            --header "Accept: application/octet-stream" \
+            > $ARTIFACT_NAME
+          mkdir -p public/gnc-trainer
+          tar xvf $ARTIFACT_NAME -C public/gnc-trainer
+          sed -i 's|"/|"gnc-trainer/|g' public/gnc-trainer/index.html
+          sed -i 's|'"'"'/|'"'"'/gnc-trainer/|g' public/gnc-trainer/index.html
+
       - name: Download and extract surveyor-sim WASM blob from GitHub
         run: |
           mkdir -p public/surveyor
@@ -54,10 +75,31 @@ jobs:
           ref: master
           token: ${{ secrets.PRIVATE_TOKEN }}
           path: content/notes
+
       - name: Build site using Zola
         uses: thomasantony/zola-build-action@v1.0.5
       - name: Set owner of working dir recursively
         run: sudo chown -R $(whoami) .
+
+      - name: Download and extract game release from game repo
+        env:
+          GH_TOKEN: ${{ secrets.PRIVATE_TOKEN }}
+          GAME_REPO: ${{ secrets.GAME_REPO }}
+          RELEASE_TAG: ${{ vars.GNC_TRAINER_VERSION }}
+        run: |
+          ARTIFACT_NAME="gnc-trainer-$RELEASE_TAG.tar.gz"
+          ASSET_ID=$(gh api \
+            /repos/$GAME_REPO/releases/tags/$RELEASE_TAG \
+            --jq '.assets[] | select(.name == "'$ARTIFACT_NAME'").id')
+          gh api \
+            /repos/$GAME_REPO/releases/assets/$ASSET_ID \
+            --header "Accept: application/octet-stream" \
+            > $ARTIFACT_NAME
+          mkdir -p public/gnc-trainer
+          tar xvf $ARTIFACT_NAME -C public/gnc-trainer
+          sed -i 's|"/|"gnc-trainer/|g' public/gnc-trainer/index.html
+          sed -i 's|'"'"'/|'"'"'/gnc-trainer/|g' public/gnc-trainer/index.html
+
       - name: Download and extract surveyor-sim WASM blob from GitHub
         run: |
           mkdir -p public/surveyor
