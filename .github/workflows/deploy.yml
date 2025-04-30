@@ -10,6 +10,8 @@ jobs:
     steps:
       - name: checkout
         uses: thomasantony/action-cached-lfs-checkout@v1
+      - name: Cleanup any LFS refs
+        run: find . -type f -name "*.lfs" -o -name "*.gitattributes" | xargs rm -f
       - name: Check out the private notes repo
         uses: actions/checkout@v3
         with:
@@ -72,6 +74,8 @@ jobs:
     steps:
       - name: checkout
         uses: thomasantony/action-cached-lfs-checkout@v1
+      - name: Cleanup any LFS refs
+        run: find . -type f -name "*.lfs" -o -name "*.gitattributes" | xargs rm -f
       - name: Check out the private notes repo
         uses: actions/checkout@v3
         with:
