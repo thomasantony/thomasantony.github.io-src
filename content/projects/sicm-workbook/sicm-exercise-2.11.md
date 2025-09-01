@@ -87,6 +87,7 @@ Therefore,
 $$
 \dot{x}_\alpha^2 + \dot{y}_\alpha^2 + \dot{z}_\alpha^2 = \dot{x}_\alpha'^2 + \dot{y}_\alpha'^2 + \dot{z}_\alpha'^2
 $$ 
+{% end %}
 
 
 Combining these, we can see that the post-transformation Lagrangian $L'$ is:

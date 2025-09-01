@@ -26,6 +26,7 @@ We model the system as a point mass constrained to stay on a triaxial surface us
 $$
 \varphi(t; x,y,z; \dot{x},\dot{y},\dot{z}) = \frac{x^2}{a^2} + \frac{y^2}{b^2} + \frac{z^2}{c^2} - 1 = 0
 $$
+{% end %}
 
 where $a$, $b$ and $c$ are parameters defining the surface. The augmented Lagrangian is:
 

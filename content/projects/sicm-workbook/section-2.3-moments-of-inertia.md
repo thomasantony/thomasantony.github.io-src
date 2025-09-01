@@ -116,5 +116,6 @@ For solid objects, the summation has to be converted to an integral. The general
 $$
 I_{P}=\iiint _{Q}\rho (x,y,z)\left\|\mathbf {r} \right\|^{2}dV
 $$
+{% end %}
 
 where $\rho (x,y,z)$ is the density of the material, $\mathbf {r}$  is a vector perpendicular to the axis of rotation and extending from a point on the rotation axis to a point  $(x,y,z)$ in the solid, and the integration is evaluated over the volume $V$ of the body $Q$.

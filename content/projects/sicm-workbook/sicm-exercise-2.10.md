@@ -43,6 +43,7 @@ If the position of the body is represented by rectangular coordinates $(x, y, z)
 $$
 L(t; x,y,z, q_R; \dot{q},\dot{q_R}) = \frac{1}{2} m \left(\dot{x}^2 + \dot{y}^2 + \dot{z}^2 \right) - mgy + T_R(q_R) 
 $$
+{% end %}
 
 
 The Lagrangian can be decoupled into terms for translation (the first two terms) and rotation ($T_R(q_R)$). Therefore the Lagrange equations for the system also decouple as:
