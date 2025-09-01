@@ -1,7 +1,9 @@
 +++
 title = "Classical Mechanics"
-weight = 0
+weight = 1
 +++
+
+**Status:** Paused
 
 Go to [**Workbook**](/projects/sicm-workbook)
 
