@@ -13,7 +13,7 @@ build_search_index = true
 ignored_content = ["*/README.md"]
 
 taxonomies = [{ name = "notes", feed = true }, { name = "tags", feed = true }]
-generate_feed = true
+generate_feeds = true
 
 [markdown]
 # Whether to do syntax highlighting
