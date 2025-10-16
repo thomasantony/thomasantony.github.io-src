@@ -5,5 +5,6 @@
   <article>{{ page.content | safe }}</article>
 </p>
 </section>
-<a href="{{ get_url(path='projects/sicm-workbook/') }}">&larr; Back to workbook</a>
+{% set parent_path = page.path | split(pat="/") | slice(end=-2) | join(sep="/") %}
+<a href="{{ get_url(path=parent_path ~ "/") }}">&larr; Back to workbook</a>
 {% endblock content %}
