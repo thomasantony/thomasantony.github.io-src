@@ -1,7 +1,9 @@
 +++
 title = "Learning The Art of Electronics"
-weight = 0
+weight = 1
 +++
+
+**Status:** Paused
 
 Go to [**Workbook**](/projects/ltaoe-notes)
 

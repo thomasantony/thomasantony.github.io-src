@@ -1,6 +1,6 @@
 +++
 title = "Classical Mechanics"
-weight = 1
+weight = 2
 +++
 
 **Status:** Paused
