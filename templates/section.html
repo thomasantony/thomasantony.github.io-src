@@ -1,16 +1,23 @@
 {% extends "base.html" %}
 {% block content %}
-        <h2>{{ section.title }}</h2>
-        {% if section.description %}
-        <p>
-          {{ section.description | markdown | safe}}
-        </p>
-        {% endif %}
-        <ul>
-        {% for page in section.pages %}
-        <li style="width:100%; justify-content: space-between; display: flex">
-          <a href="{{ page.permalink | safe }}">{{ page.title }}</a>
-        </li>
-        {% endfor %}
-        </ul>
+<section class="section-list">
+  <h2>{{ section.title }}</h2>
+
+  {% if section.description %}
+  <div class="section-description">
+    {{ section.description | markdown | safe }}
+  </div>
+  {% endif %}
+
+  <ul class="content-list">
+  {% for page in section.pages %}
+    <li>
+      {% if page.date %}
+      <time datetime="{{ page.date }}">{{ page.date | date(format="%Y-%m-%d") }}</time>
+      {% endif %}
+      <a href="{{ page.permalink | safe }}">{{ page.title }}</a>
+    </li>
+  {% endfor %}
+  </ul>
+</section>
 {% endblock content %}
