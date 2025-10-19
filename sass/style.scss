@@ -107,9 +107,15 @@ li {
 *:target { background: yellow; }
 
 .w {
-  max-width: 800px;
+  max-width: var(--content-width);
   margin: 0 auto;
-  padding: 4rem 2rem;
+  padding: var(--space-3xl) var(--space-lg);
+}
+
+@media (max-width: 768px) {
+  .w {
+    padding: var(--space-xl) var(--space-md);
+  }
 }
 
 hr {
