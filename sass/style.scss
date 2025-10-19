@@ -456,3 +456,53 @@ ul {
 .post-content > h4 {
   margin-top: var(--space-2xl);
 }
+
+// ============================================
+// Citation/Reference Styling
+// ============================================
+
+// Superscript citations
+sup {
+  line-height: 0;
+  font-size: 0.75em;
+
+  a {
+    text-decoration: none;
+    padding: 0 0.1em;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+// Reference list styling
+.references {
+  margin-top: var(--space-3xl);
+  padding-top: var(--space-xl);
+  border-top: 1px solid var(--accent-border);
+  font-size: var(--text-sm);
+
+  h2 {
+    font-size: 1.25rem;
+    margin-bottom: var(--space-md);
+  }
+
+  // Individual reference entries
+  p {
+    margin: var(--space-sm) 0;
+    padding-left: var(--space-md);
+    text-indent: calc(-1 * var(--space-md));
+
+    a[id] {
+      // Anchor ID styling
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-right: 0.5em;
+
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  }
+}
