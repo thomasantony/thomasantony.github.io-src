@@ -199,17 +199,17 @@ nav {
 
 nav a {
   margin-right: var(--space-lg);
-  color: var(--text-secondary);
+  color: var(--link-color);
   text-decoration: none;
   transition: color 0.2s ease;
 
-  &:hover {
+  &:visited {
     color: var(--link-color);
-    text-decoration: none;
   }
 
-  &:visited {
-    color: var(--text-secondary);
+  &:hover {
+    color: var(--link-hover);
+    text-decoration: none;
   }
 }
 
