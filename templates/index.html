@@ -62,15 +62,6 @@
     {% endfor %}
     </ul>
     {% endif %}
-
-    {% if config.extra.contact %}
-    <li class="section-heading">Contact</li>
-    <ul class="content-list">
-      {% for item in config.extra.contact %}
-      <li><a href="{{item.href}}" target="_blank">{{ item.name }}</a></li>
-      {% endfor %}
-    </ul>
-    {% endif %}
 </ul>
 </section>
 {% endblock content %}

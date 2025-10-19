@@ -101,14 +101,34 @@
             <script async defer src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS_CHTML,Safe"> </script>
         {% endif %}
     </head>
-    <body theme="auto">
+    <body>
         <div class="w">
             <header>
                 <nav>
+                    <div class="nav-left">
                     {% if config.extra.navlinks %}
                       {% for menuitem in config.extra.navlinks %}
                       <a href="{{ get_url(path=menuitem.href) }}">{{ menuitem.name }}</a>{% endfor %}
                     {% endif %}
+                    </div>
+                    <div class="nav-right">
+                    {% if config.extra.contact %}
+                      {% for item in config.extra.contact %}
+                        {% set icon_name = item.name %}
+                        {% set icon_path = "icon/" ~ icon_name ~ ".svg" %}
+                        <a href="{{ item.href }}" aria-label="{{ item.name }}" target="_blank" rel="noreferrer noopener">
+                          {% set icon = load_data(path=icon_path) %}
+                          {{ icon | safe }}
+                        </a>
+                      {% endfor %}
+                    {% endif %}
+                    {% set moon_icon = load_data(path="icon/moon.svg") %}
+                    {% set sun_icon = load_data(path="icon/sun.svg") %}
+                    <button id="theme-toggle" aria-label="theme switch">
+                      <span class="moon-icon">{{ moon_icon | safe }}</span>
+                      <span class="sun-icon">{{ sun_icon | safe }}</span>
+                    </button>
+                    </div>
                 </nav>
 
             </header>
@@ -126,5 +146,6 @@
                 {% endif %}
             </footer>
         </div>
+        <script src="{{ get_url(path='js/theme.js') }}"></script>
     </body>
 </html>

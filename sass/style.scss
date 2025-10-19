@@ -56,6 +56,34 @@
   --border-radius-sm: 3px;
 }
 
+// Dark mode color overrides
+body.dark {
+  // Colors - Backgrounds
+  --bg-primary: #1a1a1a;
+  --bg-secondary: #2d2d2d;
+
+  // Colors - Text
+  --text-primary: #e5e5e5;
+  --text-secondary: #a0a0a0;
+  --text-muted: #6b7280;
+
+  // Colors - Links
+  --link-color: #60a5fa;
+  --link-hover: #93c5fd;
+  --link-visited: #a78bfa;
+
+  // Colors - Accents
+  --accent-primary: #60a5fa;
+  --accent-border: #374151;
+
+  // Colors - Code
+  --code-bg: #0f172a;
+  --code-text: #e2e8f0;
+  --code-border: #1e293b;
+  --inline-code-bg: #2d2d2d;
+  --inline-code-border: #374151;
+}
+
 // bg color is also needed in html in order to
 // block body's background propagation
 // see: https://stackoverflow.com/a/61265706
@@ -195,10 +223,19 @@ img {
 nav {
   margin-bottom: var(--space-3xl);
   font-size: var(--text-sm);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-md);
 }
 
-nav a {
-  margin-right: var(--space-lg);
+.nav-left {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-lg);
+}
+
+.nav-left a {
   color: var(--link-color);
   text-decoration: none;
   transition: color 0.2s ease;
@@ -210,6 +247,60 @@ nav a {
   &:hover {
     color: var(--link-hover);
     text-decoration: none;
+  }
+}
+
+.nav-right {
+  display: flex;
+  gap: 0.7em;
+  align-items: center;
+}
+
+.nav-right a,
+.nav-right button {
+  color: var(--text-primary);
+  text-decoration: none;
+  line-height: 0;
+  transition: color 0.2s ease;
+
+  &:visited {
+    color: var(--text-primary);
+  }
+
+  &:hover {
+    color: var(--link-color);
+  }
+
+  svg {
+    display: block;
+    width: 18px;
+    height: 18px;
+  }
+}
+
+.nav-right button {
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+// Theme toggle icon visibility
+#theme-toggle {
+  .sun-icon {
+    display: none;
+  }
+  .moon-icon {
+    display: initial;
+  }
+}
+
+body.dark #theme-toggle {
+  .sun-icon {
+    display: initial;
+  }
+  .moon-icon {
+    display: none;
   }
 }
 
