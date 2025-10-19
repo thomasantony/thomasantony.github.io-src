@@ -207,6 +207,10 @@ nav a {
     color: var(--link-color);
     text-decoration: none;
   }
+
+  &:visited {
+    color: var(--text-secondary);
+  }
 }
 
 .taxonomies {
