@@ -1,67 +1,61 @@
-{% extends "base.html" %}
-{% block content %}
+{% extends "base.html" %} {% block content %}
 <section id="homepage">
-
-<div class="profile">
-  <img src="/images/profile-placeholder.svg" alt="Profile photo" width="150" height="150">
-  <div class="profile-description">
-    <h2>Hello, I'm Thomas -</h2>
-    <p>
-      and this is my personal website where I write about my projects,
-      share notes on technical topics, and document things I'm learning.
-    </p>
+  <div class="profile">
+    <img src="/images/moi.jpg" alt="Profile photo" width="150" height="150" />
+    <div class="profile-description">
+      <h2>Hello, I'm Thomas -</h2>
+      <p>
+        and this is my personal website where I write about my projects, share
+        notes on technical topics, and document things I'm learning.
+      </p>
+    </div>
   </div>
-</div>
 
-<ul>
+  <ul>
     <li class="section-heading">Recent Posts</li>
 
-    {% set posts = get_section(path="posts/_index.md") %}
-    {% if posts.pages|length > 0 %}
+    {% set posts = get_section(path="posts/_index.md") %} {% if
+    posts.pages|length > 0 %}
     <ul class="content-list">
-    {% for post in posts.pages|sort(attribute="date")|reverse|slice(end=5) %}
-        <li>
-            <time datetime="{{ post.date }}">{{ post.date | date(format="%Y-%m-%d") }}</time>
-            <a href="{{ post.permalink | safe }}">{{ post.title }}</a>
-        </li>
-    {% endfor %}
-    {% if posts.pages|length > 5 %}
-        <li style="list-style: none;">
-          <a href="/posts">see archives →</a>
-        </li>
-    {% endif %}
+      {% for post in posts.pages|sort(attribute="date")|reverse|slice(end=5) %}
+      <li>
+        <time datetime="{{ post.date }}"
+          >{{ post.date | date(format="%Y-%m-%d") }}</time
+        >
+        <a href="{{ post.permalink | safe }}">{{ post.title }}</a>
+      </li>
+      {% endfor %} {% if posts.pages|length > 5 %}
+      <li style="list-style: none">
+        <a href="/posts">see archives →</a>
+      </li>
+      {% endif %}
     </ul>
-    {% endif %}
-
-    {% set notes = get_section(path="notes/_index.md") %}
-    {% if notes.pages|length > 0 %}
+    {% endif %} {% set notes = get_section(path="notes/_index.md") %} {% if
+    notes.pages|length > 0 %}
     <li class="section-heading">Recent Notes</li>
     <ul class="content-list">
-    {% for note in notes.pages|sort(attribute="slug")|reverse|slice(end=5) %}
-        <li>
-            <a href="{{ note.permalink | safe }}">{{ note.title }}</a>
-        </li>
-    {% endfor %}
-    {% if notes.pages|length > 5 %}
-        <li style="list-style: none;">
-            <a href="/notes">more notes →</a>
-        </li>
-    {% endif %}
+      {% for note in notes.pages|sort(attribute="slug")|reverse|slice(end=5) %}
+      <li>
+        <a href="{{ note.permalink | safe }}">{{ note.title }}</a>
+      </li>
+      {% endfor %} {% if notes.pages|length > 5 %}
+      <li style="list-style: none">
+        <a href="/notes">more notes →</a>
+      </li>
+      {% endif %}
     </ul>
-    {% endif %}
-
-    {% set projects = get_section(path="projects/_index.md") %}
-    {% if projects.subsections|length > 0 %}
+    {% endif %} {% set projects = get_section(path="projects/_index.md") %} {%
+    if projects.subsections|length > 0 %}
     <li class="section-heading">Projects</li>
     <ul class="content-list">
-    {% for project_path in projects.subsections %}
-        {% set project = get_section(path=project_path) %}
-        <li>
-            <a href="{{ project.permalink | safe }}">{{ project.title }}</a>
-        </li>
-    {% endfor %}
+      {% for project_path in projects.subsections %} {% set project =
+      get_section(path=project_path) %}
+      <li>
+        <a href="{{ project.permalink | safe }}">{{ project.title }}</a>
+      </li>
+      {% endfor %}
     </ul>
     {% endif %}
-</ul>
+  </ul>
 </section>
 {% endblock content %}
