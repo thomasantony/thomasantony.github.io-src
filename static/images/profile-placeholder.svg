@@ -1,0 +1,6 @@
+<svg width="150" height="150" xmlns="http://www.w3.org/2000/svg">
+  <rect width="150" height="150" fill="#e5e7eb"/>
+  <circle cx="75" cy="60" r="25" fill="#9ca3af"/>
+  <path d="M 40 120 Q 75 90 110 120" fill="#9ca3af"/>
+  <text x="75" y="145" font-family="Arial, sans-serif" font-size="12" fill="#6c757d" text-anchor="middle">Profile Photo</text>
+</svg>
