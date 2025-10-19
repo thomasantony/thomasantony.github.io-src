@@ -2,72 +2,60 @@
 {% block content %}
 <section id="homepage">
 <ul>
-    <li>recent posts</li>
+    <li class="section-heading">Recent Posts</li>
 
     {% set posts = get_section(path="posts/_index.md") %}
     {% if posts.pages|length > 0 %}
-    <!-- Show the most recent 5 posts -->
-    <ul>
+    <ul class="content-list">
     {% for post in posts.pages|sort(attribute="date")|reverse|slice(end=5) %}
         <li>
-          <!-- <div class="flex-list-item"> -->
-            <time datetime="{{ post.date }}" class="sans">{{ post.date | date(format="%Y-%m-%d") }}</time>
+            <time datetime="{{ post.date }}">{{ post.date | date(format="%Y-%m-%d") }}</time>
             <a href="{{ post.permalink | safe }}">{{ post.title }}</a>
-          <!-- </div> -->
         </li>
     {% endfor %}
-    <!-- If there are more than five posts, link to /posts -->
     {% if posts.pages|length > 5 %}
-        <li class="remove-list-style">
-          <a href="/posts">see archives ...</a>
+        <li style="list-style: none;">
+          <a href="/posts">see archives →</a>
         </li>
     {% endif %}
     </ul>
     {% endif %}
 
-    <!-- Add section with most recent five notes, sorted by date -->
     {% set notes = get_section(path="notes/_index.md") %}
     {% if notes.pages|length > 0 %}
-    <li>recent notes</li>
-    <ul>
+    <li class="section-heading">Recent Notes</li>
+    <ul class="content-list">
     {% for note in notes.pages|sort(attribute="slug")|reverse|slice(end=5) %}
         <li>
-          <!-- <div class="flex-list-item"> -->
             <a href="{{ note.permalink | safe }}">{{ note.title }}</a>
-          <!-- </div> -->
         </li>
     {% endfor %}
-    <!-- If there are more than five notes, link to /notes -->
     {% if notes.pages|length > 5 %}
-        <li class="remove-list-style">
-            <a href="/notes">more notes ...</a>
+        <li style="list-style: none;">
+            <a href="/notes">more notes →</a>
         </li>
     {% endif %}
     </ul>
     {% endif %}
 
-    <!-- Add section with projects -->
     {% set projects = get_section(path="projects/_index.md") %}
     {% if projects.subsections|length > 0 %}
-    <li>projects</li>
-    <ul>
+    <li class="section-heading">Projects</li>
+    <ul class="content-list">
     {% for project_path in projects.subsections %}
         {% set project = get_section(path=project_path) %}
         <li>
-          <!-- <div class="flex-list-item"> -->
             <a href="{{ project.permalink | safe }}">{{ project.title }}</a>
-          <!-- </div> -->
         </li>
     {% endfor %}
     </ul>
     {% endif %}
 
-
     {% if config.extra.contact %}
-    <li>contact</li>
-    <ul>
+    <li class="section-heading">Contact</li>
+    <ul class="content-list">
       {% for item in config.extra.contact %}
-      <li><a href="{{item.href}}" target="_blank">{{ item.name }}</a><br/></li>
+      <li><a href="{{item.href}}" target="_blank">{{ item.name }}</a></li>
       {% endfor %}
     </ul>
     {% endif %}
