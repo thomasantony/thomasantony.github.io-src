@@ -1,13 +1,13 @@
 {% extends "base.html" %}
 {% block content %}
-<section class="post">
-<p >
-  <h1>{{ page.title }}</h1>
-  <small>
-    <em>Posted on <time datetime="{{ page.date }}">{{ page.date | date(format="%d %B, %Y") }}</time></em>
-  </small>
-  <article>{{ page.content | safe }}</article>
-</p>
-</section>
+<article class="post">
+  <header class="post-header">
+    <h1>{{ page.title }}</h1>
+    <time datetime="{{ page.date }}">{{ page.date | date(format="%B %d, %Y") }}</time>
+  </header>
 
+  <div class="post-content">
+    {{ page.content | safe }}
+  </div>
+</article>
 {% endblock content %}

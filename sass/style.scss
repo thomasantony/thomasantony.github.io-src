@@ -290,3 +290,36 @@ ul {
 .section-heading:first-child {
   margin-top: 0;
 }
+
+// ============================================
+// Post/Page Styles
+// ============================================
+
+.post-header {
+  margin-bottom: var(--space-2xl);
+}
+
+.post-header h1 {
+  margin-bottom: var(--space-xs);
+  margin-top: 0;
+}
+
+.post-header time {
+  color: var(--text-secondary);
+  font-size: var(--text-sm);
+}
+
+.post-content {
+  // Content inherits body styles
+}
+
+// Improve spacing after content elements
+.post-content > * + * {
+  margin-top: var(--space-lg);
+}
+
+.post-content > h2,
+.post-content > h3,
+.post-content > h4 {
+  margin-top: var(--space-2xl);
+}
