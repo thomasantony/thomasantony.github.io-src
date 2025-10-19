@@ -192,7 +192,26 @@ img {
   }
 }
 
-nav, .taxonomies { text-align: right; }
+nav {
+  margin-bottom: var(--space-3xl);
+  font-size: var(--text-sm);
+}
+
+nav a {
+  margin-right: var(--space-lg);
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: var(--link-color);
+    text-decoration: none;
+  }
+}
+
+.taxonomies {
+  text-align: right;
+}
 
 a {
   color: var(--link-color);

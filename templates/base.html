@@ -106,10 +106,8 @@
             <header>
                 <nav>
                     {% if config.extra.navlinks %}
-                    [
                       {% for menuitem in config.extra.navlinks %}
-                      <a href="{{ get_url(path=menuitem.href) }}">{{ menuitem.name }}</a>{% if loop.last == false %},{% endif %}{% endfor %}
-                    ]
+                      <a href="{{ get_url(path=menuitem.href) }}">{{ menuitem.name }}</a>{% endfor %}
                     {% endif %}
                 </nav>
 
