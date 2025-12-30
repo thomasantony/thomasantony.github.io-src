@@ -6,7 +6,7 @@ draft = false
 
 [CubeCL](https://crates.io/crates/cubecl) is a Rust crate that is used for writing GPU programs in pure Rust, which is compatible with a wide range of GPU platforms. It is the underlying library powering the "[Burn](https://burn.dev/)" machine learning framework.
 
-This article will look at some of the basics of how to use CubeCL and some of its quirks.
+This article will look at some of the basics of how to use CubeCL and some of its quirks. You can find the example code in this repository: [thomasantony/cubecl-recipes](https://github.com/thomasantony/cubecl-recipes).
 
 ## Hello, World
 
