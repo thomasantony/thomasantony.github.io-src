@@ -4,7 +4,7 @@ date = "2025-12-29T01:23:21.000Z"
 draft = false
 +++
 
-[CubeCL](https://crates.io/crates/cubecl) is a Rust crate that is used for writing GPU programs in pure Rust, which is compatible with a wide range of GPU platforms. It is the underlying library powering the "Burn" machine learning framework.
+[CubeCL](https://crates.io/crates/cubecl) is a Rust crate that is used for writing GPU programs in pure Rust, which is compatible with a wide range of GPU platforms. It is the underlying library powering the "[Burn](https://burn.dev/)" machine learning framework.
 
 This article will look at some of the basics of how to use CubeCL and some of its quirks.
 
@@ -37,7 +37,7 @@ cubecl = { version = "0.8.1", features = ["wgpu"] }
 
 Build and run the program using `cargo run` and the program should build and print out "Hello, world!".
 
-Just like in other GPU programming platforms, the basic unit of a parallel program in CubeCL is a "kernel". This is a function that gets dispatched to execute on the GPU. See the [CubeCL book](https://burn.dev/books/cubecl/getting-started/parallel_reduction.html) for more details. Kernels do not have a return value and will be returning data instead by writing to mutable array references that are passed into it.
+Just like on other GPU programming platforms, the basic unit of a parallel program in CubeCL is a "kernel". This is a function that gets dispatched to execute on the GPU. See the [CubeCL book](https://burn.dev/books/cubecl/getting-started/parallel_reduction.html) for more details. Kernels do not have a return value and will be returning data instead by writing to mutable array references that are passed into it.
 
 Here is the CubeCL version of the Python program given above:
 
@@ -209,7 +209,7 @@ You are also able to pass scalar values to the kernel - lets say, an integer tha
 
 ```rust
 #[cube(launch)]
-fn kernel_double_numbers(input_data: &Array<u32>, scale: u32, output_data: &mut Array<u32>) {
+fn kernel_scale_numbers(input_data: &Array<u32>, scale: u32, output_data: &mut Array<u32>) {
     let block_id = CUBE_POS;
     let thread_id = UNIT_POS;
 
@@ -222,7 +222,7 @@ fn kernel_double_numbers(input_data: &Array<u32>, scale: u32, output_data: &mut 
 The kernel is then launched as:
 ```rust
     unsafe {
-        kernel_double_numbers::launch::<cubecl::wgpu::WgpuRuntime>(
+        kernel_scale_numbers::launch::<cubecl::wgpu::WgpuRuntime>(
             &client,
             CubeCount::Static(1, 1, 1),
             CubeDim::new(num_elements as u32, 1, 1),
@@ -240,13 +240,13 @@ Output: [3, 6, 9, 12, 15, 18, 21, 24, 27, 30]
 ```
 
 
-## Runtime-Agnostic Functions
+## Backend-Agnostic Code
 
 The examples above hardcoded the WGPU runtime as the CubeCL backend to use for running the code. This is not ideal if the code is to be distributed as a crate/library. CubeCL offers a generics-based pattern for making your code agnostic to the GPU platform. The kernel itself remains identical as it does not have any platform-specific references. However, the launching of the kernel needs to be extracted out into a separate function.
 
 
 ```rust
-fn launch_double_numbers_kernel<R: Runtime>(
+fn launch_scale_numbers_kernel<R: Runtime>(
     client: &ComputeClient<R::Server>,
     input: &Handle,
     scale: u32,
@@ -254,7 +254,7 @@ fn launch_double_numbers_kernel<R: Runtime>(
     num_elements: usize,
 ) {
     unsafe {
-        kernel_double_numbers::launch::<R>(
+        kernel_scale_numbers::launch::<R>(
             &client,
             CubeCount::Static(1, 1, 1),
             CubeDim::new(num_elements as u32, 1, 1),
@@ -269,7 +269,7 @@ fn launch_double_numbers_kernel<R: Runtime>(
 The function is then called as:
 
 ```rust
-    launch_double_numbers_kernel::<cubecl::wgpu::WgpuRuntime>(
+    launch_scale_numbers_kernel::<cubecl::wgpu::WgpuRuntime>(
         &client,
         &input_data_gpu,
         3,
@@ -278,7 +278,7 @@ The function is then called as:
     );
 ```
 
-The `launch_double_numbers_kernel` could be in a separate crate and is completely agnostic to the specific GPU platform that it will be deployed to. The platform is only specified when the function is called.
+The `launch_scale_numbers_kernel` could be in a separate crate and is completely agnostic to the specific GPU platform that it will be deployed to. The platform is only specified when the function is called.
 
 
 ## Cube functions
@@ -351,6 +351,199 @@ In CubeCL, there is a concept of something called a "plane". This is a sub-set o
 
 CubeCL offers some GPU primitives that operate at the level of all threads on the plane. These are not very well documented at the time of writing unless you wade through some of the unit tests.
 
+### Plane Exclusive Sum
+
+Here is an example where we use plane intrinsics to compute an "[exclusive sum](https://en.wikipedia.org/wiki/Prefix_sum#Inclusive_and_exclusive_scans)". The algorithm will take an array like `[1, 1, 1, 1]` and return `[0, 1, 2, 3]`. It uses the [plane_exclusive_sum](https://docs.rs/cubecl/latest/cubecl/frontend/fn.plane_exclusive_sum.html) function.
+
+```rust
+#[cube(launch)]
+fn kernel_plane_exclusive_sum(input_data: &Array<u32>, output_data: &mut Array<u32>) {
+    let block_id = CUBE_POS;
+    let thread_id = UNIT_POS;
+
+    let local_data = input_data[block_id * CUBE_DIM + thread_id];
+    let local_sum = plane_exclusive_sum(local_data);
+
+    output_data[block_id * CUBE_DIM + thread_id] = local_sum;
+}
+
+fn main()
+{
+    let device = Default::default();
+    let client = cubecl::wgpu::WgpuRuntime::client(&device);
+
+    type R = cubecl::wgpu::WgpuRuntime;
+
+    let input_data = vec![1u32; 16];
+    println!("Input: {:?}", &input_data);
+    let num_elements = input_data.len();
+    let zeros = vec![0u32; num_elements];
+    let input_data_gpu = client.create(u32::as_bytes(&input_data));
+    let output_data_gpu = client.create(u32::as_bytes(&zeros));
+
+    const SMALL_BLOCK_SIZE: usize = 8;
+    let num_blocks = num_elements / SMALL_BLOCK_SIZE;
+    unsafe {
+        kernel_plane_exclusive_sum::launch::<R>(
+            &client,
+            CubeCount::Static(num_blocks as u32, 1, 1),
+            CubeDim::new(SMALL_BLOCK_SIZE as u32, 1, 1),
+            ArrayArg::from_raw_parts::<u32>(&input_data_gpu, num_elements, 1),
+            ArrayArg::from_raw_parts::<u32>(&output_data_gpu, num_elements, 1),
+        )
+    }
+    let result = client.read_one(output_data_gpu.clone());
+    let output = u32::from_bytes(&result).to_vec();
+    println!("Plane Exclusive Sum: {:?}\n", output);
+}
+```
+
+The magic happens in these lines:
+```rust
+    let local_data = input_data[block_id * CUBE_DIM + thread_id];
+    let local_sum = plane_exclusive_sum(local_data);
+
+    output_data[block_id * CUBE_DIM + thread_id] = local_sum;
+```
+The `plane_exclusive_sum` takes the value of `local_data` from every other unit/thread in the current plane/warp and computes an exclusive sum, and returns the value that should be returned by the current thread.
+
+One caveat here is that this is limited to the plane (usually a maximum of 32-64 threads depending on the GPU platform). In the above example, we use an array with 16 elements and enforce a block-size (and hence plane size) of 8. This will give us the following result:
+
+```
+Input: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+Plane Exclusive Sum: [0, 1, 2, 3, 4, 5, 6, 7, 0, 1, 2, 3, 4, 5, 6, 7]
+```
+
+If you want to perform an exclusive scan over the entire block (possibly multiple planes), we need to use a more complicated algorithm where shared memory is used to accumulate results between planes.
+
+### Block Exclusive Sum
+
+```rust
+/// Performs exclusive sum over all elements in a block, using plane primitives
+#[cube(launch)]
+fn kernel_block_exclusive_sum(input_data: &Array<u32>, output_data: &mut Array<u32>) {
+    let num_planes: u32 = CUBE_DIM / PLANE_DIM;
+    let block_id = CUBE_POS;
+    let thread_id = UNIT_POS;
+    let plane_thread_idx = UNIT_POS_PLANE;
+    let plane_idx = thread_id / PLANE_DIM;
+
+    let thread_idx = block_id * CUBE_DIM + thread_id;
+
+    // Select plane size as the smaller of the current block size or the max plane size
+    // So if block size is 8, plane size will be 8
+    // If block size is 64, plane size will be 32 (if that is the maximum)
+    let plane_size = if CUBE_DIM < PLANE_DIM {
+        CUBE_DIM
+    } else {
+        PLANE_DIM
+    };
+
+    // Define shared memory for inter-plane communication
+    let mut shared_totals = SharedMemory::<u32>::new(2);
+
+    // 1. local scan
+    let original = input_data[thread_idx];
+    let local_scan = plane_exclusive_sum(original);
+
+    // 2. plane totals → shared mem
+    let plane_total =
+        plane_shuffle(local_scan, plane_size - 1) + plane_shuffle(original, plane_size - 1);
+    if plane_thread_idx == 0 {
+        shared_totals[plane_idx] = plane_total;
+    }
+    sync_cube();
+
+    // 3. scan totals (single plane or serial)
+    if plane_idx == 0 && plane_thread_idx < num_planes {
+        let offset = plane_exclusive_sum(shared_totals[plane_thread_idx]);
+        // reuse shared_totals for storing offsets
+        shared_totals[plane_thread_idx] = offset;
+    }
+    sync_cube();
+
+    // 4. apply offset
+    let result = local_scan + shared_totals[plane_idx];
+
+    output_data[block_id * CUBE_DIM + thread_id] = result;
+}
+
+fn main()
+{
+    let device = Default::default();
+    let client = cubecl::wgpu::WgpuRuntime::client(&device);
+
+    type R = cubecl::wgpu::WgpuRuntime;
+
+    let input_data = vec![1u32; 64];
+    println!("Input: {:?}", &input_data);
+    let num_elements = input_data.len();
+    let input_data_gpu = client.create(u32::as_bytes(&input_data));
+    let zeros = vec![0u32; num_elements];
+    let output_data_gpu = client.create(u32::as_bytes(&zeros));
+    const BIG_BLOCK_SIZE: usize = 64;
+    let num_blocks = num_elements / BIG_BLOCK_SIZE;
+    unsafe {
+        kernel_block_exclusive_sum::launch::<R>(
+            &client,
+            CubeCount::Static(num_blocks as u32, 1, 1),
+            CubeDim::new(BIG_BLOCK_SIZE as u32, 1, 1),
+            ArrayArg::from_raw_parts::<u32>(&input_data_gpu, num_elements, 1),
+            ArrayArg::from_raw_parts::<u32>(&output_data_gpu, num_elements, 1),
+        )
+    }
+    let result = client.read_one(output_data_gpu.clone());
+    let output = u32::from_bytes(&result).to_vec();
+    println!("Block Exclusive Sum: {:?}\n", output);
+}
+```
+
+Here, we use a larger array with 64 elements to make sure that the block size exceeds the plane size (on WGPU) of 32.
+
+The algorithm works as follows:
+
+1. The local scan takes the 64-long array `[1, 1, ... 1]` and converts it into `[0, 1, ... 31, 0, 1, ... 31]`.
+
+2. The next step is to compute the "shared totals". This is the total sum from each plane accumulated into a shared memory array. In this case, it would be `[32, 32]`. This is done by adding the last value of the local scan in the current plane, with the last value of the input array processed by the current plane.
+
+
+To compute this, we use another plane-intrinsic function called [plane_shuffle](https://docs.rs/cubecl/latest/cubecl/frontend/fn.plane_shuffle.html). 
+
+```rust
+plane_shuffle(local_scan, plane_size - 1)
+```
+
+The above function call returns the value of `local_scan` from the thread index `plane_size - 1` (aka the final thread in the plane). So the shared total is computed as:
+
+```rust
+    let plane_total =
+        plane_shuffle(local_scan, plane_size - 1) + plane_shuffle(original, plane_size - 1);
+    if plane_thread_idx == 0 {
+        shared_totals[plane_idx] = plane_total;
+    }
+```
+The value is then stored into the shared memory by a single thread (gated by the `if` condition). There is no point in all of the threads trying to write the exact same value to the shared array.
+
+3. Compute the offsets from the shared totals using another exclusive scan, i.e. `[32, 32]` becomes `[0, 32]`. These are the values to be added to each plane's local scan results. So we add `0` to the local scan results from plane 0, `32` to the local scan results from plane 1, etc.
+
+This exclusive scan can also be performed using the `plane_exclusive_sum` function - except that we make sure to not use more threads than are required.
+
+```rust
+        let offset = plane_exclusive_sum(shared_totals[plane_thread_idx]);
+        // reuse shared_totals for storing offsets
+        shared_totals[plane_thread_idx] = offset;
+```
+
+4. Now applying the offset is as simple as taking the current thread's local scan result (`local_scan`) and adding the appropriate offset to it.
+
+*Note*: `sync_cube()` is used to synchronize processing between all the threads/units in a block. All the threads will wait at these points until every other thread in the block has reached the same point.
+
+This should now give the result:
+
+```
+Input: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+Block Exclusive Sum: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63]
+```
 
 ## Gotchas
 
@@ -361,7 +554,7 @@ If you add the following to a kernel or a #[cube] function :
 let mut mynumber = 0;
 ```
 
-If you do not use this value anywhere in way that lets the compiler infer its type, you will get an error message like:
+If you do not use this value anywhere in a way that lets the compiler infer its type, you will get an error message like:
 
 ```
 error[E0283]: type annotations needed
@@ -383,4 +576,4 @@ It doesn't say which line of the code causes the error, so it can be confusing i
 
 ## Conclusion
 
-CubeCL provides a compelling approach to GPU programming in Rust, offering the ability to write portable GPU code that can target multiple backends (WGPU, CUDA, etc.) from a single codebase. While the documentation is still maturing, the core concepts map well to existing GPU programming paradigms, making it accessible to developers familiar with CUDA or other GPU frameworks. The Burn machine learning framework demonstrates that CubeCL is production-ready for serious GPU workloads.
+CubeCL provides a compelling approach to GPU programming in Rust, offering the ability to write portable GPU code that can target multiple backends (WGPU, CUDA, etc.) from a single codebase. While the documentation is still maturing, the core concepts map well to existing GPU programming paradigms, making it accessible to developers familiar with CUDA or other GPU frameworks.
