@@ -8,6 +8,49 @@ draft = false
 
 This article will look at some of the basics of how to use CubeCL and some of its quirks. You can find the example code in this repository: [thomasantony/cubecl-recipes](https://github.com/thomasantony/cubecl-recipes).
 
+## CubeCL Topology
+
+Before diving into the code, it helps to understand CubeCL's execution model and terminology. If you're familiar with CUDA or other GPU programming frameworks, CubeCL uses different names for similar concepts:
+
+| CubeCL Term | CUDA Equivalent | Description |
+|-------------|-----------------|-------------|
+| Unit | Thread | A single execution unit running your kernel code |
+| Cube | Block | A group of units that can share memory and synchronize |
+| Hyper-Cube | Grid | The entire collection of cubes dispatched for a kernel |
+| Plane | Warp/Subgroup | A subset of units in a cube that execute in lockstep |
+
+The following diagram illustrates the relationship between Units, Cubes, and Hyper-Cubes:
+
+![CubeCL Topology](/images/cubecl.drawio.svg)
+
+> A cube is composed of units, so a 3x3x3 cube has 27 units that can be accessed by their positions along the x, y, and z axes. Similarly, a hyper-cube is composed of cubes, just as a cube is composed of units. Each cube in the hyper-cube can be accessed by its position relative to the hyper-cube along the x, y, and z axes. Hence, a hyper-cube of 3x3x3 will have 27 cubes. In this example, the total number of working units would be 27 x 27 = 729.
+>
+> — [CubeCL Book](https://burn.dev/books/cubecl/getting-started/parallel_reduction.html#cubecl---topology)
+
+The following table (also from the [CubeCL Book](https://burn.dev/books/cubecl/getting-started/parallel_reduction.html#cubecl---topology)) shows how CubeCL's topology constants map to CUDA and WebGPU equivalents:
+
+| CubeCL | CUDA | WebGPU |
+|--------|------|--------|
+| `CUBE_COUNT_X` | `gridDim.x` | `num_workgroups.x` |
+| `CUBE_COUNT_Y` | `gridDim.y` | `num_workgroups.y` |
+| `CUBE_COUNT_Z` | `gridDim.z` | `num_workgroups.z` |
+| `CUBE_POS_X` | `blockIdx.x` | `workgroup_id.x` |
+| `CUBE_POS_Y` | `blockIdx.y` | `workgroup_id.y` |
+| `CUBE_POS_Z` | `blockIdx.z` | `workgroup_id.z` |
+| `CUBE_DIM_X` | `blockDim.x` | `workgroup_size.x` |
+| `CUBE_DIM_Y` | `blockDim.y` | `workgroup_size.y` |
+| `CUBE_DIM_Z` | `blockDim.z` | `workgroup_size.z` |
+| `UNIT_POS` | N/A | `local_invocation_index` |
+| `UNIT_POS_X` | `threadIdx.x` | `local_invocation_id.x` |
+| `UNIT_POS_Y` | `threadIdx.y` | `local_invocation_id.y` |
+| `UNIT_POS_Z` | `threadIdx.z` | `local_invocation_id.z` |
+| `PLANE_DIM` | `warpSize` | `subgroup_size` |
+| `ABSOLUTE_POS_X` | N/A | `global_id.x` |
+| `ABSOLUTE_POS_Y` | N/A | `global_id.y` |
+| `ABSOLUTE_POS_Z` | N/A | `global_id.z` |
+
+Throughout this article, I may use CUDA terminology (thread, block) interchangeably with CubeCL terminology (unit, cube) since many readers will be more familiar with the CUDA terms.
+
 ## Hello, World
 
 We will start with a very simple parallel program - one that takes an array of numbers and doubles each element. Roughly the same as the following python function, except that it will be using the GPU and executing in parallel
@@ -95,37 +138,7 @@ Let's look at the code in more detail:
 #[cube(launch)]
 ```
 
-This is a Rust macro that converts a Rust function into a GPU kernel that can be dispatched. It generates the `::launch` method that is used to dispatch the kernel to the GPU. Within the kernel, you write the code for *one* of the threads. You identify the element of the array that you are supposed to operate on using the intrinsic values `CUBE_POS`, `UNIT_POS` etc.
-
-#### CubeCL Topology
-
-The following diagram illustrates the relationship between Units, Cubes, and Hyper-Cubes:
-
-![CubeCL Topology](/images/cubecl.drawio.svg)
-
-A cube is composed of units, so a 3x3x3 cube has 27 units that can be accessed by their positions along the x, y, and z axes. Similarly, a hyper-cube is composed of cubes, just as a cube is composed of units. Each cube in the hyper-cube can be accessed by its position relative to the hyper-cube along the x, y, and z axes. Hence, a hyper-cube of 3x3x3 will have 27 cubes. In this example, the total number of working units would be 27 x 27 = 729. (Source: [CubeCL Book](https://burn.dev/books/cubecl/getting-started/parallel_reduction.html#cubecl---topology))
-
-The following table (also from the [CubeCL Book](https://burn.dev/books/cubecl/getting-started/parallel_reduction.html#cubecl---topology)) shows how CubeCL's topology constants map to CUDA and WebGPU equivalents:
-
-| CubeCL | CUDA | WebGPU |
-|--------|------|--------|
-| `CUBE_COUNT_X` | `gridDim.x` | `num_workgroups.x` |
-| `CUBE_COUNT_Y` | `gridDim.y` | `num_workgroups.y` |
-| `CUBE_COUNT_Z` | `gridDim.z` | `num_workgroups.z` |
-| `CUBE_POS_X` | `blockIdx.x` | `workgroup_id.x` |
-| `CUBE_POS_Y` | `blockIdx.y` | `workgroup_id.y` |
-| `CUBE_POS_Z` | `blockIdx.z` | `workgroup_id.z` |
-| `CUBE_DIM_X` | `blockDim.x` | `workgroup_size.x` |
-| `CUBE_DIM_Y` | `blockDim.y` | `workgroup_size.y` |
-| `CUBE_DIM_Z` | `blockDim.z` | `workgroup_size.z` |
-| `UNIT_POS` | N/A | `local_invocation_index` |
-| `UNIT_POS_X` | `threadIdx.x` | `local_invocation_id.x` |
-| `UNIT_POS_Y` | `threadIdx.y` | `local_invocation_id.y` |
-| `UNIT_POS_Z` | `threadIdx.z` | `local_invocation_id.z` |
-| `PLANE_DIM` | `warpSize` | `subgroup_size` |
-| `ABSOLUTE_POS_X` | N/A | `global_id.x` |
-| `ABSOLUTE_POS_Y` | N/A | `global_id.y` |
-| `ABSOLUTE_POS_Z` | N/A | `global_id.z` |
+This is a Rust macro that converts a Rust function into a GPU kernel that can be dispatched. It generates the `::launch` method that is used to dispatch the kernel to the GPU. Within the kernel, you write the code for *one* of the threads. You identify the element of the array that you are supposed to operate on using the intrinsic values `CUBE_POS`, `UNIT_POS` etc. (see [CubeCL Topology](#cubecl-topology) above for details on these constants).
 
 In the example code, we assume that the array is to be accessed in the following manner:
 
