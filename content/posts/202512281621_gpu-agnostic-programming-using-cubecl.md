@@ -89,10 +89,8 @@ use cubecl::prelude::*;
 
 #[cube(launch)]
 fn kernel_double_numbers(input_data: &Array<u32>, output_data: &mut Array<u32>) {
-    let block_id = CUBE_POS;
-    let thread_id = UNIT_POS;
-
-    let index = block_id * CUBE_DIM + thread_id;
+    // ABSOLUTE_POS is equivalent to CUBE_POS * CUBE_DIM + UNIT_POS
+    let index = ABSOLUTE_POS;
     output_data[index] = input_data[index] * 2;
 }
 
@@ -148,13 +146,11 @@ In the example code, we assume that the array is to be accessed in the following
       Block 0           Block 1
 ```
 
-This is accomplished by computing the index of the element as:
+This is accomplished by using `ABSOLUTE_POS`:
 
 ```rust
-    let block_id = CUBE_POS;
-    let thread_id = UNIT_POS;
-
-    let index = block_id * CUBE_DIM + thread_id;
+    // ABSOLUTE_POS is equivalent to CUBE_POS * CUBE_DIM + UNIT_POS
+    let index = ABSOLUTE_POS;
 ```
 
 ### Initializing the CubeCL Device and Runtime
@@ -223,10 +219,8 @@ You are also able to pass scalar values to the kernel - lets say, an integer tha
 ```rust
 #[cube(launch)]
 fn kernel_scale_numbers(input_data: &Array<u32>, scale: u32, output_data: &mut Array<u32>) {
-    let block_id = CUBE_POS;
-    let thread_id = UNIT_POS;
-
-    let index = block_id * CUBE_DIM + thread_id;
+    // ABSOLUTE_POS is equivalent to CUBE_POS * CUBE_DIM + UNIT_POS
+    let index = ABSOLUTE_POS;
     output_data[index] = input_data[index] * scale;
     //                                       ^ used instead of 2
 }
@@ -303,19 +297,15 @@ Example:
 ```rust
 #[cube]
 fn do_scale(input: &Array<u32>, scale: u32) -> u32 {
-    let block_id = CUBE_POS;
-    let thread_id = UNIT_POS;
-
-    let index = block_id * CUBE_DIM + thread_id;
+    // ABSOLUTE_POS is equivalent to CUBE_POS * CUBE_DIM + UNIT_POS
+    let index = ABSOLUTE_POS;
     input[index] * scale
 }
 
 #[cube(launch)]
 fn kernel_scale_numbers(input_data: &Array<u32>, scale: u32, output_data: &mut Array<u32>) {
-    let block_id = CUBE_POS;
-    let thread_id = UNIT_POS;
-
-    let index = block_id * CUBE_DIM + thread_id;
+    // ABSOLUTE_POS is equivalent to CUBE_POS * CUBE_DIM + UNIT_POS
+    let index = ABSOLUTE_POS;
     output_data[index] = do_scale(input_data, scale);
 }
 ```
@@ -405,13 +395,13 @@ Here is an example where we use plane intrinsics to compute an "[exclusive sum](
 ```rust
 #[cube(launch)]
 fn kernel_plane_exclusive_sum(input_data: &Array<u32>, output_data: &mut Array<u32>) {
-    let block_id = CUBE_POS;
-    let thread_id = UNIT_POS;
+    // ABSOLUTE_POS is equivalent to CUBE_POS * CUBE_DIM + UNIT_POS
+    let index = ABSOLUTE_POS;
 
-    let local_data = input_data[block_id * CUBE_DIM + thread_id];
+    let local_data = input_data[index];
     let local_sum = plane_exclusive_sum(local_data);
 
-    output_data[block_id * CUBE_DIM + thread_id] = local_sum;
+    output_data[index] = local_sum;
 }
 
 fn main()
@@ -447,10 +437,10 @@ fn main()
 
 The magic happens in these lines:
 ```rust
-    let local_data = input_data[block_id * CUBE_DIM + thread_id];
+    let local_data = input_data[index];
     let local_sum = plane_exclusive_sum(local_data);
 
-    output_data[block_id * CUBE_DIM + thread_id] = local_sum;
+    output_data[index] = local_sum;
 ```
 The `plane_exclusive_sum` takes the value of `local_data` from every other unit/thread in the current plane/warp and computes an exclusive sum, and returns the value that should be returned by the current thread.
 
@@ -475,12 +465,12 @@ fn kernel_block_exclusive_sum(
     output_data: &mut Array<u32>,
     #[comptime] num_planes: u32,
 ) {
-    let block_id = CUBE_POS;
     let thread_id = UNIT_POS;
     let plane_thread_idx = UNIT_POS_PLANE;
     let plane_idx = thread_id / PLANE_DIM;
 
-    let thread_idx = block_id * CUBE_DIM + thread_id;
+    // ABSOLUTE_POS is equivalent to CUBE_POS * CUBE_DIM + UNIT_POS
+    let thread_idx = ABSOLUTE_POS;
 
     // Select plane size as the smaller of the current block size or the max plane size
     // So if block size is 8, plane size will be 8
@@ -518,7 +508,7 @@ fn kernel_block_exclusive_sum(
     // 4. apply offset
     let result = local_scan + shared_totals[plane_idx];
 
-    output_data[block_id * CUBE_DIM + thread_id] = result;
+    output_data[thread_idx] = result;
 }
 
 fn main()
