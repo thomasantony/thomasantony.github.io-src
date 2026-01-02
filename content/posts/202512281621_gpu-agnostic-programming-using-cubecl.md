@@ -329,9 +329,43 @@ Shared Memory is allocated in kernels and used for sharing information between t
 let smem_histogram = SharedMemory::<u32>::new(SIZE);
 ```
 
-In the above example, `SIZE` must be a constant known at compile-time.
+In the above example, `SIZE` must be a constant known at compile-time. This can be limiting when you want to write flexible kernels where the shared memory size depends on launch parameters. CubeCL's `#[comptime]` feature (described in the next section) provides a solution to this constraint.
 
-It can then be used like any other array, except that the data in it is only shared across the threads in the same cube.
+Shared memory can be used like any other array, except that the data in it is only shared across the threads in the same cube.
+
+## Comptime Parameters
+
+CubeCL provides a `#[comptime]` attribute for kernel parameters that need to be known at kernel compile time, but can vary between different kernel invocations. This is particularly useful for `SharedMemory` sizes that depend on launch configuration.
+
+When you mark a parameter with `#[comptime]`, the value is baked into the kernel during JIT compilation. CubeCL will compile a specialized version of the kernel for each unique combination of comptime values you use.
+
+```rust
+#[cube(launch)]
+fn kernel_with_comptime(
+    data: &mut Array<u32>,
+    #[comptime] buffer_size: u32,
+) {
+    // buffer_size is known at kernel compile time
+    let shared_buffer = SharedMemory::<u32>::new(buffer_size);
+    // ... use shared_buffer
+}
+```
+
+The kernel is launched by passing the comptime value as a regular argument:
+
+```rust
+unsafe {
+    kernel_with_comptime::launch::<R>(
+        &client,
+        cube_count,
+        cube_dim,
+        ArrayArg::from_raw_parts::<u32>(&data_gpu, num_elements, 1),
+        buffer_size,  // comptime parameter - no wrapper needed
+    )
+}
+```
+
+A practical example of this pattern is shown in the [Block Exclusive Sum](#block-exclusive-sum) section below, where `#[comptime]` is used to configure the number of planes for shared memory allocation.
 
 ## Atomic Variables
 
@@ -431,11 +465,16 @@ If you want to perform an exclusive scan over the entire block (possibly multipl
 
 ### Block Exclusive Sum
 
+This example demonstrates the `#[comptime]` pattern described earlier. Instead of hardcoding the shared memory size, we pass `num_planes` as a comptime parameter, making the kernel flexible for different block sizes.
+
 ```rust
 /// Performs exclusive sum over all elements in a block, using plane primitives
 #[cube(launch)]
-fn kernel_block_exclusive_sum(input_data: &Array<u32>, output_data: &mut Array<u32>) {
-    let num_planes: u32 = CUBE_DIM / PLANE_DIM;
+fn kernel_block_exclusive_sum(
+    input_data: &Array<u32>,
+    output_data: &mut Array<u32>,
+    #[comptime] num_planes: u32,
+) {
     let block_id = CUBE_POS;
     let thread_id = UNIT_POS;
     let plane_thread_idx = UNIT_POS_PLANE;
@@ -453,7 +492,8 @@ fn kernel_block_exclusive_sum(input_data: &Array<u32>, output_data: &mut Array<u
     };
 
     // Define shared memory for inter-plane communication
-    let mut shared_totals = SharedMemory::<u32>::new(2);
+    // Size is determined at kernel compile time via comptime parameter
+    let mut shared_totals = SharedMemory::<u32>::new(num_planes);
 
     // 1. local scan
     let original = input_data[thread_idx];
@@ -494,15 +534,19 @@ fn main()
     let input_data_gpu = client.create(u32::as_bytes(&input_data));
     let zeros = vec![0u32; num_elements];
     let output_data_gpu = client.create(u32::as_bytes(&zeros));
-    const BIG_BLOCK_SIZE: usize = 64;
-    let num_blocks = num_elements / BIG_BLOCK_SIZE;
+
+    const BLOCK_SIZE: usize = 64;
+    const NUM_PLANES: u32 = (BLOCK_SIZE / PLANE_DIM as usize) as u32;
+    let num_blocks = num_elements / BLOCK_SIZE;
+
     unsafe {
         kernel_block_exclusive_sum::launch::<R>(
             &client,
             CubeCount::Static(num_blocks as u32, 1, 1),
-            CubeDim::new(BIG_BLOCK_SIZE as u32, 1, 1),
+            CubeDim::new(BLOCK_SIZE as u32, 1, 1),
             ArrayArg::from_raw_parts::<u32>(&input_data_gpu, num_elements, 1),
             ArrayArg::from_raw_parts::<u32>(&output_data_gpu, num_elements, 1),
+            NUM_PLANES,  // comptime parameter for shared memory size
         )
     }
     let result = client.read_one(output_data_gpu.clone());
@@ -511,7 +555,7 @@ fn main()
 }
 ```
 
-Here, we use a larger array with 64 elements to make sure that the block size exceeds the plane size (on WGPU) of 32.
+Here, we use a larger array with 64 elements to make sure that the block size exceeds the plane size (on WGPU) of 32. The `NUM_PLANES` constant is computed from `BLOCK_SIZE / PLANE_DIM` and passed to the kernel, where it determines the shared memory allocation size.
 
 The algorithm works as follows:
 
