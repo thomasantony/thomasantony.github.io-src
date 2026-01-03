@@ -21,7 +21,7 @@ jobs:
           path: content/notes
 
       - name: Build site using Zola
-        uses: thomasantony/zola-build-action@v1.0.5
+        uses: thomasantony/zola-build-action@main
       - name: Set owner of working dir recursively
         run: sudo chown -R $(whoami) .
       
@@ -85,7 +85,7 @@ jobs:
           path: content/notes
 
       - name: Build site using Zola
-        uses: thomasantony/zola-build-action@v1.0.5
+        uses: thomasantony/zola-build-action@main
       - name: Set owner of working dir recursively
         run: sudo chown -R $(whoami) .
 
