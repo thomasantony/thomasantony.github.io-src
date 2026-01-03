@@ -22,6 +22,8 @@ jobs:
 
       - name: Build site using Zola
         uses: thomasantony/zola-build-action@main
+        env:
+          CONFIG_FILE: config.toml
       - name: Set owner of working dir recursively
         run: sudo chown -R $(whoami) .
       
@@ -86,6 +88,8 @@ jobs:
 
       - name: Build site using Zola
         uses: thomasantony/zola-build-action@main
+        env:
+          CONFIG_FILE: config.toml
       - name: Set owner of working dir recursively
         run: sudo chown -R $(whoami) .
 
