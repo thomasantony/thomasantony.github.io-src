@@ -3,8 +3,6 @@ title = "Reading List/To-Do List"
 weight = 1
 +++
 
-This is the ever growing list of books/topics that I want to pick up next
-
 ## Books
 
 * [Functional Differential Geometry](https://mitpress.mit.edu/9780262019347/functional-differential-geometry/)
