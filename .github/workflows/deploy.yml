@@ -53,6 +53,32 @@ jobs:
           tar xvf ./surveyor-sim-wasm-0.1.0.tar.gz -C public/surveyor
           sed -i 's|"/|"surveyor/|g' public/surveyor/index.html
           sed -i 's|'"'"'/|'"'"'/surveyor/|g' public/surveyor/index.html
+
+      - name: Check out sicm-tutorial repo
+        uses: actions/checkout@v4
+        with:
+          repository: thomasantony/sicm-tutorial
+          ref: master
+          token: ${{ secrets.PRIVATE_TOKEN }}
+          path: sicm-tutorial
+
+      - name: Setup Node.js for sicm-tutorial
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+          cache-dependency-path: sicm-tutorial/package-lock.json
+
+      - name: Build and copy sicm-tutorial
+        working-directory: sicm-tutorial
+        env:
+          VITE_BASE: /sicm/
+        run: |
+          npm ci
+          npm run build
+          mkdir -p ../public/sicm
+          cp -r dist/. ../public/sicm/
+
       - name: Prepare for deployment
         run: |
           rm -rf public/.git || true
@@ -119,6 +145,32 @@ jobs:
           tar xvf ./surveyor-sim-wasm-0.1.0.tar.gz -C public/surveyor
           sed -i 's|"/|"surveyor/|g' public/surveyor/index.html
           sed -i 's|'"'"'/|'"'"'/surveyor/|g' public/surveyor/index.html
+
+      - name: Check out sicm-tutorial repo
+        uses: actions/checkout@v4
+        with:
+          repository: thomasantony/sicm-tutorial
+          ref: master
+          token: ${{ secrets.PRIVATE_TOKEN }}
+          path: sicm-tutorial
+
+      - name: Setup Node.js for sicm-tutorial
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+          cache-dependency-path: sicm-tutorial/package-lock.json
+
+      - name: Build and copy sicm-tutorial
+        working-directory: sicm-tutorial
+        env:
+          VITE_BASE: /sicm/
+        run: |
+          npm ci
+          npm run build
+          mkdir -p ../public/sicm
+          cp -r dist/. ../public/sicm/
+
       - name: Prepare for deployment
         run: |
           rm -rf public/.git || true

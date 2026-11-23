@@ -5,7 +5,8 @@ weight = 1
 
 **Status:** Paused
 
-Go to [**Workbook**](/projects/sicm-workbook)
+- Go to [**Workbook**](/projects/sicm-workbook)
+- Go to [**Interactive SICM Tutorial**](/sicm/)
 
 #### References
 
